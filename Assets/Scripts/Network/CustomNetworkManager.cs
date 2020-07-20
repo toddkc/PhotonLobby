@@ -3,7 +3,9 @@
     using NetworkTutorial.GameEvents;
     using Photon.Pun;
     using Photon.Realtime;
+    using System.Collections;
     using UnityEngine;
+    using UnityEngine.SceneManagement;
     using UnityEngine.UI;
 
     public class CustomNetworkManager : MonoBehaviourPunCallbacks
@@ -13,6 +15,7 @@
 
         [Header("Settings")]
         [SerializeField] Text roomName = default;
+        [SerializeField] Text playerName = default;
         [SerializeField] bool printDebug = false;
         [SerializeField] bool spawnPlayerEntity = false;
 
@@ -25,16 +28,71 @@
 
         private int counter = 0;
         private bool joiningRandom = false;
+        private GameObject networkPlayerInstance;
+
+        public static CustomNetworkManager instance;
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void Start()
         {
             PhotonNetwork.AutomaticallySyncScene = false;
             PhotonNetwork.ConnectUsingSettings();
+
+            PlayerPrefs.SetString("message", "connecting to PUN...");
+            displayMessageEvent.Raise();
+        }
+
+        private void CustomStart(Scene oldScene, Scene newScene)
+        {
+            StartCoroutine(GetStatus());
+        }
+
+        private IEnumerator GetStatus()
+        {
+            yield return null;
+            Debug.Log("custom network manager START");
+            if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.AutomaticallySyncScene = false;
+                PhotonNetwork.ConnectUsingSettings();
+
+                PlayerPrefs.SetString("message", "connecting to PUN...");
+                displayMessageEvent.Raise();
+            }
+            else if (PhotonNetwork.InRoom)
+            {
+                PlayerPrefs.SetString("message", "joined room lobby");
+                displayMessageEvent.Raise();
+            }
+            else
+            {
+                PlayerPrefs.SetString("message", "loading...");
+                displayMessageEvent.Raise();
+            }
+        }
+
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            SceneManager.activeSceneChanged += CustomStart;
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            SceneManager.activeSceneChanged -= CustomStart;
         }
 
         // create a new room with a specific name
@@ -82,7 +140,8 @@
 
         private void SpawnPlayer(Player player)
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+            networkPlayerInstance = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+            DontDestroyOnLoad(networkPlayerInstance);
         }
 
         public override void OnConnectedToMaster()
@@ -97,10 +156,13 @@
         {
             if (printDebug) Debug.Log("left room");
             roomName.text = "";
+            playerName.text = "";
             leaveRoomEvent.Raise();
             CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
             PlayerPrefs.SetString("message", "you left the room");
             displayMessageEvent.Raise();
+
+            SceneManager.LoadSceneAsync(0);
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -116,6 +178,8 @@
             disconnectEvent.Raise();
             PlayerPrefs.SetString("message", "disconnect from PUN");
             displayMessageEvent.Raise();
+
+            SceneManager.LoadSceneAsync(0);
         }
 
         public override void OnCreatedRoom()
@@ -133,6 +197,7 @@
         public override void OnJoinedRoom()
         {
             roomName.text = PhotonNetwork.CurrentRoom.Name;
+            playerName.text = PhotonNetwork.NickName;
             if (printDebug) Debug.Log("joined room: " + PhotonNetwork.CurrentRoom.Name);
             joinRoomEvent.Raise();
             CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
@@ -143,6 +208,8 @@
             {
                 SpawnPlayer(PhotonNetwork.LocalPlayer);
             }
+
+            SceneManager.LoadSceneAsync(1);
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)

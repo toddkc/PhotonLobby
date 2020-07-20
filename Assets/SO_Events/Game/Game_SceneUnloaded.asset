@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26feab4083c0f1a41ab64784726591ed, type: 3}
-  m_Name: UI_JoinGame
+  m_Name: Game_SceneUnloaded
   m_EditorClassIdentifier: 

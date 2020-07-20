@@ -10,7 +10,7 @@ public class UI_PlayerNickname : MonoBehaviourPun
     private void Start()
     {
         string nickname;
-        if (PlayerPrefs.HasKey(playerPrefsKey))
+        if (PlayerPrefs.HasKey(playerPrefsKey) && !string.IsNullOrEmpty(PlayerPrefs.GetString(playerPrefsKey)))
         {
             nickname = PlayerPrefs.GetString(playerPrefsKey);
         }

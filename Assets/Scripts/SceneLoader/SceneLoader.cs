@@ -14,6 +14,21 @@
         private bool isSceneLoaded = false;
         private int? currentGameScene = null;
 
+        public static SceneLoader instance;
+
+        private void Awake()
+        {
+            if(instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
         private void OnEnable()
         {
             SceneManager.sceneLoaded += SceneLoadedCallback;
@@ -89,10 +104,11 @@
             {
                 isSceneLoaded = true;
                 currentGameScene = index;
-                SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
                 PlayerPrefs.SetString("message", "Loading Game...");
                 displayMessageEvent.Raise();
-                //UIMessageDisplay.instance.DisplayMessage("Loading Game...");
+
+                SceneManager.LoadSceneAsync(index);
+                //SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
             }
         }
 
@@ -100,7 +116,8 @@
         {
             if (isSceneLoaded && currentGameScene != null)
             {
-                SceneManager.UnloadSceneAsync((int)currentGameScene);
+                SceneManager.LoadScene(1);
+                //SceneManager.UnloadSceneAsync((int)currentGameScene);
             }
         }
     }

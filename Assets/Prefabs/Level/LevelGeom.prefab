@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8003152585679349701}
   - component: {fileID: 8003152585679349702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003152585679349700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50, y: 0, z: 0}
+  m_LocalPosition: {x: -250, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8003152585553495717}
@@ -77,7 +77,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 20, z: 110}
+  m_Size: {x: 10, y: 50, z: 550}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8003152585744243117
 GameObject:
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8003152585744243118}
   - component: {fileID: 8003152585744243119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003152585744243117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 0, z: 0}
+  m_LocalPosition: {x: 250, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8003152585553495717}
@@ -121,7 +121,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 20, z: 110}
+  m_Size: {x: 10, y: 50, z: 550}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8003152586157937843
 GameObject:
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8003152586157937847}
   - component: {fileID: 8003152586157937846}
   - component: {fileID: 8003152586157937845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground-Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 8003152586157937843}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2.5, z: 0}
-  m_LocalScale: {x: 100, y: 5, z: 100}
+  m_LocalScale: {x: 500, y: 5, z: 500}
   m_Children: []
   m_Father: {fileID: 8003152585553495717}
   m_RootOrder: 0
@@ -226,7 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8003152586484552766}
   - component: {fileID: 8003152586484552767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003152586484552765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalPosition: {x: 0, y: 0, z: 250}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8003152585553495717}
@@ -258,7 +258,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 110, y: 20, z: 5}
+  m_Size: {x: 550, y: 50, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8003152586527110926
 GameObject:
@@ -270,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8003152586527110927}
   - component: {fileID: 8003152586527110960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003152586527110926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -50}
+  m_LocalPosition: {x: 0, y: 0, z: -250}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8003152585553495717}
@@ -302,5 +302,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 110, y: 20, z: 5}
+  m_Size: {x: 550, y: 50, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
