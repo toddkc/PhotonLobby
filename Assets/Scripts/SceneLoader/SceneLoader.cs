@@ -107,7 +107,8 @@
                 PlayerPrefs.SetString("message", "Loading Game...");
                 displayMessageEvent.Raise();
 
-                SceneManager.LoadSceneAsync(index);
+                PhotonNetwork.LoadLevel(index);
+                //SceneManager.LoadSceneAsync(index);
                 //SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
             }
         }
@@ -116,7 +117,8 @@
         {
             if (isSceneLoaded && currentGameScene != null)
             {
-                SceneManager.LoadScene(1);
+                PhotonNetwork.LoadLevel(1);
+                //SceneManager.LoadScene(1);
                 //SceneManager.UnloadSceneAsync((int)currentGameScene);
             }
         }

@@ -162,7 +162,8 @@
             PlayerPrefs.SetString("message", "you left the room");
             displayMessageEvent.Raise();
 
-            SceneManager.LoadSceneAsync(0);
+            //SceneManager.LoadSceneAsync(0);
+            PhotonNetwork.LoadLevel(0);
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -179,7 +180,8 @@
             PlayerPrefs.SetString("message", "disconnect from PUN");
             displayMessageEvent.Raise();
 
-            SceneManager.LoadSceneAsync(0);
+            //SceneManager.LoadSceneAsync(0);
+            PhotonNetwork.LoadLevel(0);
         }
 
         public override void OnCreatedRoom()
@@ -209,7 +211,8 @@
                 SpawnPlayer(PhotonNetwork.LocalPlayer);
             }
 
-            SceneManager.LoadSceneAsync(1);
+            //SceneManager.LoadSceneAsync(1);
+            PhotonNetwork.LoadLevel(1);
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
