@@ -1,5 +1,4 @@
-﻿using UnityEditor.SceneManagement;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -38,7 +37,6 @@ public class CloseAllScenes : MonoBehaviour
 
     private void CloseScene(Scene scene)
     {
-        EditorSceneManager.CloseScene(scene, false);
         SceneManager.UnloadSceneAsync(scene.buildIndex);
     }
 }

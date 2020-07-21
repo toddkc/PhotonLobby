@@ -50,9 +50,9 @@ MonoBehaviour:
   startGameEvent: {fileID: 11400000, guid: c7898ec748aa02d4fa45912131212e96, type: 2}
   quitGameEvent: {fileID: 11400000, guid: e1bdc5600b2244e4aa78b4adc51a3a48, type: 2}
   joinButton: 1
-  leaveButton: 256
-  loadGameButton: 1048576
-  unloadGameButton: 0
+  leaveButton: 2
+  loadGameButton: 256
+  unloadGameButton: 512
   joinKey: 106
   leaveKey: 108
   loadGameKey: 103
