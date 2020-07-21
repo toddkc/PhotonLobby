@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 845713961806652903}
   - component: {fileID: 845713961806652904}
   - component: {fileID: 845713961806652906}
+  - component: {fileID: 845713961693777169}
   m_Layer: 5
   m_Name: Canvas-errors
   m_TagString: Untagged
@@ -128,6 +129,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 845713963287014709}
   onlyLogs: 0
+--- !u!114 &845713961693777169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845713961806652907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be75456604cc4441ac69d2e2dbbdb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &845713962329068275
 GameObject:
   m_ObjectHideFlags: 0

@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 2670818781903091246}
   - component: {fileID: 2670818781903091248}
   - component: {fileID: 2670818781903091249}
+  - component: {fileID: 2670818782007408737}
   m_Layer: 5
   m_Name: Canvas-messages
   m_TagString: Untagged
@@ -230,6 +231,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2670818782007408737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670818781903091250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be75456604cc4441ac69d2e2dbbdb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2670818782540593999
 GameObject:
   m_ObjectHideFlags: 0

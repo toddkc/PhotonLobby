@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3184466759894686064}
   - component: {fileID: 3184466759894686071}
   - component: {fileID: 3184466759894686070}
+  - component: {fileID: 8957235348789873419}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -161,6 +162,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &8957235348789873419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3184466759894686067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be75456604cc4441ac69d2e2dbbdb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3184466759958153772
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,17 +753,17 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press J to join room.
+  m_Text: 'Press A to join room.
 
-    Press L to leave room.
+    Press B to leave room.
 
-    Press T to toggle
-    mic echo.
+    Press Start to
+    toggle mic echo.
 
-    Press G to load game (from room).
+    Press X to load game (from room).
 
-    Press H to load room (from
-    game).'
+    Press Y to load
+    room (from game).'
 --- !u!1 &9161770263510931405
 GameObject:
   m_ObjectHideFlags: 0
