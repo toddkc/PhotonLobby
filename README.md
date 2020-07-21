@@ -7,9 +7,9 @@ To install:
 Install Unity 2019.4 LTS.  Create a Photon account and get an app id for PUN2 and Voice2.  Enter them into the Photon Server Settings.  I have the minimum required code for Photon and Oculus already in this repo.
 
 For a non-vr build you will want the following scenes in your build index:
-MainMenu.scene
-Lobby.scene
-Game.scene
+-Index 0: MainMenu.scene
+-Index 1: Lobby.scene
+-Index 2: Game.scene
 
 For a vr build you want the same, but with the VR versions of the scenes.
 
