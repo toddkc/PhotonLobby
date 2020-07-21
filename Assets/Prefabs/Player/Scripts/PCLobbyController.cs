@@ -17,7 +17,7 @@ public class PCLobbyController : MonoBehaviour
 
     private void Start()
     {
-        if(forwardTransform == null || InputBridgePC.instance == null)
+        if(forwardTransform == null || InputBridgeBase.instance == null)
         {
             Debug.LogError("PC Lobby Controller not setup properly!", this);
         }
@@ -35,11 +35,11 @@ public class PCLobbyController : MonoBehaviour
         movement += Vector3.ProjectOnPlane(
                 forwardTransform.right,
                 thisTransform.up)
-                .normalized * InputBridgePC.instance.StrafeAxis;
+                .normalized * InputBridgeBase.instance.StrafeAxis;
         movement += Vector3.ProjectOnPlane(
             forwardTransform.forward,
             thisTransform.up)
-            .normalized * InputBridgePC.instance.MoveAxis;
+            .normalized * InputBridgeBase.instance.MoveAxis;
 
         thisTransform.Translate(movement * moveSpeed * Time.deltaTime);
     }

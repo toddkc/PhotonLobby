@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// used by the player to interact with custom world-space ui elements
@@ -11,11 +12,18 @@ public class RaycastUI : MonoBehaviour
 
     private Transform thisTransform;
     private ICustomUIElement currentSelected;
+    private WaitForSeconds clickDelay;
+    private bool canClick = true;
 
     private void Awake()
     {
         currentSelected = null;
         thisTransform = transform;
+    }
+
+    private void Start()
+    {
+        clickDelay = new WaitForSeconds(0.2f);
     }
 
     private void OnEnable()
@@ -31,11 +39,13 @@ public class RaycastUI : MonoBehaviour
     {
         CheckForUI();
 
-        if(InputBridgePC.instance.Interact && currentSelected != null)
+        if (InputBridgeBase.instance.Interact && canClick && currentSelected != null)
         {
+            canClick = false;
             currentSelected.OnClick();
             currentSelected.OnExit();
             currentSelected = null;
+            StartCoroutine(ResetClick());
         }
     }
 
@@ -51,7 +61,6 @@ public class RaycastUI : MonoBehaviour
         }
         else
         {
-
             var uiobj = hit.transform.GetComponent<ICustomUIElement>();
             if (uiobj != null && uiobj != currentSelected)
             {
@@ -59,5 +68,11 @@ public class RaycastUI : MonoBehaviour
                 uiobj.OnHover();
             }
         }
+    }
+
+    private IEnumerator ResetClick()
+    {
+        yield return clickDelay;
+        canClick = true;
     }
 }

@@ -19,7 +19,7 @@ public class CustomUIInputField : MonoBehaviour, ICustomUIElement
     {
         if (isActive)
         {
-            if(Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Escape) || InputBridgePC.instance.Interact)
+            if(Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Escape) || InputBridgeBase.instance.Interact)
             {
                 inputField.DeactivateInputField();
                 OnExit();

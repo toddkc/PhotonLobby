@@ -32,7 +32,7 @@ public class MouseCameraController : MonoBehaviour
 
     private void Start()
     {
-        if(InputBridgePC.instance == null)
+        if(InputBridgeBase.instance == null)
         {
             Debug.LogError("Mouse Cam Controller not setup properly!", this);
         }
@@ -49,7 +49,7 @@ public class MouseCameraController : MonoBehaviour
     // move cam up/down
     private void Pitch()
     {
-        float input = invert ? InputBridgePC.instance.PitchAxis : -InputBridgePC.instance.PitchAxis;
+        float input = invert ? InputBridgeBase.instance.PitchAxis : -InputBridgeBase.instance.PitchAxis;
         xAngle += input * pitchSpeed;
         xAngle = Mathf.Clamp(xAngle, -upperLimit, lowerLimit);
         camTransform.localRotation = Quaternion.Euler(new Vector3(xAngle, 0, 0));
@@ -58,7 +58,7 @@ public class MouseCameraController : MonoBehaviour
     // rotate gameobject
     private void Yaw()
     {
-        float input = InputBridgePC.instance.YawAxis;
+        float input = InputBridgeBase.instance.YawAxis;
         yAngle += input * yawSpeed;
         thisTransform.localRotation = Quaternion.Euler(new Vector3(0,yAngle,0));
     }
