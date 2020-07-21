@@ -3,9 +3,8 @@
 public class PCLobbyController : MonoBehaviour
 {
     private Transform thisTransform;
+    [SerializeField] private Transform forwardTransform;
     [SerializeField] private float moveSpeed = 5;
-    [SerializeField] private KeyCode leftRotate = default;
-    [SerializeField] private KeyCode rightRotate = default;
 
     private void Awake()
     {
@@ -15,32 +14,29 @@ public class PCLobbyController : MonoBehaviour
     private void Update()
     {
         Move();
-        Rotate();
     }
 
     private void Move()
     {
         Vector3 movement = Vector3.zero;
 
-        movement.z += Input.GetAxis("Vertical");
-        movement.x += Input.GetAxis("Horizontal");
+        if (forwardTransform == null)
+        {
+            movement += thisTransform.right * Input.GetAxis("Horizontal");
+            movement += thisTransform.forward * Input.GetAxis("Vertical");
+        }
+        else
+        {
+            movement += Vector3.ProjectOnPlane(
+                forwardTransform.right, 
+                thisTransform.up)
+                .normalized * Input.GetAxis("Horizontal");
+            movement += Vector3.ProjectOnPlane(
+                forwardTransform.forward, 
+                thisTransform.up)
+                .normalized * Input.GetAxis("Vertical");
+        }
 
         thisTransform.Translate(movement * moveSpeed * Time.deltaTime);
-    }
-
-    private void Rotate()
-    {
-        var rotation = thisTransform.eulerAngles;
-
-        if (Input.GetKeyDown(rightRotate))
-        {
-            rotation.y += 45;
-        }
-        if (Input.GetKeyDown(leftRotate))
-        {
-            rotation.y -= 45;
-        }
-
-        thisTransform.eulerAngles = rotation;
     }
 }
