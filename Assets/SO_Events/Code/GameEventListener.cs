@@ -1,26 +1,27 @@
-﻿namespace NetworkTutorial.GameEvents
+﻿using UnityEngine;
+using UnityEngine.Events;
+
+/// <summary>
+/// add this component to listen for GameEvents and trigger UnityEvents
+/// </summary>
+
+public class GameEventListener : MonoBehaviour
 {
-    using UnityEngine;
-    using UnityEngine.Events;
+    [SerializeField] private GameEvent gameEvent = default;
+    [SerializeField] private UnityEvent responseEvent = default;
 
-    public class GameEventListener : MonoBehaviour
+    private void OnEnable()
     {
-        [SerializeField] private GameEvent gameEvent = default;
-        [SerializeField] private UnityEvent responseEvent = default;
+        gameEvent.AddListener(this);
+    }
 
-        private void OnEnable()
-        {
-            gameEvent.AddListener(this);
-        }
+    private void OnDisable()
+    {
+        gameEvent.RemoveListener(this);
+    }
 
-        private void OnDisable()
-        {
-            gameEvent.RemoveListener(this);
-        }
-
-        public void OnEventRaised()
-        {
-            responseEvent.Invoke();
-        }
+    public void OnEventRaised()
+    {
+        responseEvent.Invoke();
     }
 }

@@ -183,6 +183,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8838976586689867491, guid: 461a103436683754b8b80b8d3bdffd5e,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 727045215}
     - target: {fileID: 8870515903732273643, guid: 461a103436683754b8b80b8d3bdffd5e,
         type: 3}
       propertyPath: m_Name
@@ -202,6 +207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Log_Errors
       objectReference: {fileID: 0}
+    - target: {fileID: 845713961806652903, guid: 1412fc4785315844f8385a162dac1e81,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 727045215}
     - target: {fileID: 8392341533774884595, guid: 1412fc4785315844f8385a162dac1e81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -328,6 +338,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09825a7e9604f6d45b8567cc554f1955, type: 3}
+--- !u!20 &727045215 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3196060306854544810, guid: 09825a7e9604f6d45b8567cc554f1955,
+    type: 3}
+  m_PrefabInstance: {fileID: 727045214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1722344838
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +448,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Messages
       objectReference: {fileID: 0}
+    - target: {fileID: 2670818781903091245, guid: ad5fa62e574763943be2ac130cf6167e,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 727045215}
     - target: {fileID: 3025984505395973671, guid: ad5fa62e574763943be2ac130cf6167e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -556,6 +577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Lobby
       objectReference: {fileID: 0}
+    - target: {fileID: 2765055817188206245, guid: 4b371f1b792272643a944fd06a28e71d,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 727045215}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b371f1b792272643a944fd06a28e71d, type: 3}
 --- !u!1001 &8003152586322198800
