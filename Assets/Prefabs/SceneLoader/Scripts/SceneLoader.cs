@@ -49,6 +49,22 @@ public class SceneLoader : MonoBehaviour
         UnloadGameSceneEventResponse();
     }
 
+    public void LoadGameScene(int scene)
+    {
+        if (!isSceneLoaded && PhotonNetwork.IsMasterClient)
+        {
+            PUN_Events.LoadLevelEvent(scene);
+        }
+    }
+
+    public void UnloadGameScene()
+    {
+        if (isSceneLoaded && PhotonNetwork.IsMasterClient)
+        {
+            PUN_Events.UnloadLevelEvent();
+        }
+    }
+
     private void SceneLoadedCallback(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == currentGameScene)
@@ -65,22 +81,6 @@ public class SceneLoader : MonoBehaviour
             sceneUnloadedEvent.Raise();
             isSceneLoaded = false;
             currentGameScene = null;
-        }
-    }
-
-    public void LoadGameScene(int scene)
-    {
-        if (!isSceneLoaded && PhotonNetwork.IsMasterClient)
-        {
-            PUN_Events.LoadLevelEvent(scene);
-        }
-    }
-
-    public void UnloadGameScene()
-    {
-        if (isSceneLoaded && PhotonNetwork.IsMasterClient)
-        {
-            PUN_Events.UnloadLevelEvent();
         }
     }
 
@@ -109,8 +109,6 @@ public class SceneLoader : MonoBehaviour
             displayMessageEvent.Raise();
 
             PhotonNetwork.LoadLevel(index);
-            //SceneManager.LoadSceneAsync(index);
-            //SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
         }
     }
 
@@ -119,8 +117,6 @@ public class SceneLoader : MonoBehaviour
         if (isSceneLoaded && currentGameScene != null)
         {
             PhotonNetwork.LoadLevel(1);
-            //SceneManager.LoadScene(1);
-            //SceneManager.UnloadSceneAsync((int)currentGameScene);
         }
     }
 }

@@ -339,6 +339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Log_Errors
       objectReference: {fileID: 0}
+    - target: {fileID: 320877580862775051, guid: 1412fc4785315844f8385a162dac1e81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8392341533774884595, guid: 1412fc4785315844f8385a162dac1e81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -877,6 +882,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Log_Logs
       objectReference: {fileID: 0}
+    - target: {fileID: 8870515903732273643, guid: 461a103436683754b8b80b8d3bdffd5e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 461a103436683754b8b80b8d3bdffd5e, type: 3}
 --- !u!1001 &8957235348789873417
@@ -948,3 +958,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3713d1f48d7b89c4c9403e51b3ece791, type: 3}
+--- !u!1 &8957235348789873418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8241584419255756744, guid: 3713d1f48d7b89c4c9403e51b3ece791,
+    type: 3}
+  m_PrefabInstance: {fileID: 8957235348789873417}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8957235348789873419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957235348789873418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98c18deab48f814bb49110e91370e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHostDisconnectEvent: {fileID: 11400000, guid: 4af63b70a1f9ae2499e9864169341820,
+    type: 2}
