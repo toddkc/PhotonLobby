@@ -53,5 +53,6 @@ public class EventTester : MonoBehaviour
         if (OVRInput.Get(loadGameButton)) loadGameEvent.Raise();
 
         if (Input.GetKeyDown(unloadGameKey)) unloadGameEvent.Raise();
+        if (OVRInput.Get(unloadGameButton)) unloadGameEvent.Raise();
     }
 }

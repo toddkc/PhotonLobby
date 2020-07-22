@@ -262,6 +262,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2134167286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8241584419255756744, guid: 3713d1f48d7b89c4c9403e51b3ece791,
+    type: 3}
+  m_PrefabInstance: {fileID: 8957235348789873417}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134167287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134167286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98c18deab48f814bb49110e91370e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHostDisconnectEvent: {fileID: 11400000, guid: 4af63b70a1f9ae2499e9864169341820,
+    type: 2}
 --- !u!1001 &845713961693777167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,6 +293,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI_Log_Errors
+      objectReference: {fileID: 0}
+    - target: {fileID: 320877580862775051, guid: 1412fc4785315844f8385a162dac1e81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 845713961806652903, guid: 1412fc4785315844f8385a162dac1e81,
         type: 3}
@@ -334,7 +359,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 845713961693777169, guid: 1412fc4785315844f8385a162dac1e81, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1412fc4785315844f8385a162dac1e81, type: 3}
 --- !u!1 &845713961693777168 stripped
 GameObject:
@@ -497,24 +523,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f884ccb4e2135724b8dbe7dd974ab46e, type: 3}
---- !u!1 &2141053449113244015 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2141053450472073219, guid: f884ccb4e2135724b8dbe7dd974ab46e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2141053449113244014}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2141053449113244016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2141053449113244015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be75456604cc4441ac69d2e2dbbdb3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2670818782007408735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,7 +595,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2670818782007408737, guid: ad5fa62e574763943be2ac130cf6167e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad5fa62e574763943be2ac130cf6167e, type: 3}
 --- !u!1 &2670818782007408736 stripped
 GameObject:
@@ -955,7 +964,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_Log_Logs
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8870515903732273643, guid: 461a103436683754b8b80b8d3bdffd5e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8838976586902640310, guid: 461a103436683754b8b80b8d3bdffd5e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 461a103436683754b8b80b8d3bdffd5e, type: 3}
 --- !u!1 &8838976586902640309 stripped
 GameObject:
@@ -1047,23 +1062,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8957235350054234144, guid: 3713d1f48d7b89c4c9403e51b3ece791,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Press J to join room.
+
+        Press L to leave room.
+
+        Press
+        T to toggle mic echo.
+
+        Press G to load game (from room).
+
+        Press
+        H to load room (from game).'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3713d1f48d7b89c4c9403e51b3ece791, type: 3}
---- !u!1 &8957235348789873418 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3184466759894686067, guid: 3713d1f48d7b89c4c9403e51b3ece791,
-    type: 3}
-  m_PrefabInstance: {fileID: 8957235348789873417}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8957235348789873419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957235348789873418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1be75456604cc4441ac69d2e2dbbdb3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

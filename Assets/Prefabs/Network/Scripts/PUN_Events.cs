@@ -8,11 +8,19 @@ using Photon.Realtime;
 
 public static class PUN_Events
 {
+    public const byte HostDisconnectEventCode = 0;
     public const byte LoadLevelEventCode = 1;
     public const byte UnloadLevelEventCode = 2;
     public const byte StartGameEventCode = 3;
     public const byte ResetGameEventCode = 4;
     public const byte StopGameEventCode = 5;
+
+    public static void HostDisconnectEvent()
+    {
+        object[] content = null;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+        PhotonNetwork.RaiseEvent(HostDisconnectEventCode, content, raiseEventOptions, SendOptions.SendReliable);
+    }
 
     public static void LoadLevelEvent(int buildIndex)
     {
