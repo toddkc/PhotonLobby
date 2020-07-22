@@ -57,6 +57,13 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    public void LoadGameSceneUsingPrefs()
+    {
+        if (!PlayerPrefs.HasKey("game")) return;
+        int index = PlayerPrefs.GetInt("game");
+        LoadGameScene(index);
+    }
+
     public void UnloadGameScene()
     {
         if (isSceneLoaded && PhotonNetwork.IsMasterClient)
