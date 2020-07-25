@@ -34,7 +34,7 @@ public class MouseCameraController : MonoBehaviour
     {
         if(InputBridgeBase.instance == null)
         {
-            Debug.LogError("Mouse Cam Controller not setup properly!", this);
+            Debug.LogError("Mouse Cam Controller cannot find input bridge!", this);
         }
         xAngle = camTransform.localRotation.eulerAngles.x;
         yAngle = thisTransform.localRotation.eulerAngles.y;

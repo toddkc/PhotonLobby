@@ -7,7 +7,6 @@
 public class PCLobbyController : MonoBehaviour
 {
     private Transform thisTransform;
-    [SerializeField] private Transform forwardTransform = default;
     [SerializeField] private float moveSpeed = 5;
 
     private void Awake()
@@ -17,9 +16,9 @@ public class PCLobbyController : MonoBehaviour
 
     private void Start()
     {
-        if(forwardTransform == null || InputBridgeBase.instance == null)
+        if(InputBridgeBase.instance == null)
         {
-            Debug.LogError("PC Lobby Controller not setup properly!", this);
+            Debug.LogError("PC Lobby Controller cannot find input bridge!", this);
         }
     }
 
@@ -30,17 +29,12 @@ public class PCLobbyController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 movement = Vector3.zero;
-
-        movement += Vector3.ProjectOnPlane(
-                forwardTransform.right,
-                thisTransform.up)
-                .normalized * InputBridgeBase.instance.StrafeAxis;
-        movement += Vector3.ProjectOnPlane(
-            forwardTransform.forward,
-            thisTransform.up)
-            .normalized * InputBridgeBase.instance.MoveAxis;
-
-        thisTransform.Translate(movement * moveSpeed * Time.deltaTime);
+        Vector3 _movement = Vector3.zero;
+        Vector3 _velocity = Vector3.zero;
+        _movement += thisTransform.right * InputBridgeBase.instance.StrafeAxis;
+        _movement += thisTransform.forward * InputBridgeBase.instance.MoveAxis;
+        _movement.Normalize();
+        _velocity += _movement * moveSpeed;
+        thisTransform.Translate(_velocity * Time.deltaTime, Space.World);
     }
 }
