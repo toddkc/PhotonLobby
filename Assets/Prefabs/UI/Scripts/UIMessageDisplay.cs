@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class UIMessageDisplay : MonoBehaviour
 {
-    //[SerializeField] GameObject panel = default;
     [SerializeField] Text messageText = default;
     [SerializeField] float messageDelay = default;
     private WaitForSeconds delay;
@@ -26,7 +25,6 @@ public class UIMessageDisplay : MonoBehaviour
         if (!string.IsNullOrEmpty(message))
         {
             messageText.text = message;
-            //panel.SetActive(true);
             StartCoroutine(DelayHideMessage());
         }
     }
@@ -35,6 +33,5 @@ public class UIMessageDisplay : MonoBehaviour
     {
         yield return delay;
         messageText.text = "";
-        //panel.SetActive(false);
     }
 }

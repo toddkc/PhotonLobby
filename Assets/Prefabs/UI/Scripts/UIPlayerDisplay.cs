@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class UIPlayerDisplay : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private Text text;
+    [SerializeField] private Text text = default;
 
     private void Start()
     {

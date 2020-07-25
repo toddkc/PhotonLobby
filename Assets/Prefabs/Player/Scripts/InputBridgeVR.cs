@@ -6,8 +6,8 @@
 
 public class InputBridgeVR : InputBridgeBase
 {
-    [SerializeField] private OVRInput.RawButton leftInteractButton;
-    [SerializeField] private OVRInput.RawButton rightInteractButton;
+    [SerializeField] private OVRInput.RawButton leftInteractButton = default;
+    [SerializeField] private OVRInput.RawButton rightInteractButton = default;
 
     private void Update()
     {

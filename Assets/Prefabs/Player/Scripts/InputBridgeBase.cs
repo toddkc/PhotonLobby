@@ -7,6 +7,8 @@ public class InputBridgeBase : MonoBehaviour
 {
     public static InputBridgeBase instance;
 
+    protected bool canPlayerMove = true;
+
     public float MoveAxis { get; protected set; }
     public float StrafeAxis { get; protected set; }
     public float PitchAxis { get; protected set; }
@@ -24,6 +26,11 @@ public class InputBridgeBase : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public static void ToggleMovement(bool value)
+    {
+        instance.canPlayerMove = value;
     }
 
     private void Start()

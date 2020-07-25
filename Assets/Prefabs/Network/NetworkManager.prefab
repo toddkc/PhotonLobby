@@ -108,9 +108,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
+  - {fileID: 1689578212402536682}
   - {fileID: 3184466759958153773}
   - {fileID: 8957235349803196901}
-  - {fileID: 1689578212402536682}
   m_Father: {fileID: 8241584419255756790}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -205,7 +205,7 @@ RectTransform:
   m_Children:
   - {fileID: 3184466758496954903}
   m_Father: {fileID: 3184466759894686064}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -299,7 +299,7 @@ MonoBehaviour:
   responseEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8241584419255756791}
+      - m_Target: {fileID: 2134167288}
         m_MethodName: LeaveRoom
         m_Mode: 1
         m_Arguments:
@@ -326,7 +326,7 @@ MonoBehaviour:
   responseEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8241584419255756791}
+      - m_Target: {fileID: 2134167288}
         m_MethodName: CreateOrJoinRandomRoom
         m_Mode: 1
         m_Arguments:
@@ -353,7 +353,7 @@ MonoBehaviour:
   responseEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8241584419255756791}
+      - m_Target: {fileID: 2134167288}
         m_MethodName: JoinRoom
         m_Mode: 1
         m_Arguments:
@@ -380,7 +380,7 @@ MonoBehaviour:
   responseEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8241584419255756791}
+      - m_Target: {fileID: 2134167288}
         m_MethodName: CreateRoom
         m_Mode: 1
         m_Arguments:
@@ -479,6 +479,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8241584419255756790}
   - component: {fileID: 8241584419255756791}
+  - component: {fileID: 2134167288}
+  - component: {fileID: 2134167287}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -514,17 +516,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68960ed02d7927438edebd026b95c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6941306552556248845, guid: e43aef5881014aa44bd108ef9bb25980,
+  networkEntityPrefab: {fileID: 6941306552556248845, guid: e43aef5881014aa44bd108ef9bb25980,
     type: 3}
-  roomName: {fileID: 3184466758496954897}
-  playerName: {fileID: 389291453732242242}
-  printDebug: 0
-  spawnPlayerEntity: 1
-  joinRoomEvent: {fileID: 11400000, guid: 1ffe6a82e8f56e04f87af00c419ddbab, type: 2}
-  leaveRoomEvent: {fileID: 11400000, guid: 735bfe5cac8e19c409f8b0d48f66a919, type: 2}
   disconnectEvent: {fileID: 11400000, guid: 68d524fc648129848a271a007f20bd27, type: 2}
   connectEvent: {fileID: 11400000, guid: 378997821f561774d86f2015655f8c86, type: 2}
   displayMessageEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6,
+    type: 2}
+--- !u!114 &2134167288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241584419255756744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23c2493c0527394990e69d9cc200064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomName: {fileID: 3184466758496954897}
+  playerName: {fileID: 389291453732242242}
+  joinRoomEvent: {fileID: 11400000, guid: 1ffe6a82e8f56e04f87af00c419ddbab, type: 2}
+  leaveRoomEvent: {fileID: 11400000, guid: 735bfe5cac8e19c409f8b0d48f66a919, type: 2}
+  displayMessageEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6,
+    type: 2}
+--- !u!114 &2134167287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241584419255756744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98c18deab48f814bb49110e91370e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHostDisconnectEvent: {fileID: 11400000, guid: 4af63b70a1f9ae2499e9864169341820,
     type: 2}
 --- !u!1 &8957235349753639621
 GameObject:
@@ -632,7 +660,7 @@ RectTransform:
   m_Children:
   - {fileID: 8957235349753639620}
   m_Father: {fileID: 3184466759894686064}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -753,17 +781,17 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press A to join room.
+  m_Text: 'Press J to join room.
 
-    Press B to leave room.
+    Press L to leave room.
 
-    Press Start to
-    toggle mic echo.
+    Press T to toggle
+    mic echo.
 
-    Press X to load game (from room).
+    Press G to load game (from room).
 
-    Press Y to load
-    room (from game).'
+    Press H to load room (from
+    game).'
 --- !u!1 &9161770263510931405
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +823,7 @@ RectTransform:
   m_Children:
   - {fileID: 2102056932400258206}
   m_Father: {fileID: 3184466759894686064}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

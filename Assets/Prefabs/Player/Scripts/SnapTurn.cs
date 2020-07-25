@@ -9,13 +9,14 @@ public class SnapTurn : MonoBehaviour
 {
 	[SerializeField] private float delay = 0.2f;
 	[SerializeField] private float maxTurn = 45f;
-	[SerializeField] private OVRInput.Axis2D turnAxis;
+	[SerializeField] private OVRInput.Axis2D turnAxis = default;
 	private bool canTurn = true;
 	private WaitForSeconds turnDelay;
 	private Transform thisTransform;
 
 	private void Awake()
 	{
+		thisTransform = transform;
 		turnDelay = new WaitForSeconds(delay);
 	}
 

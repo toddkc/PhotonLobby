@@ -16,7 +16,7 @@ public static class CustomRoomProperties
         return (int[])room.CustomProperties[scores];
     }
 
-    public static int GetGameScene(this Room room)
+    public static int GetGameState(this Room room)
     {
         return (int)room.CustomProperties[game];
     }
@@ -39,8 +39,30 @@ public static class CustomRoomProperties
         return _scores;
     }
 
-    public static void SetGameScene(this Room room, int value)
+    public static void SetGameState(this Room room, int value)
     {
         room.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { game, value } });
+    }
+
+    public static void InitializeRoom(this Room room, int teamcount)
+    {
+        var _props = new ExitGames.Client.Photon.Hashtable()
+        {
+            { teams, new int[teamcount] },
+            { scores,  new int[teamcount] },
+            { game,  1 }
+        };
+        room.SetCustomProperties(_props);
+    }
+
+    public static void ResetProps(this Room room)
+    {
+        var _props = new ExitGames.Client.Photon.Hashtable()
+        {
+            { teams, new int[0] },
+            { scores,  new int[0] },
+            { game,  0 }
+        };
+        room.SetCustomProperties(_props);
     }
 }

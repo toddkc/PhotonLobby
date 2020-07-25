@@ -15,8 +15,8 @@ public class InputBridgePC : InputBridgeBase
 
     private void Update()
     {
-        MoveAxis = Input.GetAxis(moveAxis);
-        StrafeAxis = Input.GetAxis(strafeAxis);
+        MoveAxis = canPlayerMove ? Input.GetAxis(moveAxis) : 0;
+        StrafeAxis = canPlayerMove ? Input.GetAxis(strafeAxis) : 0;
         PitchAxis = Input.GetAxis(pitchAxis);
         YawAxis = Input.GetAxis(yawAxis);
         Interact = Input.GetKey(interactKey) || Input.GetMouseButton(mouseInteract);
