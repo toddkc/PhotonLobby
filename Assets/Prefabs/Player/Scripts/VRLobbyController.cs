@@ -24,27 +24,38 @@ public class VRLobbyController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 movement = Vector3.zero;
+        // TODO:
+        // controller, headset, or avatar based forward direction
+        // would also need to update avatar rotation
+        // (if you turn in real life, your avatar should also turn)
 
-        movement.z += OVRInput.Get(OVRInput.RawAxis2D.LThumbstick).y;
-        movement.x += OVRInput.Get(OVRInput.RawAxis2D.LThumbstick).x;
+        //Vector3 movement = Vector3.zero;
+        //movement.z += OVRInput.Get(OVRInput.RawAxis2D.LThumbstick).y;
+        //movement.x += OVRInput.Get(OVRInput.RawAxis2D.LThumbstick).x;
+        //thisTransform.Translate(movement * moveSpeed * Time.deltaTime);
 
-        thisTransform.Translate(movement * moveSpeed * Time.deltaTime);
+        Vector3 _movement = Vector3.zero;
+        Vector3 _velocity = Vector3.zero;
+        _movement += thisTransform.right * InputBridgeBase.instance.StrafeAxis;
+        _movement += thisTransform.forward * InputBridgeBase.instance.MoveAxis;
+        _movement.Normalize();
+        _velocity += _movement * moveSpeed;
+        thisTransform.Translate(_velocity * Time.deltaTime, Space.World);
     }
 
     private void Rotate()
     {
-        var rotation = thisTransform.eulerAngles;
+        var _rotation = thisTransform.eulerAngles;
 
         if (OVRInput.GetDown(rightRotate) || OVRInput.GetDown(OVRInput.RawButton.RThumbstickRight))
         {
-            rotation.y += 45;
+            _rotation.y += 45;
         }
         if (OVRInput.GetDown(leftRotate) || OVRInput.GetDown(OVRInput.RawButton.RThumbstickLeft))
         {
-            rotation.y -= 45;
+            _rotation.y -= 45;
         }
 
-        thisTransform.eulerAngles = rotation;
+        thisTransform.eulerAngles = _rotation;
     }
 }

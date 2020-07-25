@@ -26,7 +26,7 @@ public class CustomUIButton : MonoBehaviour, ICustomUIElement
 
     public void OnClick()
     {
-        button.image.color = button.colors.pressedColor;
+        button.image.color = button.colors.normalColor;
         button.onClick.Invoke();
     }
 }

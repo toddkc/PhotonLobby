@@ -8,7 +8,9 @@ using UnityEngine.UI;
 
 public class UIMessageDisplay : MonoBehaviour
 {
+    [SerializeField] private bool hidePanel = false;
     [SerializeField] Text messageText = default;
+    [SerializeField] GameObject messagePanel = default;
     [SerializeField] float messageDelay = default;
     private WaitForSeconds delay;
 
@@ -16,6 +18,7 @@ public class UIMessageDisplay : MonoBehaviour
     {
         PlayerPrefs.SetString("message", "test");
         delay = new WaitForSeconds(messageDelay);
+        if (hidePanel) messagePanel.SetActive(false);
     }
 
     public void DisplayMessage()
@@ -25,6 +28,7 @@ public class UIMessageDisplay : MonoBehaviour
         if (!string.IsNullOrEmpty(message))
         {
             messageText.text = message;
+            if (hidePanel) messagePanel.SetActive(true);
             StartCoroutine(DelayHideMessage());
         }
     }
@@ -33,5 +37,6 @@ public class UIMessageDisplay : MonoBehaviour
     {
         yield return delay;
         messageText.text = "";
+        if (hidePanel) messagePanel.SetActive(false);
     }
 }
