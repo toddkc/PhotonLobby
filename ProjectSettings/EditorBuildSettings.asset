@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 4bf15a44ff5b04f4ca91bca7fdcf50e2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 7001efb638c044c42a697b394bb88963
   - enabled: 0
@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VR/Game_vr.unity
     guid: aa64100584930be4982099260eb7a3fb
-  - enabled: 0
-    path: Assets/Scenes/VR/proto_vr.unity
-    guid: b2ed18edadaec5649a50e746e0d7e1f5
+  - enabled: 1
+    path: Assets/Scenes/prototype_pc.unity
+    guid: 622a06b93db677949a28d70a337c238f
   m_configObjects: {}
