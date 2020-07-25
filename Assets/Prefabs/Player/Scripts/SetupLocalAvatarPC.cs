@@ -1,6 +1,5 @@
 ﻿using Photon.Pun;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -11,10 +10,11 @@ public class SetupLocalAvatarPC : MonoBehaviour
 {
     [SerializeField] private int localAvatarLayer = default;
     [SerializeField] private List<Transform> avatarObjects = new List<Transform>();
+    private PhotonView view;
 
     private void Start()
     {
-        var view = GetComponent<PhotonView>();
+        view = GetComponent<PhotonView>();
         if (view.IsMine)
         {
             SetupLocal();
@@ -46,6 +46,22 @@ public class SetupLocalAvatarPC : MonoBehaviour
         Destroy(GetComponentInChildren<Camera>().gameObject);
         // canvas - destroy
         Destroy(GetComponentInChildren<Canvas>().gameObject);
+    }
 
+    public void SetPlayerColors()
+    {
+        Debug.Log("set player colors");
+        var _team = CustomPlayerProperties.GetTeam(view.Owner);
+        var _color = GameManager.GetColor(_team);
+        foreach (Transform child in avatarObjects)
+        {
+            Debug.Log("set player colors on body");
+            if (child.name != "Body") continue;
+            var _renderer = child.GetComponent<Renderer>();
+            var _block = new MaterialPropertyBlock();
+            _renderer.GetPropertyBlock(_block);
+            _block.SetColor("_Color", _color);
+            _renderer.SetPropertyBlock(_block);
+        }
     }
 }

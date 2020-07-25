@@ -51,9 +51,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     // return a material based on input team
-    public static Material GetMaterial(Team team)
+    public static Color GetColor(int team)
     {
-        return team.teamColor;
+        return instance.teams[team].teamColor;
     }
 
     // return a spawnpoint based on input team
@@ -183,6 +183,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 public class Team
 {
     public int teamNumber;
-    public Material teamColor;
+    public Color teamColor;
     public Transform teamSpawn;
 }

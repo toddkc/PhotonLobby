@@ -44,7 +44,7 @@ public static class CustomPlayerProperties
     }
     public static void SetScore(this Player player, int value)
     {
-        var _score = new ExitGames.Client.Photon.Hashtable() { { score, (byte)value } };
+        var _score = new ExitGames.Client.Photon.Hashtable() { { score, value } };
         player.SetCustomProperties(_score);
     }
 
@@ -54,7 +54,7 @@ public static class CustomPlayerProperties
     }
     public static void SetGameScene(this Player player, int value)
     {
-        var _game = new ExitGames.Client.Photon.Hashtable() { { game, (byte)value } };
+        var _game = new ExitGames.Client.Photon.Hashtable() { { game, value } };
         player.SetCustomProperties(_game);
     }
 
@@ -64,7 +64,7 @@ public static class CustomPlayerProperties
     }
     public static void SetTeam(this Player player, int value)
     {
-        var _team = new ExitGames.Client.Photon.Hashtable() { { team, (byte)value } };
+        var _team = new ExitGames.Client.Photon.Hashtable() { { team, value } };
         player.SetCustomProperties(_team);
     }
 
@@ -77,9 +77,9 @@ public static class CustomPlayerProperties
     {
         var _props = new ExitGames.Client.Photon.Hashtable()
         {
-            { score, (byte)0 },
-            { team,  (byte)0 },
-            { game,  (byte)0 }
+            { score, 0 },
+            { team,  0 },
+            { game,  0 }
         };
         player.SetCustomProperties(_props);
     }
