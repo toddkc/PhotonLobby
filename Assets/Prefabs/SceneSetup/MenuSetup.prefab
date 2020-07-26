@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8769458625893877567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8769458625893877553}
+  - component: {fileID: 8769458625893877566}
+  m_Layer: 0
+  m_Name: MenuSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8769458625893877553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8769458625893877567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8769458625893877566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8769458625893877567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01c0a759f62ca14d85be61a501b880e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVR: 0
+  networkManager: {fileID: 8241584419255756744, guid: 3713d1f48d7b89c4c9403e51b3ece791,
+    type: 3}
+  voiceManager: {fileID: 4928786304761061638, guid: 0541a00c02eb2cf41a03b3986b55f6ba,
+    type: 3}
+  eventTester: {fileID: 4251615292560475490, guid: c5c6eabd82a83c946928f5583fec4e89,
+    type: 3}
+  sceneLoader: {fileID: 8456498789597470471, guid: 7e65e7592a41f3c41bc67800b1a51823,
+    type: 3}
+  inputBridgePC: {fileID: 1126151532414613312, guid: b33c73b0d9092a640b002fb114596884,
+    type: 3}
+  uiMenuPC: {fileID: 2540084814987975502, guid: f884ccb4e2135724b8dbe7dd974ab46e,
+    type: 3}
+  uiMessagesPC: {fileID: 3337571351101880458, guid: 88ebd96960bfc6247bf1e3588f1abc9c,
+    type: 3}
+  avatarPC: {fileID: 3743099459969441808, guid: b0340ffe607c8a94d9f5e1fdf895544d,
+    type: 3}
+  inputBridgeVR: {fileID: 7715552978698183560, guid: e50b56dce41e3c94484fa58aa9e1ea68,
+    type: 3}
+  uiMenuVR: {fileID: 2540084814987975502, guid: f884ccb4e2135724b8dbe7dd974ab46e,
+    type: 3}
+  uiMessagesVR: {fileID: 2525740586022889623, guid: ad5fa62e574763943be2ac130cf6167e,
+    type: 3}
+  avatarVR: {fileID: 1996400794416451264, guid: b6766d54fd7fdfd4ca3a6e77c55322d5,
+    type: 3}

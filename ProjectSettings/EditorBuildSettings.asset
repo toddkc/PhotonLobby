@@ -6,24 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: b7a2973d1b3388d4d9be42b54ab7eda6
+    path: Assets/Scenes/templates/menu.unity
+    guid: bb447b0d68aff504dae36fc32e832131
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 4bf15a44ff5b04f4ca91bca7fdcf50e2
-  - enabled: 0
-    path: Assets/Scenes/Game.unity
-    guid: 7001efb638c044c42a697b394bb88963
-  - enabled: 0
-    path: Assets/Scenes/VR/MainMenu_vr.unity
-    guid: 7028a97ac9ae6d6448e4581576a24b72
-  - enabled: 0
-    path: Assets/Scenes/VR/Lobby_vr.unity
-    guid: 5d1b4309712ac624783d0244d85283c1
-  - enabled: 0
-    path: Assets/Scenes/VR/Game_vr.unity
-    guid: aa64100584930be4982099260eb7a3fb
+    path: Assets/Scenes/templates/lobby.unity
+    guid: e4192d6404416bb43b90abd9d1a69472
   - enabled: 1
-    path: Assets/Scenes/prototype_pc.unity
-    guid: 622a06b93db677949a28d70a337c238f
+    path: Assets/Scenes/templates/game.unity
+    guid: b1c7000bcf8b64848a9882b4b6055ac0
   m_configObjects: {}
