@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/templates/menu.unity
-    guid: bb447b0d68aff504dae36fc32e832131
+    path: Assets/Scenes/space_station_lobby/menu.unity
+    guid: 28f55245714be1b4c8d96fe2116c13fe
   - enabled: 1
-    path: Assets/Scenes/templates/lobby.unity
-    guid: e4192d6404416bb43b90abd9d1a69472
+    path: Assets/Scenes/space_station_lobby/lobby.unity
+    guid: ed6d9abbad25f504fbd046fdd924c71c
   - enabled: 1
-    path: Assets/Scenes/templates/game.unity
-    guid: b1c7000bcf8b64848a9882b4b6055ac0
+    path: Assets/Scenes/space_station_lobby/space_frogger.unity
+    guid: 09848e1598a4b3d47a5ca5dfce0bfdee
   m_configObjects: {}
