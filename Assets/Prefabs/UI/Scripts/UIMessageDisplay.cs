@@ -21,6 +21,7 @@ public class UIMessageDisplay : MonoBehaviour
         if (hidePanel) messagePanel.SetActive(false);
     }
 
+    // listens for an event and reads the new message to display
     public void DisplayMessage()
     {
         StopAllCoroutines();
@@ -33,6 +34,7 @@ public class UIMessageDisplay : MonoBehaviour
         }
     }
 
+    // optionally hide the message panel after a delay
     private IEnumerator DelayHideMessage()
     {
         yield return delay;

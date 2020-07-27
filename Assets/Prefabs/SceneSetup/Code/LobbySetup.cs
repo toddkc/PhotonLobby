@@ -2,7 +2,8 @@
 using UnityEngine;
 
 /// <summary>
-/// experimenting with different lobby layouts so I'd like to be able to spawn everything via code
+/// component used to spawn in required lobby scene items
+/// this makes it easier to copy a lobby scene template
 /// </summary>
 
 public class LobbySetup : MonoBehaviour

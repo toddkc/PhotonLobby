@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
+
+/// <summary>
+/// utility to simulate various game events
+/// </summary>
 
 public class GameEventTester : MonoBehaviour
 {
@@ -6,8 +11,8 @@ public class GameEventTester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (GameManager.instance == null) return;
-            GameManager.instance.PlayerScored();
+            var player = PhotonNetwork.LocalPlayer;
+            GameManager.PlayerScored(player, 1);
         }
     }
 }

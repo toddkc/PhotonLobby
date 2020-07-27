@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// this is used as a substitute for UI
+/// utility to simulate various UI events
 /// </summary>
 
 public class EventTester : MonoBehaviour

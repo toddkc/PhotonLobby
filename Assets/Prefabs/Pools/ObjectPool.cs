@@ -19,6 +19,7 @@ public class ObjectPool : MonoBehaviour
         thisTransform = transform;
     }
 
+    // register pool with manager and pre-spawn all objects
     private void Start()
     {
         if (poolObject == null) return;
@@ -26,6 +27,7 @@ public class ObjectPool : MonoBehaviour
         PreloadPool();
     }
 
+    // will spawn and deactivate numerous objects to start scene with
     private void PreloadPool()
     {
         for (int i = PoolCount; i < preloadCount; i++)
@@ -37,6 +39,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    // returns number of items in pool, active and inactive combined
     private int PoolCount
     {
         get
@@ -48,6 +51,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    // spawn an object
     public GameObject Spawn(Vector3 position,Quaternion rotation)
     {
         GameObject _spawnedObject;
@@ -80,6 +84,7 @@ public class ObjectPool : MonoBehaviour
         return _spawnedObject;
     }
 
+    // despawn an object
     public virtual void Despawn(GameObject instance)
     {
         active.Remove(instance);

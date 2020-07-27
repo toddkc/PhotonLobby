@@ -19,6 +19,7 @@ public class CanvasAssignCamera : MonoBehaviour
         Setup();
     }
 
+    // check if canvas is worldspace and needs and event camera assigned
     private void Setup()
     {
         if(canvas.renderMode == RenderMode.WorldSpace && canvas.worldCamera == null)

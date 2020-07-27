@@ -14,16 +14,19 @@ public class CustomUIButton : MonoBehaviour, ICustomUIElement
         button = GetComponent<Button>();
     }
 
+    // simulate mouse exiting hover
     public void OnExit()
     {
         button.image.color = button.colors.normalColor;
     }
 
+    // simulate mouse entering hover
     public void OnHover()
     {
         button.image.color = button.colors.highlightedColor;
     }
 
+    // when object is clicked
     public void OnClick()
     {
         button.image.color = button.colors.normalColor;

@@ -35,10 +35,12 @@ public class RaycastUI : MonoBehaviour
         currentSelected = null;
     }
 
+    // check if ui interaction is happening
     private void Update()
     {
         CheckForUI();
 
+        // click ui if possible
         if (InputBridgeBase.instance.Interact && canClick && currentSelected != null)
         {
             canClick = false;
@@ -49,6 +51,7 @@ public class RaycastUI : MonoBehaviour
         }
     }
 
+    // handle hover/exit of ui objects
     private void CheckForUI()
     {
         if (!Physics.Raycast(thisTransform.position, thisTransform.forward, out RaycastHit hit, interactDistance, uiLayers))
@@ -70,6 +73,7 @@ public class RaycastUI : MonoBehaviour
         }
     }
 
+    // delay before user can click again
     private IEnumerator ResetClick()
     {
         yield return clickDelay;

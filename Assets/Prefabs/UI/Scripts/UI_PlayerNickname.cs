@@ -11,6 +11,7 @@ public class UI_PlayerNickname : MonoBehaviourPun
     [SerializeField] InputField nicknameInput = default;
     private const string playerPrefsKey = "nickname";
 
+    // check for existing name, create one if not, set input and photon
     private void Start()
     {
         string nickname;
@@ -31,6 +32,12 @@ public class UI_PlayerNickname : MonoBehaviourPun
         nicknameInput.onValueChanged.AddListener(UpdatePlayerNickname);
     }
 
+    private void OnDisable()
+    {
+        nicknameInput.onValueChanged.RemoveListener(UpdatePlayerNickname);
+    }
+
+    // update photon and playerprefs when name changed
     private void UpdatePlayerNickname(string nickname)
     {
         PlayerPrefs.SetString(playerPrefsKey, nickname);

@@ -18,6 +18,8 @@ public class LobbyUI : MonoBehaviour
         }
     }
 
+    // used for ui buttons to load a game scene
+    // TODO: change this to scriptableobject global variable
     public void HostSelectGame(int index)
     {
         if (!PhotonNetwork.IsMasterClient) return;

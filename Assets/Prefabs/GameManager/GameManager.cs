@@ -15,13 +15,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance;
 
-    [SerializeField] private int maxScore = 1;
+    [SerializeField] private int maxScore = 3;
     [SerializeField] private float respawnTime = 5;
     [SerializeField] private GameObject avatar = default;
     [SerializeField] private GameEvent startGameEvent = default;
     [SerializeField] private GameEvent stopGameEvent = default;
     [SerializeField] private GameEvent displayMessageEvent = default;
     [SerializeField] private List<Team> teams = new List<Team>();
+    private Team winningTeam;
 
     // what state is our game in
     protected enum GameState
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         InputBridgeBase.ToggleMovement(false);
         CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
+        winningTeam = null;
         if (PhotonNetwork.IsMasterClient)
         {
             CustomRoomProperties.InitializeRoom(PhotonNetwork.CurrentRoom, PhotonNetwork.CurrentRoom.PlayerCount);
@@ -86,16 +88,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             stopGameEvent.Raise();
             InputBridgeBase.ToggleMovement(true);
         }
-    }
-
-    // return a color based on input team
-    public static Color GetColor(int team)
-    {
-        if(instance == null || instance.teams.Count == 0)
-        {
-            return Color.white;
-        }
-        return instance.teams[team].teamColor;
     }
 
     // return the next team for assigning players
@@ -120,9 +112,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     // return a spawnpoint based on input team
     protected virtual Vector3 GetSpawn(Team team)
     {
-        var _team = instance.teams[team.teamNumber];
-        Vector3 pos = _team.teamSpawn.position;
-        BoxCollider col = _team.teamSpawn.GetComponent<BoxCollider>();
+        Vector3 pos = team.teamSpawn.position;
+        BoxCollider col = team.teamSpawn.GetComponent<BoxCollider>();
 
         if (col != null)
         {
@@ -178,16 +169,59 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("custom player props updated: " + changedProps.ToStringFull());
     }
 
-    public static void PlayerScored()
+    public static bool IsGameActive
     {
+        get
+        {
+            if (instance == null) return false;
+            instance.CheckScores();
+            if (instance.winningTeam != null || CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom) != 2)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 
+    private void CheckScores()
+    {
+        int[] scores = PhotonNetwork.CurrentRoom.GetScores();
+        for (int i = 0; i < teams.Count; i++)
+        {
+            if (scores[i] >= maxScore)
+            {
+                winningTeam = teams[i];
+                CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 2);
+                break;
+            }
+        }
+    }
+
+    public static void PlayerScored(Player player, int value)
+    {
+        if (!PhotonNetwork.IsMasterClient || instance == null || !IsGameActive) return;
+        // add score to player
+        CustomPlayerProperties.SetScore(player, value);
+        // add score to player team
+        var team = CustomPlayerProperties.GetTeam(player);
+        CustomRoomProperties.AddScore(PhotonNetwork.CurrentRoom, team, value);
+        // send player scored event (in case everyone resets when someone scores)
+    }
+
+    // return a color based on input team
+    public static Color GetColor(int team)
+    {
+        if (instance == null || instance.teams.Count == 0)
+        {
+            return Color.white;
+        }
+        return instance.teams[team].teamColor;
     }
 }
 
 [System.Serializable]
 public class Team
 {
-    public int teamNumber;
     public Color teamColor;
     public Transform teamSpawn;
 }

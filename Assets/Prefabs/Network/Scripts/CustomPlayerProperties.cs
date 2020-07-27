@@ -8,9 +8,9 @@ using Photon.Realtime;
 public static class CustomPlayerProperties
 {
     public const string score = "score";
-    public const string game = "game";
     public const string team = "team";
 
+    // player score
     public static int GetCurrentScore(this PhotonView player)
     {
         return player.Owner.GetCurrentScore();
@@ -19,25 +19,6 @@ public static class CustomPlayerProperties
     {
         return (int)player.CustomProperties[score];
     }
-
-    public static int GetGameScene(this PhotonView player)
-    {
-        return player.Owner.GetGameScene();
-    }
-    public static int GetGameScene(this Player player)
-    {
-        return (int)player.CustomProperties[game];
-    }
-
-    public static int GetTeam(this PhotonView player)
-    {
-        return player.Owner.GetTeam();
-    }
-    public static int GetTeam(this Player player)
-    {
-        return (int)player.CustomProperties[team];
-    }
-
     public static void SetScore(this PhotonView player, int value)
     {
         player.Owner.SetScore(value);
@@ -48,16 +29,15 @@ public static class CustomPlayerProperties
         player.SetCustomProperties(_score);
     }
 
-    public static void SetGameScene(this PhotonView player, int value)
+    // player team
+    public static int GetTeam(this PhotonView player)
     {
-        player.Owner.SetGameScene(value);
+        return player.Owner.GetTeam();
     }
-    public static void SetGameScene(this Player player, int value)
+    public static int GetTeam(this Player player)
     {
-        var _game = new ExitGames.Client.Photon.Hashtable() { { game, value } };
-        player.SetCustomProperties(_game);
+        return (int)player.CustomProperties[team];
     }
-
     public static void SetTeam(this PhotonView player, int value)
     {
         player.Owner.SetTeam(value);
@@ -68,18 +48,17 @@ public static class CustomPlayerProperties
         player.SetCustomProperties(_team);
     }
 
+    // reset
     public static void ResetProps(this PhotonView player)
     {
         player.Owner.ResetProps();
     }
-
     public static void ResetProps(this Player player)
     {
         var _props = new ExitGames.Client.Photon.Hashtable()
         {
             { score, 0 },
-            { team,  0 },
-            { game,  0 }
+            { team,  0 }
         };
         player.SetCustomProperties(_props);
     }

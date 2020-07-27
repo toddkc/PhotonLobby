@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// custom world-space inputfield
+/// WIP
 /// </summary>
 
 public class CustomUIInputField : MonoBehaviour, ICustomUIElement

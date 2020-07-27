@@ -14,6 +14,7 @@ public class VoiceControls : MonoBehaviour
 
     public static VoiceControls instance;
 
+    // setup singleton
     private void Awake()
     {
         if (instance == null)
@@ -28,6 +29,7 @@ public class VoiceControls : MonoBehaviour
         }
     }
 
+    // toggle mic echo
     private void Update()
     {
         if (Input.GetKeyDown(toggleKey) || OVRInput.GetDown(toggleButtonOculus))

@@ -19,7 +19,6 @@ public class BuildConsole : MonoBehaviour
         public LogType type;
     }
 
-    //List<Log> logs = new List<Log>();
     Queue<Log> logQueue = new Queue<Log>();
 
     static readonly Dictionary<LogType, Color> logTypeColors = new Dictionary<LogType, Color>()
@@ -41,6 +40,7 @@ public class BuildConsole : MonoBehaviour
         Application.logMessageReceived -= HandleLog;
     }
 
+    // change the text when a new log is received
     void UpdateConsole()
     {
         string logstring = "";
@@ -54,6 +54,7 @@ public class BuildConsole : MonoBehaviour
         text.text = logstring;
     }
 
+    // update the log queue with new logs
     void HandleLog(string message, string stackTrace, LogType type)
     {
         if (logQueue.Count > 10)

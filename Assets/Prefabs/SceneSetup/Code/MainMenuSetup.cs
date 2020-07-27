@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// experimenting with different menus so I'd like to be able to spawn everything via code
+/// component used to spawn in required menu scene items
+/// this makes it easier to copy a menu scene template
 /// </summary>
 
 public class MainMenuSetup : MonoBehaviour

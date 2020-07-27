@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// component used to spawn in required game scene items
+/// this makes it easier to copy a game scene template
+/// </summary>
+
 public class GameSetup : MonoBehaviour
 {
     [Header("Settings")]

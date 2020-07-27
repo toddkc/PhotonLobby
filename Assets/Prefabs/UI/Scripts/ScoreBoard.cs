@@ -5,11 +5,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ui used to show player/team score in game scene
+/// </summary>
+
 public class ScoreBoard : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Text scoreText = default;
     private SortedList<int, string> playerscored = new SortedList<int, string>();
 
+    // photon callback, will update score
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
         if (changedProps.ContainsKey(CustomPlayerProperties.score))
@@ -18,6 +23,8 @@ public class ScoreBoard : MonoBehaviourPunCallbacks
         }
     }
 
+    // loop over players and show their scores
+    // TODO: this needs to work on the player or team level
     private void UpdateScoreText()
     {
         playerscored.Clear();

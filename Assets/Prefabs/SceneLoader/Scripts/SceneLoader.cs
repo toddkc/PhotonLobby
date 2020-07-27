@@ -8,14 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private GameEvent displayMessageEvent = default;
-    [SerializeField] private GameEvent sceneLoadedEvent = default;
-    [SerializeField] private GameEvent sceneUnloadedEvent = default;
-    private bool isSceneLoaded = false;
-    private int? currentGameScene = null;
-
     public static SceneLoader instance;
 
+    // setup singleton
     private void Awake()
     {
         if (instance == null)
@@ -29,6 +24,7 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    // master client will change to game scene and close room
     public void LoadGameScene(int scene)
     {
         if (PhotonNetwork.IsMasterClient && SceneManager.GetActiveScene().buildIndex != scene)
@@ -38,6 +34,8 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
+    // using player prefs to store desired game scene
+    // TODO: change to scriptableobject global variable
     public void LoadGameSceneUsingPrefs()
     {
         if (!PhotonNetwork.IsMasterClient || !PlayerPrefs.HasKey("game")) return;
@@ -45,6 +43,7 @@ public class SceneLoader : MonoBehaviour
         LoadGameScene(index);
     }
 
+    // master client will load back to the lobby and reopen the room
     public void UnloadGameScene()
     {
         if (PhotonNetwork.IsMasterClient && SceneManager.GetActiveScene().buildIndex != 1)

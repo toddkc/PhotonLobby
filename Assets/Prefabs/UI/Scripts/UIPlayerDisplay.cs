@@ -20,26 +20,32 @@ public class UIPlayerDisplay : MonoBehaviourPunCallbacks
         }
     }
 
+    // photon callback
     public override void OnJoinedRoom()
     {
         UpdatePlayers();
     }
 
+    // photon callback
     public override void OnLeftRoom()
     {
         text.text = "not in a room...";
     }
 
+    // photon callback
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         UpdatePlayers();
     }
 
+    // photon callback
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         UpdatePlayers();
     }
 
+    // this will show all players in a room, who is the local, and who is the host
+    // mainly for debug purposes
     private void UpdatePlayers()
     {
         string textstring = "";

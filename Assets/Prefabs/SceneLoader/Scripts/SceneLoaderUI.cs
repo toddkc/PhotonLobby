@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary>
-/// game ui to control SceneLoader
+/// game ui to control ui panels shown in room lobby and game scenes
 /// </summary>
 
 public class SceneLoaderUI : MonoBehaviour
@@ -25,12 +25,14 @@ public class SceneLoaderUI : MonoBehaviour
             changeGamePanel.SetActive(false);
         }
     }
+
     public void LeaveRoom()
     {
         Debug.Log("leave room");
         loadScenePanel.SetActive(false);
         changeGamePanel.SetActive(false);
     }
+
     public void JoinGame()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -40,6 +42,7 @@ public class SceneLoaderUI : MonoBehaviour
             changeGamePanel.SetActive(false);
         }
     }
+
     public void LeaveGame()
     {
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.InRoom)

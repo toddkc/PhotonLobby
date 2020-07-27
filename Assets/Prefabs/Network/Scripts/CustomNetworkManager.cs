@@ -22,12 +22,14 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
 
     public static CustomNetworkManager instance;
 
+    // spawns the non-avatar player, used to track player across scenes and setup voice
     public static void SpawnNetworkEntity()
     {
         var _player = PhotonNetwork.Instantiate(instance.networkEntityPrefab.name, Vector3.zero, Quaternion.identity);
         DontDestroyOnLoad(_player);
     }
 
+    // setup singleton
     private void Awake()
     {
         if (instance == null)
@@ -41,6 +43,7 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    // connect to photon on start
     private void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -101,6 +104,7 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
     }
 
+    // photon connected callback
     public override void OnConnectedToMaster()
     {
         connectEvent.Raise();
@@ -108,12 +112,14 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
         displayMessageEvent.Raise();
     }
 
+    // photon disconnected callback
     public override void OnDisconnected(DisconnectCause cause)
     {
         disconnectEvent.Raise();
         PlayerPrefs.SetString("message", "disconnect from PUN");
         displayMessageEvent.Raise();
 
+        // if we aren't at the main menu scene go there
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             PhotonNetwork.LoadLevel(0);
