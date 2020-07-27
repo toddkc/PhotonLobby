@@ -167,7 +167,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
         Debug.Log("custom room props updated: " + propertiesThatChanged.ToStringFull());
-        // if game state goes from 0 to 1, spawn avatars
         if (propertiesThatChanged.ContainsKey(CustomRoomProperties.game) && (int)propertiesThatChanged[CustomRoomProperties.game] == 1)
         {
             SetupTeams();
@@ -177,6 +176,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         Debug.Log("custom player props updated: " + changedProps.ToStringFull());
+    }
+
+    public static void PlayerScored()
+    {
+
     }
 }
 
