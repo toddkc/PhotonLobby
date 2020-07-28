@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/templates/lobby.unity
     guid: e4192d6404416bb43b90abd9d1a69472
   - enabled: 1
+    path: Assets/Scenes/templates/game.unity
+    guid: b1c7000bcf8b64848a9882b4b6055ac0
+  - enabled: 1
     path: Assets/Scenes/Games/obstacles.unity
     guid: c978fcaa301ea014d9772174ea274708
   m_configObjects: {}
