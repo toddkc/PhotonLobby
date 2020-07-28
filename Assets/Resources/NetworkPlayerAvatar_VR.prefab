@@ -150,7 +150,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2,
+    type: 2}
   _event: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2, type: 2}
   _response:
     m_PersistentCalls:
@@ -177,7 +178,6 @@ GameObject:
   - component: {fileID: 8664437684572826852}
   - component: {fileID: 2282954601842840927}
   - component: {fileID: 7517018351017814771}
-  - component: {fileID: 8022522133839837300}
   m_Layer: 0
   m_Name: Face
   m_TagString: Untagged
@@ -246,19 +246,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8022522133839837300
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197526560213342267}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3175308805406461205
 GameObject:
   m_ObjectHideFlags: 0
