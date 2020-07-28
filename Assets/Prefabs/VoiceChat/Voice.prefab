@@ -95,7 +95,7 @@ MonoBehaviour:
   voiceDetection: 0
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
-  unityMicrophoneDevice: Headset Microphone (Rift S)
+  unityMicrophoneDevice: Microphone Array (Realtek Audio)
   photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
@@ -129,5 +129,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggleButtonOculus: 1048576
   toggleKey: 116
-  displayMessageEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6,
+  displayMessageEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
     type: 2}

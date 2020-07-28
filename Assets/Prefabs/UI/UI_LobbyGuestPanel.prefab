@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1256610540218862213}
   m_Layer: 0
-  m_Name: UI_Lobby
+  m_Name: UI_LobbyGuestPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,7 +824,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 4af63b70a1f9ae2499e9864169341820, type: 2}
+      - m_Target: {fileID: 11400000, guid: dfd474ed8ed08264f88d1030fbcc185c, type: 2}
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:

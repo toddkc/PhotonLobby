@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 700121796125329383}
   - component: {fileID: 6741304410532481564}
   - component: {fileID: 819557486204287206}
-  - component: {fileID: 1224487747424435276}
+  - component: {fileID: 983774526086443776}
   m_Layer: 9
   m_Name: NetworkPlayerAvatar_PC
   m_TagString: Player
@@ -487,7 +487,7 @@ MonoBehaviour:
   lowerLimit: 60
   yawSpeed: 10
   pitchSpeed: 2
---- !u!114 &1224487747424435276
+--- !u!114 &983774526086443776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -496,11 +496,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2829003816306713541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe329a9c2c8f4a40937bd0ee6119ca8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: c7898ec748aa02d4fa45912131212e96, type: 2}
-  responseEvent:
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6741304410532481564}

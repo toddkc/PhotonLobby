@@ -1841,10 +1841,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScore: 1
   respawnTime: 5
-  avatar: {fileID: 2829003816306713541, guid: c0effd699fd0f2140a043546e8e37fec, type: 3}
-  startGameEvent: {fileID: 11400000, guid: c7898ec748aa02d4fa45912131212e96, type: 2}
-  stopGameEvent: {fileID: 11400000, guid: 20f11f618f4b4bd4f940cc69156203c2, type: 2}
-  displayMessageEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6,
+  avatar: {fileID: 0}
+  startGameEvent: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2, type: 2}
+  stopGameEvent: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6, type: 2}
+  displayMessageEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
     type: 2}
   teams:
   - teamColor: {r: 1, g: 0, b: 0, a: 0}

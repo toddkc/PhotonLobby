@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 399764283767466839}
-  hostSelectGameEvent: {fileID: 11400000, guid: f6cd0b205c9463d4e98466da58b1c7f0,
+  hostSelectGameEvent: {fileID: 11400000, guid: 3c2c42caa27206d4a871be4ff83cf278,
     type: 2}
 --- !u!1 &5262104213895027695
 GameObject:

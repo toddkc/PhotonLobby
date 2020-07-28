@@ -14,9 +14,9 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     [SerializeField] Text playerName = default;
 
     [Header("Events")]
-    [SerializeField] GameEvent joinRoomEvent = default;
-    [SerializeField] GameEvent leaveRoomEvent = default;
-    [SerializeField] GameEvent displayMessageEvent = default;
+    [SerializeField] ScriptableObjectArchitecture.GameEvent joinRoomEvent = default;
+    [SerializeField] ScriptableObjectArchitecture.GameEvent leaveRoomEvent = default;
+    [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
 
     private int counter = 0;
     private bool joiningRandom = false;

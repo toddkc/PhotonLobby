@@ -10,7 +10,7 @@ public class VoiceControls : MonoBehaviour
     Recorder recorder;
     [SerializeField] OVRInput.RawButton toggleButtonOculus = default;
     [SerializeField] KeyCode toggleKey = default;
-    [SerializeField] GameEvent displayMessageEvent = default;
+    [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
 
     public static VoiceControls instance;
 

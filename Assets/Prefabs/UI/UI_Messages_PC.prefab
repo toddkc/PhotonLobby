@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2903963400249452081}
   - component: {fileID: 2903963400249452080}
   - component: {fileID: 2903963400249452083}
-  - component: {fileID: 2903963400249452077}
-  - component: {fileID: 2903963400249452076}
   - component: {fileID: 962737722917441571}
   m_Layer: 5
   m_Name: Canvas-messages
@@ -84,49 +82,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &2903963400249452077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903963400249452079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9169ab1de8dc7184eb91e3bd2cf956b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hidePanel: 1
-  messageText: {fileID: 2903963401552786876}
-  messagePanel: {fileID: 2903963400668887898}
-  messageDelay: 10
---- !u!114 &2903963400249452076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903963400249452079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe329a9c2c8f4a40937bd0ee6119ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6, type: 2}
-  responseEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2903963400249452077}
-        m_MethodName: DisplayMessage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &962737722917441571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +331,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2639707772079988282}
+  - component: {fileID: 7169304461422494780}
+  - component: {fileID: 7044266649929122057}
   m_Layer: 0
   m_Name: UI_Messages_PC
   m_TagString: Untagged
@@ -398,3 +355,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7169304461422494780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337571351101880458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9169ab1de8dc7184eb91e3bd2cf956b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidePanel: 1
+  messageText: {fileID: 2903963401552786876}
+  messagePanel: {fileID: 2903963400668887898}
+  messageDelay: 10
+--- !u!114 &7044266649929122057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337571351101880458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7169304461422494780}
+        m_MethodName: DisplayMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

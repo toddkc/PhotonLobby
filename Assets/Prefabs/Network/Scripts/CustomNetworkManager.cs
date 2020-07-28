@@ -13,9 +13,9 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject networkEntityPrefab = default;
 
     [Header("Events")]
-    [SerializeField] GameEvent disconnectEvent = default;
-    [SerializeField] GameEvent connectEvent = default;
-    [SerializeField] GameEvent displayMessageEvent = default;
+    [SerializeField] ScriptableObjectArchitecture.GameEvent disconnectEvent = default;
+    [SerializeField] ScriptableObjectArchitecture.GameEvent connectEvent = default;
+    [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
 
     [Header("UI")]
     [SerializeField] GameObject uiPanel = default;

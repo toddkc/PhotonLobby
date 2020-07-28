@@ -6,15 +6,15 @@
 
 public class EventTester : MonoBehaviour
 {
-    [Header("Games")]
-    public GameEvent loadGameEvent;
-    public GameEvent unloadGameEvent;
+    //[Header("Games")]
+    //public ScriptableObjectArchitecture.GameEvent loadGameEvent;
+    //public ScriptableObjectArchitecture.GameEvent unloadGameEvent;
     [Header("Room Events")]
-    public GameEvent joinEvent;
-    public GameEvent leaveEvent;
-    [Header("Game Events")]
-    public GameEvent startGameEvent;
-    public GameEvent quitGameEvent;
+    public ScriptableObjectArchitecture.GameEvent joinEvent;
+    public ScriptableObjectArchitecture.GameEvent leaveEvent;
+    //[Header("Game Events")]
+    //public ScriptableObjectArchitecture.GameEvent startGameEvent;
+    //public ScriptableObjectArchitecture.GameEvent quitGameEvent;
     [Header("VR Buttons")]
     public OVRInput.RawButton joinButton;
     public OVRInput.RawButton leaveButton;
@@ -49,10 +49,10 @@ public class EventTester : MonoBehaviour
         if (Input.GetKeyDown(leaveKey)) leaveEvent.Raise();
         if (OVRInput.Get(leaveButton)) leaveEvent.Raise();
 
-        if (Input.GetKeyDown(loadGameKey)) loadGameEvent.Raise();
-        if (OVRInput.Get(loadGameButton)) loadGameEvent.Raise();
+        //if (Input.GetKeyDown(loadGameKey)) loadGameEvent.Raise();
+        //if (OVRInput.Get(loadGameButton)) loadGameEvent.Raise();
 
-        if (Input.GetKeyDown(unloadGameKey)) unloadGameEvent.Raise();
-        if (OVRInput.Get(unloadGameButton)) unloadGameEvent.Raise();
+        //if (Input.GetKeyDown(unloadGameKey)) unloadGameEvent.Raise();
+        //if (OVRInput.Get(unloadGameButton)) unloadGameEvent.Raise();
     }
 }

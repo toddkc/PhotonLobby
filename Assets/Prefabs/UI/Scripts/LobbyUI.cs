@@ -8,7 +8,7 @@ using UnityEngine;
 public class LobbyUI : MonoBehaviour
 {
     [SerializeField] private GameObject panel = default;
-    [SerializeField] private GameEvent hostSelectGameEvent = default;
+    [SerializeField] private ScriptableObjectArchitecture.GameEvent hostSelectGameEvent = default;
 
     private void Start()
     {

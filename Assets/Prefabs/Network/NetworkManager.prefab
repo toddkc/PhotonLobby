@@ -249,7 +249,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3184466760010317044
+--- !u!1 &3427192574878205471
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -257,25 +257,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3184466760010317045}
-  - component: {fileID: 3184466760010317033}
-  - component: {fileID: 3184466760010317032}
-  - component: {fileID: 3184466760010317035}
-  - component: {fileID: 3184466760010317034}
+  - component: {fileID: 4151704924328373727}
+  - component: {fileID: 1990641361561077904}
+  - component: {fileID: 2939599354502313242}
+  - component: {fileID: 5856693512922377672}
+  - component: {fileID: 4061641608183042225}
   m_Layer: 0
-  m_Name: Listeners
+  m_Name: NetworkManagerListeners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3184466760010317045
+--- !u!4 &4151704924328373727
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3184466760010317044}
+  m_GameObject: {fileID: 3427192574878205471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -283,74 +283,25 @@ Transform:
   m_Father: {fileID: 8241584419255756790}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3184466760010317033
+--- !u!114 &1990641361561077904
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3184466760010317044}
+  m_GameObject: {fileID: 3427192574878205471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe329a9c2c8f4a40937bd0ee6119ca8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 4af63b70a1f9ae2499e9864169341820, type: 2}
-  responseEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2134167288}
-        m_MethodName: LeaveRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &3184466760010317032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3184466760010317044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe329a9c2c8f4a40937bd0ee6119ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: f97a67a9e5422e04ba378d6a01870d47, type: 2}
-  responseEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2134167288}
-        m_MethodName: CreateOrJoinRandomRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &3184466760010317035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3184466760010317044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe329a9c2c8f4a40937bd0ee6119ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: d5c0cf7c0e95f31458a21da32c5d0b6b, type: 2}
-  responseEvent:
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: b3fd1ac90d9f3ae488a84cd63f66d9f4,
+    type: 2}
+  _event: {fileID: 11400000, guid: b3fd1ac90d9f3ae488a84cd63f66d9f4, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2134167288}
@@ -364,24 +315,93 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3184466760010317034
+--- !u!114 &2939599354502313242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3184466760010317044}
+  m_GameObject: {fileID: 3427192574878205471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe329a9c2c8f4a40937bd0ee6119ca8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: c06fa934bcd40c840a5103b10584e301, type: 2}
-  responseEvent:
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: c049b6271f34ff3419cf1d7df106985e,
+    type: 2}
+  _event: {fileID: 11400000, guid: c049b6271f34ff3419cf1d7df106985e, type: 2}
+  _response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2134167288}
         m_MethodName: CreateRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5856693512922377672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427192574878205471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: dfd474ed8ed08264f88d1030fbcc185c,
+    type: 2}
+  _event: {fileID: 11400000, guid: dfd474ed8ed08264f88d1030fbcc185c, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2134167288}
+        m_MethodName: LeaveRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4061641608183042225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427192574878205471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 74b630ef70c2f3941a476d68c0d73262,
+    type: 2}
+  _event: {fileID: 11400000, guid: 74b630ef70c2f3941a476d68c0d73262, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2134167288}
+        m_MethodName: CreateOrJoinRandomRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -500,7 +520,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3184466759894686064}
-  - {fileID: 3184466760010317045}
+  - {fileID: 4151704924328373727}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -518,9 +538,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   networkEntityPrefab: {fileID: 6941306552556248845, guid: e43aef5881014aa44bd108ef9bb25980,
     type: 3}
-  disconnectEvent: {fileID: 11400000, guid: 68d524fc648129848a271a007f20bd27, type: 2}
-  connectEvent: {fileID: 11400000, guid: 378997821f561774d86f2015655f8c86, type: 2}
-  displayMessageEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6,
+  disconnectEvent: {fileID: 11400000, guid: 2d05bfb62bf27f4478f717e565313086, type: 2}
+  connectEvent: {fileID: 11400000, guid: 33e01e49654ba2f4d8843146293a23b2, type: 2}
+  displayMessageEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
     type: 2}
   uiPanel: {fileID: 3184466759894686067}
 --- !u!114 &2134167288
@@ -537,9 +557,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: {fileID: 3184466758496954897}
   playerName: {fileID: 389291453732242242}
-  joinRoomEvent: {fileID: 11400000, guid: 1ffe6a82e8f56e04f87af00c419ddbab, type: 2}
-  leaveRoomEvent: {fileID: 11400000, guid: 735bfe5cac8e19c409f8b0d48f66a919, type: 2}
-  displayMessageEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6,
+  joinRoomEvent: {fileID: 11400000, guid: de5ff1277b58d564abb6c409dbbd5893, type: 2}
+  leaveRoomEvent: {fileID: 11400000, guid: 74fc4e6ce852920488c024af506f40bb, type: 2}
+  displayMessageEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
     type: 2}
 --- !u!114 &2134167287
 MonoBehaviour:
@@ -553,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98c18deab48f814bb49110e91370e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onHostDisconnectEvent: {fileID: 11400000, guid: 4af63b70a1f9ae2499e9864169341820,
+  onHostDisconnectEvent: {fileID: 11400000, guid: 80e45e843b4c50e479b037c245463def,
     type: 2}
 --- !u!1 &8957235349753639621
 GameObject:

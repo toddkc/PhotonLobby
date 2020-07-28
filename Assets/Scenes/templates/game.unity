@@ -417,16 +417,14 @@ MonoBehaviour:
   maxScore: 1
   respawnTime: 5
   avatar: {fileID: 2829003816306713541, guid: 9e12fb12a0d04e8409ecb4db7f8c0640, type: 3}
-  startGameEvent: {fileID: 11400000, guid: c7898ec748aa02d4fa45912131212e96, type: 2}
-  stopGameEvent: {fileID: 11400000, guid: 20f11f618f4b4bd4f940cc69156203c2, type: 2}
-  displayMessageEvent: {fileID: 11400000, guid: a47d254afd931f943accbae0ecd51db6,
+  startGameEvent: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2, type: 2}
+  stopGameEvent: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6, type: 2}
+  displayMessageEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
     type: 2}
   teams:
-  - teamNumber: 0
-    teamColor: {r: 1, g: 0, b: 0, a: 0}
+  - teamColor: {r: 1, g: 0, b: 0, a: 0}
     teamSpawn: {fileID: 1905516029}
-  - teamNumber: 1
-    teamColor: {r: 0, g: 0, b: 1, a: 0}
+  - teamColor: {r: 0, g: 0, b: 1, a: 0}
     teamSpawn: {fileID: 317262945}
 --- !u!4 &1659804635
 Transform:

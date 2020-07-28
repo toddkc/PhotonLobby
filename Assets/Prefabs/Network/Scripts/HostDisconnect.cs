@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class HostDisconnect : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameEvent onHostDisconnectEvent = default;
+    [SerializeField] private ScriptableObjectArchitecture.GameEvent onHostDisconnectEvent = default;
     private Player host;
 
     // called when you join a photon room

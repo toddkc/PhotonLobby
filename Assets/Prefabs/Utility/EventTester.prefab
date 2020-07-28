@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4251615292560475492}
   - component: {fileID: 4251615292560475491}
   m_Layer: 0
-  m_Name: EventsTest
+  m_Name: EventTester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,12 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d32a5d5d2767164a8aec79e305ce4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadGameEvent: {fileID: 11400000, guid: bd80d6762bc4ce347acb651b6f38af36, type: 2}
-  unloadGameEvent: {fileID: 11400000, guid: e1bdc5600b2244e4aa78b4adc51a3a48, type: 2}
-  joinEvent: {fileID: 11400000, guid: f97a67a9e5422e04ba378d6a01870d47, type: 2}
-  leaveEvent: {fileID: 11400000, guid: 4af63b70a1f9ae2499e9864169341820, type: 2}
-  startGameEvent: {fileID: 11400000, guid: c7898ec748aa02d4fa45912131212e96, type: 2}
-  quitGameEvent: {fileID: 11400000, guid: e1bdc5600b2244e4aa78b4adc51a3a48, type: 2}
+  loadGameEvent: {fileID: 0}
+  unloadGameEvent: {fileID: 0}
+  joinEvent: {fileID: 11400000, guid: b3fd1ac90d9f3ae488a84cd63f66d9f4, type: 2}
+  leaveEvent: {fileID: 11400000, guid: dfd474ed8ed08264f88d1030fbcc185c, type: 2}
+  startGameEvent: {fileID: 0}
+  quitGameEvent: {fileID: 0}
   joinButton: 1
   leaveButton: 2
   loadGameButton: 256

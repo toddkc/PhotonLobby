@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private int maxScore = 3;
     [SerializeField] private float respawnTime = 5;
     [SerializeField] private GameObject avatar = default;
-    [SerializeField] private GameEvent startGameEvent = default;
-    [SerializeField] private GameEvent stopGameEvent = default;
-    [SerializeField] private GameEvent displayMessageEvent = default;
+    [SerializeField] private ScriptableObjectArchitecture.GameEvent startGameEvent = default;
+    [SerializeField] private ScriptableObjectArchitecture.GameEvent stopGameEvent = default;
+    [SerializeField] private ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
     [SerializeField] private List<Team> teams = new List<Team>();
     private Team winningTeam;
 
