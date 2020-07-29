@@ -11,6 +11,8 @@ using UnityEngine;
 /// TODO: this will need to be made into an abstract class for multiple different games
 /// </summary>
 
+[RequireComponent(typeof(TeamManager))]
+[RequireComponent(typeof(SpawnManager))]
 public class GameManager : MonoBehaviourPunCallbacks
 {
     #region variables
@@ -23,11 +25,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] protected ScriptableObjectArchitecture.GameEvent startGameEvent = default;
     [SerializeField] protected ScriptableObjectArchitecture.GameEvent stopGameEvent = default;
     [SerializeField] protected ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
-    [SerializeField] protected List<Team> teams = new List<Team>();
-    protected int winningTeam = -1;
+    
     protected bool isGameActive = false;
     protected PhotonView view;
-    // what state is our game in
+    private TeamManager teams;
+    private SpawnManager spawner;
+
     protected enum GameState
     {
         initializing = 0,
@@ -38,33 +41,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     #endregion
 
     #region static
-    /// <summary>
-    /// Get the team color.
-    /// </summary>
+
     public static Color GetColor(int team)
     {
-        return instance.teams[team].teamColor;
-    }
-
-    /// <summary>
-    /// Get a random spawnpoint within a designated team spawn area.
-    /// </summary>
-    public static Vector3 GetSpawn(int team)
-    {
-        Vector3 pos = instance.teams[team].teamSpawn.position;
-        BoxCollider col = instance.teams[team].teamSpawn.GetComponent<BoxCollider>();
-
-        if (col != null)
-        {
-            for (int i = 10; i >= 0; i--)
-            {
-                pos.x = Random.Range(col.bounds.min.x, col.bounds.max.x);
-                pos.z = Random.Range(col.bounds.min.z, col.bounds.max.z);
-                if (col.bounds.Contains(pos)) break;
-            }
-        }
-
-        return pos;
+        return instance.teams.GetColor(team);
     }
 
     /// <summary>
@@ -96,6 +76,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             Destroy(instance);
         }
         instance = this;
+        teams = GetComponent<TeamManager>();
         view = gameObject.AddComponent<PhotonView>();
         view.ViewID = 999;
     }
@@ -112,47 +93,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         InputBridgeBase.ToggleMovement(false);
         CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
-        winningTeam = -1;
+        teams.WinningTeam = -1;
         isGameActive = false;
         if (PhotonNetwork.IsMasterClient)
         {
             CustomRoomProperties.InitializeRoom(PhotonNetwork.CurrentRoom, PhotonNetwork.CurrentRoom.PlayerCount);
         }
-    }
-
-    /// <summary>
-    /// Get the index of the next team to add a player to.
-    /// </summary>
-    protected virtual int GetNextTeam()
-    {
-        int[] _teamSizes = CustomRoomProperties.GetTeams(PhotonNetwork.CurrentRoom);
-        int _team = 0;
-        int _min = _teamSizes[0];
-        for (int i = 0; i < _teamSizes.Length; i++)
-        {
-            if (_teamSizes[i] < _min)
-            {
-                _min = _teamSizes[i];
-                _team = i;
-            }
-        }
-        return _team;
-    }
-
-    /// <summary>
-    /// Assign teams and spawn player avatar
-    /// </summary>
-    protected virtual void SetupTeams()
-    {
-        if (!PhotonNetwork.IsMasterClient) return;
-        foreach (var player in PhotonNetwork.CurrentRoom.Players)
-        {
-            int _teamIndex = GetNextTeam();
-            PhotonNetwork.CurrentRoom.AddToTeam(_teamIndex, 1);
-            player.Value.SetTeam(_teamIndex);
-            view.RPC("SpawnAvatar", player.Value, _teamIndex);
-        }
-        StartCoroutine(StartGameCountdown());
     }
 
     /// <summary>
@@ -164,7 +110,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             if (instance == null || !instance.isGameActive || CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom) != 2) return false;
             instance.CheckScores();
-            if (instance.winningTeam != -1)
+            if (teams.WinningTeam != -1)
             {
                 return false;
             }
@@ -177,13 +123,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     protected virtual void CheckScores()
     {
-        if (winningTeam != -1) return;
+        if (teams.WinningTeam != -1) return;
         int[] scores = PhotonNetwork.CurrentRoom.GetScores();
         for (int i = 0; i < scores.Length; i++)
         {
             if (scores[i] >= maxScore)
             {
-                winningTeam = i;
+                teams.WinningTeam = i;
                 break;
             }
         }
@@ -203,7 +149,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (newstate == 1)
             {
                 Debug.LogError("setup teams");
-                SetupTeams();
+                teams.SetupTeams();
             }
             else if (newstate == 2)
             {
@@ -217,7 +163,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             else if (newstate == 3)
             {
                 Debug.LogError("game end");
-                if(winningTeam != -1)
+                if(teams.WinningTeam != -1)
                 {
                     string message = "";
                     // TODO: if only one player on team say Player Won! rather than Team Won!
@@ -230,7 +176,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                     //{
                     //    message = $"{teams[winningTeam].teamName} won!";
                     //}
-                    message = $"{teams[winningTeam].teamName} won!";
+                    //message = $"{teams.[teams.WinningTeam].teamName} won!";
+                    
                     PlayerPrefs.SetString("message", message);
                     displayMessageEvent.Raise();
                 }
@@ -286,27 +233,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     protected virtual void SpawnAvatar(int teamIndex)
     {
-        Vector3 _randomSpawn = GetSpawn(teamIndex);
-        Transform _startPos = teams[teamIndex].teamSpawn;
+        Vector3 _randomSpawn = teams.GetSpawn(teamIndex);
+        Transform _startPos = teams.Teams[teamIndex].teamSpawn;
         PhotonNetwork.Instantiate(avatar.name, _randomSpawn, _startPos.rotation);
     }
     #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
