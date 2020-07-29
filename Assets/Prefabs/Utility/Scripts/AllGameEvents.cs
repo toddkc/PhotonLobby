@@ -5,6 +5,7 @@ using UnityEngine;
 public class AllGameEvents : EditorWindow
 {
     private string displayString = "";
+    private Vector2 scrollPosition = Vector2.zero;
 
     [MenuItem("Window/GameEvents and Listeners")]
     public static void Init()
@@ -26,8 +27,10 @@ public class AllGameEvents : EditorWindow
 
     private void OnGUI()
     {
+        scrollPosition = GUILayout.BeginScrollView(scrollPosition);
         GUILayout.Label("GameEvents and Listeners \n", EditorStyles.boldLabel);
         GUILayout.Label(displayString);
+        GUILayout.EndScrollView();
     }
 
     private void SearchPrefabs()
@@ -44,16 +47,15 @@ public class AllGameEvents : EditorWindow
             {
                 var _assetPath = AssetDatabase.GUIDToAssetPath(apath);
                 var _go = AssetDatabase.LoadAssetAtPath<GameObject>(_assetPath);
-                if (_go.GetComponents<ScriptableObjectArchitecture.GameEventListener>().Any(evtL => evtL.GetEvent() == _event))
-                {
-                    displayString += $"    -{_go.name} \n";
-                }
+                //if (_go.GetComponents<ScriptableObjectArchitecture.GameEventListener>().Any(evtL => evtL.GetEvent() == _event))
+                //{
+                //    displayString += $"    -{_go.name} \n";
+                //}
                 if (_go.GetComponentsInChildren<ScriptableObjectArchitecture.GameEventListener>().Any(evtL => evtL.GetEvent() == _event))
                 {
                     displayString += $"    -{_go.name} \n";
                 }
             }
-            displayString += "\n";
         }
         Repaint();
     }

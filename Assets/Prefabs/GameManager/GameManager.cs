@@ -13,17 +13,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    #region variables
     public static GameManager instance;
-
-    [SerializeField] private int maxScore = 3;
-    [SerializeField] private float respawnTime = 5;
-    [SerializeField] private GameObject avatar = default;
-    [SerializeField] private ScriptableObjectArchitecture.GameEvent startGameEvent = default;
-    [SerializeField] private ScriptableObjectArchitecture.GameEvent stopGameEvent = default;
-    [SerializeField] private ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
-    [SerializeField] private List<Team> teams = new List<Team>();
-    private Team winningTeam;
-
+    [SerializeField] protected int maxScore = 3;
+    [SerializeField] protected float respawnTime = 5;
+    [SerializeField] protected float lobbyDelay = 5;
+    [SerializeField] protected float startDelay = 3;
+    [SerializeField] protected GameObject avatar = default;
+    [SerializeField] protected ScriptableObjectArchitecture.GameEvent startGameEvent = default;
+    [SerializeField] protected ScriptableObjectArchitecture.GameEvent stopGameEvent = default;
+    [SerializeField] protected ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
+    [SerializeField] protected List<Team> teams = new List<Team>();
+    protected int winningTeam = -1;
+    protected bool isGameActive = false;
+    protected PhotonView view;
     // what state is our game in
     protected enum GameState
     {
@@ -32,88 +35,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         running = 2,
         postgame = 3
     }
+    #endregion
 
-    protected virtual void Awake()
+    #region static
+    /// <summary>
+    /// Get the team color.
+    /// </summary>
+    public static Color GetColor(int team)
     {
-        Debug.Log("game manager awake");
-        if (instance != null)
-        {
-            Destroy(instance);
-        }
-        instance = this;
-        var view = gameObject.AddComponent<PhotonView>();
-        view.ViewID = 999;
+        return instance.teams[team].teamColor;
     }
 
-    public override void OnEnable()
+    /// <summary>
+    /// Get a random spawnpoint within a designated team spawn area.
+    /// </summary>
+    public static Vector3 GetSpawn(int team)
     {
-        base.OnEnable();
-        PhotonNetwork.NetworkingClient.EventReceived += OnEvent;
-    }
-
-    public override void OnDisable()
-    {
-        base.OnDisable();
-        PhotonNetwork.NetworkingClient.EventReceived -= OnEvent;
-    }
-
-    protected virtual void Start()
-    {
-        ResetGame();
-    }
-
-    protected virtual void ResetGame()
-    {
-        InputBridgeBase.ToggleMovement(false);
-        CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
-        winningTeam = null;
-        if (PhotonNetwork.IsMasterClient)
-        {
-            CustomRoomProperties.InitializeRoom(PhotonNetwork.CurrentRoom, PhotonNetwork.CurrentRoom.PlayerCount);
-        }
-    }
-
-    protected virtual void OnEvent(EventData photonEvent)
-    {
-        byte eventCode = photonEvent.Code;
-        if (eventCode == PUN_Events.StartGameEventCode)
-        {
-            startGameEvent.Raise();
-            InputBridgeBase.ToggleMovement(true);
-            PlayerPrefs.SetString("message", "Start!");
-            displayMessageEvent.Raise();
-        }
-        else if (eventCode == PUN_Events.StopGameEventCode)
-        {
-            stopGameEvent.Raise();
-            InputBridgeBase.ToggleMovement(true);
-        }
-    }
-
-    // return the next team for assigning players
-    protected virtual int GetNextTeam()
-    {
-        int[] _teamSizes = CustomRoomProperties.GetTeams(PhotonNetwork.CurrentRoom);
-        int _team = 0;
-        int _min = _teamSizes[0];
-
-        for (int i = 0; i < _teamSizes.Length; i++)
-        {
-            if (_teamSizes[i] < _min)
-            {
-                _min = _teamSizes[i];
-                _team = i;
-            }
-        }
-
-        return _team;
-    }
-
-    // return a spawnpoint based on input team
-    protected virtual Vector3 GetSpawn(Team team)
-    {
-        Vector3 pos = team.teamSpawn.position;
-        BoxCollider col = team.teamSpawn.GetComponent<BoxCollider>();
+        Vector3 pos = instance.teams[team].teamSpawn.position;
+        BoxCollider col = instance.teams[team].teamSpawn.GetComponent<BoxCollider>();
 
         if (col != null)
         {
@@ -128,6 +67,81 @@ public class GameManager : MonoBehaviourPunCallbacks
         return pos;
     }
 
+    /// <summary>
+    /// Update a players score, and their teams score.
+    /// </summary>
+    public static void PlayerScored(Player player, int value)
+    {
+        if (!PhotonNetwork.IsMasterClient || instance == null || !instance.isGameActive) return;
+        // add score to player
+        CustomPlayerProperties.SetScore(player, value);
+        // add score to player team
+        var team = CustomPlayerProperties.GetTeam(player);
+        CustomRoomProperties.AddScore(PhotonNetwork.CurrentRoom, team, value);
+
+        Debug.Log("is game still active: " + instance.IsGameActive);
+
+        if (!instance.IsGameActive)
+        {
+            CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 3);
+        }
+    }
+    #endregion
+
+    #region private
+    protected virtual void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
+        instance = this;
+        view = gameObject.AddComponent<PhotonView>();
+        view.ViewID = 999;
+    }
+
+    protected virtual void Start()
+    {
+        ResetGame();
+    }
+
+    /// <summary>
+    /// Reset the player props and room props.
+    /// </summary>
+    protected virtual void ResetGame()
+    {
+        InputBridgeBase.ToggleMovement(false);
+        CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
+        winningTeam = -1;
+        isGameActive = false;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            CustomRoomProperties.InitializeRoom(PhotonNetwork.CurrentRoom, PhotonNetwork.CurrentRoom.PlayerCount);
+        }
+    }
+
+    /// <summary>
+    /// Get the index of the next team to add a player to.
+    /// </summary>
+    protected virtual int GetNextTeam()
+    {
+        int[] _teamSizes = CustomRoomProperties.GetTeams(PhotonNetwork.CurrentRoom);
+        int _team = 0;
+        int _min = _teamSizes[0];
+        for (int i = 0; i < _teamSizes.Length; i++)
+        {
+            if (_teamSizes[i] < _min)
+            {
+                _min = _teamSizes[i];
+                _team = i;
+            }
+        }
+        return _team;
+    }
+
+    /// <summary>
+    /// Assign teams and spawn player avatar
+    /// </summary>
     protected virtual void SetupTeams()
     {
         if (!PhotonNetwork.IsMasterClient) return;
@@ -136,46 +150,21 @@ public class GameManager : MonoBehaviourPunCallbacks
             int _teamIndex = GetNextTeam();
             PhotonNetwork.CurrentRoom.AddToTeam(_teamIndex, 1);
             player.Value.SetTeam(_teamIndex);
-            photonView.RPC("SpawnAvatar", player.Value, _teamIndex);
+            view.RPC("SpawnAvatar", player.Value, _teamIndex);
         }
         StartCoroutine(StartGameCountdown());
     }
 
-    private IEnumerator StartGameCountdown()
-    {
-        yield return new WaitForSeconds(5);
-        PUN_Events.StartGameEvent();
-    }
-
-    [PunRPC]
-    protected virtual void SpawnAvatar(int teamIndex)
-    {
-        Vector3 _randomSpawn = GetSpawn(teams[teamIndex]);
-        Transform _startPos = teams[teamIndex].teamSpawn;
-        PhotonNetwork.Instantiate(avatar.name, _randomSpawn, _startPos.rotation);
-    }
-
-    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
-    {
-        Debug.Log("custom room props updated: " + propertiesThatChanged.ToStringFull());
-        if (propertiesThatChanged.ContainsKey(CustomRoomProperties.game) && (int)propertiesThatChanged[CustomRoomProperties.game] == 1)
-        {
-            SetupTeams();
-        }
-    }
-
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
-    {
-        Debug.Log("custom player props updated: " + changedProps.ToStringFull());
-    }
-
-    public static bool IsGameActive
+    /// <summary>
+    /// Check the scores and determine if game is active or not
+    /// </summary>
+    protected virtual bool IsGameActive
     {
         get
         {
-            if (instance == null) return false;
+            if (instance == null || !instance.isGameActive || CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom) != 2) return false;
             instance.CheckScores();
-            if (instance.winningTeam != null || CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom) != 2)
+            if (instance.winningTeam != -1)
             {
                 return false;
             }
@@ -183,45 +172,141 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    private void CheckScores()
+    /// <summary>
+    /// Check scores and assign a winning team if applicable.
+    /// </summary>
+    protected virtual void CheckScores()
     {
+        if (winningTeam != -1) return;
         int[] scores = PhotonNetwork.CurrentRoom.GetScores();
-        for (int i = 0; i < teams.Count; i++)
+        for (int i = 0; i < scores.Length; i++)
         {
             if (scores[i] >= maxScore)
             {
-                winningTeam = teams[i];
-                CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 2);
+                winningTeam = i;
                 break;
             }
         }
     }
+    #endregion
 
-    public static void PlayerScored(Player player, int value)
+    #region callbacks
+    /// <summary>
+    /// Callback used to monitor changes in the game state.
+    /// </summary>
+    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
-        if (!PhotonNetwork.IsMasterClient || instance == null || !IsGameActive) return;
-        // add score to player
-        CustomPlayerProperties.SetScore(player, value);
-        // add score to player team
-        var team = CustomPlayerProperties.GetTeam(player);
-        CustomRoomProperties.AddScore(PhotonNetwork.CurrentRoom, team, value);
-        // send player scored event (in case everyone resets when someone scores)
-    }
-
-    // return a color based on input team
-    public static Color GetColor(int team)
-    {
-        if (instance == null || instance.teams.Count == 0)
+        Debug.Log("custom room props updated: " + propertiesThatChanged.ToStringFull());
+        if (propertiesThatChanged.ContainsKey(CustomRoomProperties.game))
         {
-            return Color.white;
+            int newstate = (int)propertiesThatChanged[CustomRoomProperties.game];
+            if (newstate == 1)
+            {
+                Debug.LogError("setup teams");
+                SetupTeams();
+            }
+            else if (newstate == 2)
+            {
+                Debug.LogError("game start");
+                startGameEvent.Raise();
+                InputBridgeBase.ToggleMovement(true);
+                PlayerPrefs.SetString("message", "Start!");
+                displayMessageEvent.Raise();
+                isGameActive = true;
+            }
+            else if (newstate == 3)
+            {
+                Debug.LogError("game end");
+                if(winningTeam != -1)
+                {
+                    string message = "";
+                    // TODO: if only one player on team say Player Won! rather than Team Won!
+                    //if(CustomRoomProperties.GetTeams(PhotonNetwork.CurrentRoom)[winningTeam] == 1)
+                    //{
+                    //    var team = CustomPlayerProperties.GetTeam();
+                    //    message = $"{} won!";
+                    //}
+                    //else
+                    //{
+                    //    message = $"{teams[winningTeam].teamName} won!";
+                    //}
+                    message = $"{teams[winningTeam].teamName} won!";
+                    PlayerPrefs.SetString("message", message);
+                    displayMessageEvent.Raise();
+                }
+                isGameActive = false;
+                InputBridgeBase.ToggleMovement(false);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    StartCoroutine(ReturnToLobby());
+                }
+            }
         }
-        return instance.teams[team].teamColor;
     }
+
+    /// <summary>
+    /// Callback used to monitor changes to the player.
+    /// </summary>
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        Debug.Log("custom player props updated: " + changedProps.ToStringFull());
+        if (changedProps.ContainsKey(CustomPlayerProperties.score) && (int)changedProps["score"] > 0)
+        {
+            string message = $"{targetPlayer.NickName} scored!";
+            PlayerPrefs.SetString("message", message);
+            displayMessageEvent.Raise();
+        }
+    }
+    #endregion
+
+    #region ienumerators
+    /// <summary>
+    /// Return to lobby after game ends, after a short delay
+    /// </summary>
+    protected virtual IEnumerator ReturnToLobby()
+    {
+        yield return new WaitForSeconds(lobbyDelay);
+        stopGameEvent.Raise();
+    }
+
+    /// <summary>
+    /// Host will start game after a delay
+    /// </summary>
+    private IEnumerator StartGameCountdown()
+    {
+        yield return new WaitForSeconds(startDelay);
+        CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 2);
+    }
+    #endregion
+
+    #region rpcs
+    /// <summary>
+    /// Spawn a player avatar on the network.
+    /// </summary>
+    [PunRPC]
+    protected virtual void SpawnAvatar(int teamIndex)
+    {
+        Vector3 _randomSpawn = GetSpawn(teamIndex);
+        Transform _startPos = teams[teamIndex].teamSpawn;
+        PhotonNetwork.Instantiate(avatar.name, _randomSpawn, _startPos.rotation);
+    }
+    #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
-[System.Serializable]
-public class Team
-{
-    public Color teamColor;
-    public Transform teamSpawn;
-}

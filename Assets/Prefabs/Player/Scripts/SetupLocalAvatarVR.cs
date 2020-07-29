@@ -42,12 +42,10 @@ public class SetupLocalAvatarVR : MonoBehaviour
 
     public void SetPlayerColors()
     {
-        Debug.Log("set player colors");
         var _team = CustomPlayerProperties.GetTeam(view.Owner);
         var _color = GameManager.GetColor(_team);
         foreach (Transform child in avatarObjects)
         {
-            Debug.Log("set player colors on body");
             if (child.name != "Body") continue;
             var _renderer = child.GetComponent<Renderer>();
             var _block = new MaterialPropertyBlock();

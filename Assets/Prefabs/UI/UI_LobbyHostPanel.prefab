@@ -396,8 +396,6 @@ MonoBehaviour:
     type: 3}
   gameScenes:
   - {fileID: 11400000, guid: b81bf891d01897140b4115198edea742, type: 2}
-  - {fileID: 11400000, guid: ff1d247cd54dec94fa0d77fa7ea9353b, type: 2}
-  - {fileID: 11400000, guid: 735d009563a05b747af9415cc9a19ed5, type: 2}
 --- !u!1 &5262104213895027695
 GameObject:
   m_ObjectHideFlags: 0

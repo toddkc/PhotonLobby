@@ -36,7 +36,6 @@ public class SingleGameEvent : EditorWindow
             foreach (var listener in selectedEvent.GetListeners())
             {
                 GUILayout.Label(listener.ToString());
-                Debug.Log(listener.ToString());
             }
         }
         else

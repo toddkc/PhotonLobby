@@ -199,6 +199,62 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &526288324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 526288326}
+  - component: {fileID: 526288325}
+  - component: {fileID: 526288327}
+  m_Layer: 0
+  m_Name: scenecheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &526288325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526288324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35118ecec6742364e8d4e7ae2f4b1e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &526288326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526288324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &526288327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526288324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2822cc0c3aa28849a4c7eba576774fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &879590937
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659804635}
+  - component: {fileID: 1659804636}
   - component: {fileID: 1659804634}
   m_Layer: 0
   m_Name: GameManager
@@ -414,17 +471,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa6567f95d82f143a2326769f33f9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 1
+  maxScore: 3
   respawnTime: 5
+  lobbyDelay: 5
+  startDelay: 3
   avatar: {fileID: 2829003816306713541, guid: 9e12fb12a0d04e8409ecb4db7f8c0640, type: 3}
   startGameEvent: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2, type: 2}
   stopGameEvent: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6, type: 2}
   displayMessageEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
     type: 2}
   teams:
-  - teamColor: {r: 1, g: 0, b: 0, a: 0}
+  - teamName: red
+    teamColor: {r: 1, g: 0, b: 0, a: 0}
     teamSpawn: {fileID: 1905516029}
-  - teamColor: {r: 0, g: 0, b: 1, a: 0}
+  - teamName: blue
+    teamColor: {r: 0, g: 0.2746606, b: 1, a: 0}
     teamSpawn: {fileID: 317262945}
 --- !u!4 &1659804635
 Transform:
@@ -440,6 +501,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1659804636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659804633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6,
+    type: 2}
+  _event: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 0813904370bee2646a099108d5da74d0, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1894725245
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +727,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4309383433356881294, guid: 90a4ae781966cb34385d0233ea2c6412,
+        type: 3}
+      propertyPath: uiPlayerDisplay
+      value: 
+      objectReference: {fileID: 710254415972576251, guid: ae40800cece47904c87989e6d9f032fc,
+        type: 3}
     - target: {fileID: 4309383433356881295, guid: 90a4ae781966cb34385d0233ea2c6412,
         type: 3}
       propertyPath: m_Name
