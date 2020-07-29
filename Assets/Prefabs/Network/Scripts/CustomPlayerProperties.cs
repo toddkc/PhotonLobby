@@ -19,14 +19,15 @@ public static class CustomPlayerProperties
     {
         return (int)player.CustomProperties[score];
     }
-    public static void SetScore(this PhotonView player, int value)
+    public static void AddScore(this PhotonView player, int value)
     {
-        player.Owner.SetScore(value);
+        player.Owner.AddScore(value);
     }
-    public static void SetScore(this Player player, int value)
+    public static void AddScore(this Player player, int value)
     {
-        var _score = new ExitGames.Client.Photon.Hashtable() { { score, value } };
-        player.SetCustomProperties(_score);
+        var _score = GetCurrentScore(player);
+        _score += value;
+        player.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { score, _score } });
     }
 
     // player team

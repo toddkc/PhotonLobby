@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsMasterClient || instance == null || !instance.isGameActive) return;
         // add score to player
-        CustomPlayerProperties.SetScore(player, value);
+        CustomPlayerProperties.AddScore(player, value);
         // add score to player team
         var team = CustomPlayerProperties.GetTeam(player);
         CustomRoomProperties.AddScore(PhotonNetwork.CurrentRoom, team, value);

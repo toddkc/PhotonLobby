@@ -19,6 +19,7 @@ public class ScoreBoard : MonoBehaviourPunCallbacks
     {
         if (changedProps.ContainsKey(CustomPlayerProperties.score))
         {
+            Debug.LogError("update score!");
             UpdateScoreText();
         }
     }
