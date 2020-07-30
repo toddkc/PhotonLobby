@@ -1,12 +1,20 @@
 ﻿using Photon.Pun;
+using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameManager))]
 public class TeamManager : MonoBehaviour
 {
     [SerializeField] private List<Team> teams = new List<Team>();
     public int WinningTeam { get; set; }
     public List<Team> Teams { get { return teams; } }
+    private GameManager game;
+
+    private void Awake()
+    {
+        game = GetComponent<GameManager>();
+    }
 
     /// <summary>
     /// Get the team color.
@@ -67,11 +75,28 @@ public class TeamManager : MonoBehaviour
             int _teamIndex = GetNextTeam();
             PhotonNetwork.CurrentRoom.AddToTeam(_teamIndex, 1);
             player.Value.SetTeam(_teamIndex);
-
-            // user spawnmanager
-            //GetComponent<PhotonView>().RPC("SpawnAvatar", player.Value, _teamIndex);
+            game.photonView.RPC("SpawnAvatar", player.Value, _teamIndex);
         }
-        // gamemanager has this
-       // StartCoroutine(StartGameCountdown());
     }
+
+    /// <summary>
+    /// Update a players score, and their teams score.
+    /// </summary>
+    public void PlayerScored(Player player, int value)
+    {
+        if (!PhotonNetwork.IsMasterClient) return;
+        // add score to player
+        CustomPlayerProperties.AddScore(player, value);
+        // add score to player team
+        var team = CustomPlayerProperties.GetTeam(player);
+        CustomRoomProperties.AddScore(PhotonNetwork.CurrentRoom, team, value);
+    }
+}
+
+[System.Serializable]
+public class Team
+{
+    public string teamName;
+    public Color teamColor;
+    public Transform teamSpawn;
 }

@@ -370,7 +370,8 @@ MonoBehaviour:
   hidePanel: 1
   messageText: {fileID: 2903963401552786876}
   messagePanel: {fileID: 2903963400668887898}
-  messageDelay: 10
+  preDelayTime: 0.2
+  postDelayTime: 3
 --- !u!114 &7044266649929122057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +387,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
+    type: 2}
   _event: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a, type: 2}
   _response:
     m_PersistentCalls:

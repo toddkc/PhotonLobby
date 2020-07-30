@@ -1,27 +1,25 @@
-﻿using ExitGames.Client.Photon;
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// this handles the logic for gameplay - it's a mess at the moment while I figure stuff out...
-/// TODO: this needs to be made much more event driven
-/// TODO: this will need to be made into an abstract class for multiple different games
 /// </summary>
 
 [RequireComponent(typeof(TeamManager))]
-[RequireComponent(typeof(SpawnManager))]
 public class GameManager : MonoBehaviourPunCallbacks
 {
     #region variables
     public static GameManager instance;
-    [SerializeField] protected int maxScore = 3;
+    [Header("Avatar Prefab")]
+    [SerializeField] protected GameObject avatar = default;
+    [Header("Settings")]
     [SerializeField] protected float respawnTime = 5;
+    [SerializeField] protected int maxScore = 3;
     [SerializeField] protected float lobbyDelay = 5;
     [SerializeField] protected float startDelay = 3;
-    [SerializeField] protected GameObject avatar = default;
+    [Header("Events")]
     [SerializeField] protected ScriptableObjectArchitecture.GameEvent startGameEvent = default;
     [SerializeField] protected ScriptableObjectArchitecture.GameEvent stopGameEvent = default;
     [SerializeField] protected ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
@@ -29,7 +27,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     protected bool isGameActive = false;
     protected PhotonView view;
     private TeamManager teams;
-    private SpawnManager spawner;
 
     protected enum GameState
     {
@@ -40,10 +37,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region static
+    #region static (get color, player scored)
 
+    /// <summary>
+    /// Get the color to use for player avatar.
+    /// </summary>
     public static Color GetColor(int team)
     {
+        if(instance.teams == null)
+        {
+            return Color.white;
+        }
         return instance.teams.GetColor(team);
     }
 
@@ -52,15 +56,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     public static void PlayerScored(Player player, int value)
     {
-        if (!PhotonNetwork.IsMasterClient || instance == null || !instance.isGameActive) return;
-        // add score to player
-        CustomPlayerProperties.AddScore(player, value);
-        // add score to player team
-        var team = CustomPlayerProperties.GetTeam(player);
-        CustomRoomProperties.AddScore(PhotonNetwork.CurrentRoom, team, value);
-
-        Debug.Log("is game still active: " + instance.IsGameActive);
-
+        if (!PhotonNetwork.IsMasterClient || !instance.isGameActive) return;
+        instance.teams.PlayerScored(player, value);
         if (!instance.IsGameActive)
         {
             CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 3);
@@ -68,7 +65,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region private
+    #region private (reset, isgameactive, checkscores)
     protected virtual void Awake()
     {
         if (instance != null)
@@ -136,7 +133,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region callbacks
+    #region callbacks (player props, room props)
     /// <summary>
     /// Callback used to monitor changes in the game state.
     /// </summary>
@@ -150,6 +147,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 Debug.LogError("setup teams");
                 teams.SetupTeams();
+                StartCoroutine(StartGameCountdown());
             }
             else if (newstate == 2)
             {
@@ -165,19 +163,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 Debug.LogError("game end");
                 if(teams.WinningTeam != -1)
                 {
-                    string message = "";
-                    // TODO: if only one player on team say Player Won! rather than Team Won!
-                    //if(CustomRoomProperties.GetTeams(PhotonNetwork.CurrentRoom)[winningTeam] == 1)
-                    //{
-                    //    var team = CustomPlayerProperties.GetTeam();
-                    //    message = $"{} won!";
-                    //}
-                    //else
-                    //{
-                    //    message = $"{teams[winningTeam].teamName} won!";
-                    //}
-                    //message = $"{teams.[teams.WinningTeam].teamName} won!";
-                    
+                    var index = teams.WinningTeam;
+                    string message = $"{teams.Teams[index].teamName} Team Won!";
                     PlayerPrefs.SetString("message", message);
                     displayMessageEvent.Raise();
                 }
@@ -199,14 +186,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("custom player props updated: " + changedProps.ToStringFull());
         if (changedProps.ContainsKey(CustomPlayerProperties.score) && (int)changedProps["score"] > 0)
         {
-            string message = $"{targetPlayer.NickName} scored!";
+            var team = CustomPlayerProperties.GetTeam(targetPlayer);
+            string teamName = teams.Teams[team].teamName;
+            string message = $"{targetPlayer.NickName} ({teamName} Team) scored!";
             PlayerPrefs.SetString("message", message);
             displayMessageEvent.Raise();
         }
     }
     #endregion
 
-    #region ienumerators
+    #region ienumerators (return to lobby, start game)
     /// <summary>
     /// Return to lobby after game ends, after a short delay
     /// </summary>
@@ -226,7 +215,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region rpcs
+    #region rpcs (spawn avatar)
     /// <summary>
     /// Spawn a player avatar on the network.
     /// </summary>

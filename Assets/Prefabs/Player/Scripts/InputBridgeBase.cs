@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// base class for the input bridge, inherit to create specific input for kbm or oculus
@@ -25,6 +26,23 @@ public class InputBridgeBase : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += CheckScene;
+    }
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= CheckScene;
+    }
+
+    private void CheckScene(Scene oldScene, Scene newScene)
+    {
+        if (newScene.buildIndex < 2)
+        {
+            ToggleMovement(true);
         }
     }
 

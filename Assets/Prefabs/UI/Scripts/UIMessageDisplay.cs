@@ -11,13 +11,16 @@ public class UIMessageDisplay : MonoBehaviour
     [SerializeField] private bool hidePanel = false;
     [SerializeField] Text messageText = default;
     [SerializeField] GameObject messagePanel = default;
-    [SerializeField] float messageDelay = default;
-    private WaitForSeconds delay;
+    [SerializeField] float preDelayTime = default;
+    [SerializeField] float postDelayTime = default;
+    private WaitForSeconds preDelay;
+    private WaitForSeconds postDelay;
 
     private void Start()
     {
         PlayerPrefs.SetString("message", "test");
-        delay = new WaitForSeconds(messageDelay);
+        preDelay = new WaitForSeconds(preDelayTime);
+        postDelay = new WaitForSeconds(postDelayTime);
         if (hidePanel) messagePanel.SetActive(false);
     }
 
@@ -28,8 +31,8 @@ public class UIMessageDisplay : MonoBehaviour
         string message = PlayerPrefs.GetString("message");
         if (!string.IsNullOrEmpty(message))
         {
+            messagePanel.SetActive(false);
             messageText.text = message;
-            if (hidePanel) messagePanel.SetActive(true);
             StartCoroutine(DelayHideMessage());
         }
     }
@@ -37,7 +40,13 @@ public class UIMessageDisplay : MonoBehaviour
     // optionally hide the message panel after a delay
     private IEnumerator DelayHideMessage()
     {
-        yield return delay;
+        if (hidePanel)
+        {
+            messagePanel.SetActive(false);
+            yield return preDelay;
+            messagePanel.SetActive(true);
+        }
+        yield return postDelay;
         messageText.text = "";
         if (hidePanel) messagePanel.SetActive(false);
     }
