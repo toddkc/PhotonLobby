@@ -14,5 +14,6 @@ public class GameEventTester : MonoBehaviour
             var player = PhotonNetwork.LocalPlayer;
             GameManager.PlayerScored(player, 1);
         }
+
     }
 }

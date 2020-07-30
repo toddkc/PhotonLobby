@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1326247638035367822}
   - component: {fileID: 4248548647464706209}
   - component: {fileID: 8297991276616549055}
+  - component: {fileID: 1313393363489673473}
   m_Layer: 9
   m_Name: NetworkPlayerAvatar_VR
   m_TagString: Player
@@ -167,6 +168,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1313393363489673473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121930385796678115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691b776184201564fa7800168f51f746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1197526560213342267
 GameObject:
   m_ObjectHideFlags: 0

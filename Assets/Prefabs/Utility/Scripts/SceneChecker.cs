@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChecker : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         if(InputBridgeBase.instance == null)
         {

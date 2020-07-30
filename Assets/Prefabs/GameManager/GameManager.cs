@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     [Header("Avatar Prefab")]
     [SerializeField] protected GameObject avatar = default;
     [Header("Settings")]
-    [SerializeField] protected float respawnTime = 5;
     [SerializeField] protected int maxScore = 3;
     [SerializeField] protected float lobbyDelay = 5;
     [SerializeField] protected float startDelay = 3;
@@ -27,6 +26,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     protected bool isGameActive = false;
     protected PhotonView view;
     private TeamManager teams;
+    public PlayerRespawn localPlayerSpawner { get; set; }
 
     protected enum GameState
     {
@@ -37,18 +37,39 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    #region static (get color, player scored)
+    #region static (get color, player scored, is game active)
+
+    /// <summary>
+    /// Get the team color to use for player avatar.
+    /// </summary>
+    public static Color GetColor(int team)
+    {
+        return instance.teams.GetColor(team);
+    }
 
     /// <summary>
     /// Get the color to use for player avatar.
     /// </summary>
-    public static Color GetColor(int team)
+    public static Vector3 GetSpawn(int team)
     {
-        if(instance.teams == null)
+        return instance.teams.GetSpawn(team);
+    }
+
+    /// <summary>
+    /// Check the scores and determine if game is active or not
+    /// </summary>
+    public static bool IsGameActive
+    {
+        get
         {
-            return Color.white;
+            if (instance == null || !instance.isGameActive || CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom) != 2) return false;
+            instance.CheckScores();
+            if (instance.teams.WinningTeam != -1)
+            {
+                return false;
+            }
+            return true;
         }
-        return instance.teams.GetColor(team);
     }
 
     /// <summary>
@@ -58,14 +79,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsMasterClient || !instance.isGameActive) return;
         instance.teams.PlayerScored(player, value);
-        if (!instance.IsGameActive)
+        if (!IsGameActive)
         {
             CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 3);
         }
     }
     #endregion
 
-    #region private (reset, isgameactive, checkscores)
+    #region private (reset, checkscores)
     protected virtual void Awake()
     {
         if (instance != null)
@@ -95,23 +116,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             CustomRoomProperties.InitializeRoom(PhotonNetwork.CurrentRoom, PhotonNetwork.CurrentRoom.PlayerCount);
-        }
-    }
-
-    /// <summary>
-    /// Check the scores and determine if game is active or not
-    /// </summary>
-    protected virtual bool IsGameActive
-    {
-        get
-        {
-            if (instance == null || !instance.isGameActive || CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom) != 2) return false;
-            instance.CheckScores();
-            if (teams.WinningTeam != -1)
-            {
-                return false;
-            }
-            return true;
         }
     }
 
@@ -224,9 +228,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Vector3 _randomSpawn = teams.GetSpawn(teamIndex);
         Transform _startPos = teams.Teams[teamIndex].teamSpawn;
-        PhotonNetwork.Instantiate(avatar.name, _randomSpawn, _startPos.rotation);
+        var localAvatar = PhotonNetwork.Instantiate(avatar.name, _randomSpawn, _startPos.rotation);
+        localPlayerSpawner = localAvatar.GetComponent<PlayerRespawn>();
     }
     #endregion
 
 }
-
