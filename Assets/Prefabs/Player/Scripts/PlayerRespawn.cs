@@ -17,6 +17,7 @@ public class PlayerRespawn : MonoBehaviour
 
     public void TriggerRespawn(float timer)
     {
+        Debug.LogError("player");
         if (!view.IsMine || !GameManager.IsGameActive) return;
         view.RPC("RPCDespawn", RpcTarget.All);
         StartCoroutine(RespawnTimer(timer));

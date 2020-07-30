@@ -143,19 +143,16 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
-        Debug.Log("custom room props updated: " + propertiesThatChanged.ToStringFull());
         if (propertiesThatChanged.ContainsKey(CustomRoomProperties.game))
         {
             int newstate = (int)propertiesThatChanged[CustomRoomProperties.game];
             if (newstate == 1)
             {
-                Debug.LogError("setup teams");
                 teams.SetupTeams();
                 StartCoroutine(StartGameCountdown());
             }
             else if (newstate == 2)
             {
-                Debug.LogError("game start");
                 startGameEvent.Raise();
                 InputBridgeBase.ToggleMovement(true);
                 PlayerPrefs.SetString("message", "Start!");
@@ -164,7 +161,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             else if (newstate == 3)
             {
-                Debug.LogError("game end");
                 if(teams.WinningTeam != -1)
                 {
                     var index = teams.WinningTeam;
@@ -187,7 +183,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        Debug.Log("custom player props updated: " + changedProps.ToStringFull());
         if (changedProps.ContainsKey(CustomPlayerProperties.score) && (int)changedProps["score"] > 0)
         {
             var team = CustomPlayerProperties.GetTeam(targetPlayer);

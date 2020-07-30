@@ -12,13 +12,18 @@ public class HostDisconnect : MonoBehaviourPunCallbacks
     [SerializeField] private ScriptableObjectArchitecture.GameEvent onHostDisconnectEvent = default;
     private Player host;
 
-    // called when you join a photon room
+    /// <summary>
+    /// Called when local player joins a photon room.
+    /// </summary>
     public override void OnJoinedRoom()
     {
+        // store who the current host is
         host = PhotonNetwork.MasterClient;
     }
 
-    // called when a photon player leaves your room
+    /// <summary>
+    /// Called when any player leaves photon room.
+    /// </summary>
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         // if the host leaves raise an event

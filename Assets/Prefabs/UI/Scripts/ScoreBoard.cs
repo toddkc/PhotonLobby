@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,35 +13,45 @@ using UnityEngine.UI;
 public class ScoreBoard : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Text scoreText = default;
-    private SortedList<int, string> playerscored = new SortedList<int, string>();
+    private Dictionary<int, List<string>> playerscores = new Dictionary<int, List<string>>();
 
     // photon callback, will update score
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
         if (changedProps.ContainsKey(CustomPlayerProperties.score))
         {
-            Debug.LogError("update score!");
             UpdateScoreText();
         }
     }
 
     // loop over players and show their scores
-    // TODO: this needs to work on the player or team level
     private void UpdateScoreText()
     {
-        playerscored.Clear();
+        playerscores.Clear();
         string _scoretext = "";
         foreach(var player in PhotonNetwork.CurrentRoom.Players)
         {
-            playerscored.Add(CustomPlayerProperties.GetCurrentScore(player.Value), player.Value.NickName);
+            var _score = CustomPlayerProperties.GetCurrentScore(player.Value);
+            if (playerscores.ContainsKey(_score))
+            {
+                playerscores[_score].Add(player.Value.NickName);
+            }
+            else
+            {
+                playerscores.Add(_score, new List<string>(new string[] { player.Value.NickName }));
+            }
         }
+        var _keys = playerscores.Keys.ToList();
+        _keys.Sort();
 
         var _counter = 1;
-        for(var i = playerscored.Count - 1; i >= 0; i--)
+        for(var i = _keys.Count - 1; i >= 0; i--)
         {
-            _scoretext += $"{_counter}.  {playerscored.Values[i]} : {playerscored.Keys[i]} \n ";
+            foreach(var pscore in playerscores[_keys[i]])
+            {
+                _scoretext += $"{_counter}. {pscore} : {_keys[i]} \n";
+            }
         }
-
         scoreText.text = _scoretext;
     }
 }
