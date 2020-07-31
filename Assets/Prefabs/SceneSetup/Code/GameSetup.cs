@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableObjectArchitecture;
+using UnityEngine;
 
 /// <summary>
 /// component used to spawn in required game scene items
@@ -8,7 +9,7 @@
 public class GameSetup : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private bool isVR = false;
+    [SerializeField] private BoolReference isVR = default;
 
     [Header("Shared Prefabs")]
     public GameObject uiPlayerDisplay;
@@ -31,13 +32,13 @@ public class GameSetup : MonoBehaviour
 
     private void SetupVR()
     {
-        if (!isVR) return;
+        if (!isVR.Value) return;
         Instantiate(uiMessagesVR);
     }
 
     private void SetupPC()
     {
-        if (isVR) return;
+        if (isVR.Value) return;
         Instantiate(uiMessagesPC);
     }
 }

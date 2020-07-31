@@ -1002,6 +1002,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 710254415972576251, guid: ae40800cece47904c87989e6d9f032fc,
         type: 3}
+    - target: {fileID: 4309383433356881294, guid: 90a4ae781966cb34385d0233ea2c6412,
+        type: 3}
+      propertyPath: isVR._variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4,
+        type: 2}
     - target: {fileID: 4309383433356881295, guid: 90a4ae781966cb34385d0233ea2c6412,
         type: 3}
       propertyPath: m_Name

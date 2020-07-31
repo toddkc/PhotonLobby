@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ScriptableObjectArchitecture;
 
 /// <summary>
 /// component used to spawn in required menu scene items
@@ -8,7 +9,7 @@
 public class MainMenuSetup : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private bool isVR = false;
+    [SerializeField] private BoolReference isVR = default;
 
     [Header("Shared Prefabs")]
     public GameObject networkManager;
@@ -41,7 +42,7 @@ public class MainMenuSetup : MonoBehaviour
 
     private void SetupVR()
     {
-        if (!isVR) return;
+        if (!isVR.Value) return;
         Instantiate(inputBridgeVR);
         Instantiate(uiMenuVR);
         Instantiate(uiMessagesVR);
@@ -50,7 +51,7 @@ public class MainMenuSetup : MonoBehaviour
 
     private void SetupPC()
     {
-        if (isVR) return;
+        if (isVR.Value) return;
         Instantiate(inputBridgePC);
         Instantiate(uiMenuPC);
         Instantiate(uiMessagesPC);

@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 /// <summary>
@@ -9,7 +10,7 @@ using UnityEngine;
 public class LobbySetup : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private bool isVR = false;
+    [SerializeField] private BoolReference isVR = default;
 
     [Header("Shared Prefabs")]
     public GameObject uiPlayerDisplay;
@@ -36,14 +37,14 @@ public class LobbySetup : MonoBehaviour
 
     private void SetupVR()
     {
-        if (!isVR) return;
+        if (!isVR.Value) return;
         Instantiate(uiMessagesVR);
         PhotonNetwork.Instantiate(avatarVR.name,Vector3.zero,Quaternion.identity);
     }
 
     private void SetupPC()
     {
-        if (isVR) return;
+        if (isVR.Value) return;
         Instantiate(uiMessagesPC);
         PhotonNetwork.Instantiate(avatarPC.name, Vector3.zero, Quaternion.identity);
     }
