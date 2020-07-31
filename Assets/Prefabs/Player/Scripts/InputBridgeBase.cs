@@ -15,6 +15,9 @@ public class InputBridgeBase : MonoBehaviour
     public float PitchAxis { get; protected set; }
     public float YawAxis { get; protected set; }
     public bool Interact { get; protected set; }
+    public bool Climb { get; protected set; }
+    public float SwimAxis { get; protected set; }
+    public bool Jump { get; protected set; }
 
     private void Awake()
     {
@@ -57,6 +60,9 @@ public class InputBridgeBase : MonoBehaviour
         StrafeAxis = 0;
         PitchAxis = 0;
         YawAxis = 0;
+        SwimAxis = 0;
         Interact = false;
+        Jump = false;
+        Climb = false;
     }
 }

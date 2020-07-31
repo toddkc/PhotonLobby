@@ -47,5 +47,8 @@ MonoBehaviour:
   strafeAxis: Horizontal
   pitchAxis: Mouse Y
   yawAxis: Mouse X
+  swimAxis: Swim
   interactKey: 0
+  jumpKey: 32
+  climbKey: 306
   mouseInteract: 0
