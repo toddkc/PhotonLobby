@@ -36,13 +36,20 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (!view.IsMine)
         {
-            thisObject.SetActive(true);
+            //StartCoroutine(EnableAvatar());
             avatar.SetActive(true);
         }
         else
         {
             InputBridgeBase.ToggleMovement(true);
         }
+    }
+
+    private IEnumerator EnableAvatar()
+    {
+        //thisObject.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        avatar.SetActive(true);
     }
 
     [PunRPC]
@@ -52,7 +59,7 @@ public class PlayerRespawn : MonoBehaviour
         {
             avatar.SetActive(false);
             thisTransform.localPosition = Vector3.zero;
-            thisObject.SetActive(false);
+            //thisObject.SetActive(false);
         }
         else
         {

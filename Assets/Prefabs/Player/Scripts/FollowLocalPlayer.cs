@@ -9,17 +9,12 @@ using UnityEngine;
 public class FollowLocalPlayer : MonoBehaviourPun
 {
     [SerializeField] private float lerpSpeed = 10f;
-    [SerializeField] Transform playerToFollow;
-    private Transform thisTransform;
-
-    private void Awake()
-    {
-        thisTransform = transform;
-    }
+    [SerializeField] Transform followingObject;
+    [SerializeField] Transform objectToFollow;
 
     private void LateUpdate()
     {
-        if (playerToFollow == null) return;
+        if (objectToFollow == null) return;
         FollowPlayer();
         Rotate();
     }
@@ -27,15 +22,15 @@ public class FollowLocalPlayer : MonoBehaviourPun
     private void FollowPlayer()
     {
         // get location of player
-        var target = playerToFollow.position;
+        var target = objectToFollow.position;
         // get location of movement
-        var movement = Vector3.Lerp(thisTransform.position, target, lerpSpeed * Time.deltaTime);
+        var movement = Vector3.Lerp(followingObject.position, target, lerpSpeed * Time.deltaTime);
         // move to that location
-        thisTransform.position = movement;
+        followingObject.position = movement;
     }
 
     private void Rotate()
     {
-        thisTransform.localRotation = playerToFollow.localRotation;
+        followingObject.localRotation = objectToFollow.localRotation;
     }
 }

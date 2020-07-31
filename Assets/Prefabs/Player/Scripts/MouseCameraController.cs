@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -25,11 +26,13 @@ public class MouseCameraController : MonoBehaviour
     private float xAngle;
     private float yAngle;
     private bool canLook = true;
+    private PhotonView view;
 
     private void Awake()
     {
         thisTransform = transform;
         camTransform = GetComponentInChildren<Camera>().transform;
+        view = GetComponent<PhotonView>();
     }
 
     private void Start()
@@ -68,6 +71,7 @@ public class MouseCameraController : MonoBehaviour
 
     public void ResetView()
     {
+        if (!view.IsMine) return;
         canLook = false;
         thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
         camTransform.localRotation = Quaternion.Euler(Vector3.zero);

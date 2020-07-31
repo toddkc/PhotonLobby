@@ -43,7 +43,7 @@ public class SetupLocalAvatarPC : MonoBehaviour
     private void SetupNetwork()
     {
         // character controller - disable
-        GetComponentInChildren<PCLobbyController>().enabled = false;
+        GetComponentInChildren<CatlikeController>().enabled = false;
         // camera controller = disable
         GetComponentInChildren<MouseCameraController>().enabled = false;
         // camera object - destroy
