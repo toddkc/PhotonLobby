@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// controller for the pc player to look around
@@ -23,6 +24,7 @@ public class MouseCameraController : MonoBehaviour
     private Transform camTransform;
     private float xAngle;
     private float yAngle;
+    private bool canLook = true;
 
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class MouseCameraController : MonoBehaviour
 
     private void Update()
     {
+        if (!canLook) return;
         Pitch();
         Yaw();
     }
@@ -61,5 +64,15 @@ public class MouseCameraController : MonoBehaviour
         float input = InputBridgeBase.instance.YawAxis;
         yAngle += input * yawSpeed;
         thisTransform.localRotation = Quaternion.Euler(new Vector3(0,yAngle,0));
+    }
+
+    public void ResetView()
+    {
+        canLook = false;
+        thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
+        camTransform.localRotation = Quaternion.Euler(Vector3.zero);
+        xAngle = 0;
+        yAngle = 0;
+        canLook = true;
     }
 }

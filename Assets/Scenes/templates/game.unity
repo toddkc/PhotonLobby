@@ -162,7 +162,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11692024}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -403,7 +403,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851268802}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa6567f95d82f143a2326769f33f9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatar: {fileID: 2829003816306713541, guid: 9e12fb12a0d04e8409ecb4db7f8c0640, type: 3}
+  avatar: {fileID: 8206783837587466757, guid: 631bf72d18af6ab46a9fd115e4e1a786, type: 3}
   maxScore: 3
   lobbyDelay: 5
   startDelay: 3

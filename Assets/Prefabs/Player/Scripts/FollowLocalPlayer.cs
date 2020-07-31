@@ -2,15 +2,14 @@
 using UnityEngine;
 
 /// <summary>
-/// this component is used to make an object follow a local PUN player.
-/// useful for having network synced objects that track the local player across the network
+/// this component is used to make an object follow a PUN player.
+/// the actual photontransformview object may lag so this will always move towards the last known position
 /// </summary>
 
 public class FollowLocalPlayer : MonoBehaviourPun
 {
     [SerializeField] private float lerpSpeed = 10f;
-    private bool followPlayer = false;
-    private Transform playerToFollow;
+    [SerializeField] Transform playerToFollow;
     private Transform thisTransform;
 
     private void Awake()
@@ -18,32 +17,25 @@ public class FollowLocalPlayer : MonoBehaviourPun
         thisTransform = transform;
     }
 
-    private void Start()
+    private void LateUpdate()
     {
-        if (!photonView.IsMine)
-        {
-            enabled = false;
-        }
-        else
-        {
-            playerToFollow = GameObject.FindGameObjectWithTag("Player").transform;
-            followPlayer = true;
-        }
-    }
-
-    private void FixedUpdate()
-    {
+        if (playerToFollow == null) return;
         FollowPlayer();
+        Rotate();
     }
 
     private void FollowPlayer()
     {
-        if (!followPlayer) return;
         // get location of player
         var target = playerToFollow.position;
         // get location of movement
         var movement = Vector3.Lerp(thisTransform.position, target, lerpSpeed * Time.deltaTime);
         // move to that location
         thisTransform.position = movement;
+    }
+
+    private void Rotate()
+    {
+        thisTransform.localRotation = playerToFollow.localRotation;
     }
 }

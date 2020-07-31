@@ -6,15 +6,13 @@ public class DespawnPlayer : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.LogError("triggered");
         var spawner = collision.gameObject.GetComponent<PlayerRespawn>();
         if (spawner == null) return;
         spawner.TriggerRespawn(respawnDelay);
     }
 
-    private void OnCollisionEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.LogError("triggered");
         var spawner = other.GetComponent<PlayerRespawn>();
         if (spawner == null) return;
         spawner.TriggerRespawn(respawnDelay);

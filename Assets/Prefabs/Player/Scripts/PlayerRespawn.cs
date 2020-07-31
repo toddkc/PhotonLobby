@@ -1,9 +1,12 @@
 ﻿using Photon.Pun;
+using ScriptableObjectArchitecture;
 using System.Collections;
 using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
+    [SerializeField] private GameObject avatar = default;
+    [SerializeField] private GameEvent respawnEvent = default;
     private PhotonView view;
     private GameObject thisObject;
     private Transform thisTransform;
@@ -17,7 +20,6 @@ public class PlayerRespawn : MonoBehaviour
 
     public void TriggerRespawn(float timer)
     {
-        Debug.LogError("player");
         if (!view.IsMine || !GameManager.IsGameActive) return;
         view.RPC("RPCDespawn", RpcTarget.All);
         StartCoroutine(RespawnTimer(timer));
@@ -35,6 +37,7 @@ public class PlayerRespawn : MonoBehaviour
         if (!view.IsMine)
         {
             thisObject.SetActive(true);
+            avatar.SetActive(true);
         }
         else
         {
@@ -47,12 +50,15 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (!view.IsMine)
         {
+            avatar.SetActive(false);
+            thisTransform.localPosition = Vector3.zero;
             thisObject.SetActive(false);
         }
         else
         {
             InputBridgeBase.ToggleMovement(false);
-            thisTransform.position = GameManager.GetSpawn(view.GetTeam());
+            thisTransform.localPosition = Vector3.zero;
+            respawnEvent.Raise();
         }
     }
 

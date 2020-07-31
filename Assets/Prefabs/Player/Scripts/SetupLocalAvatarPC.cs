@@ -14,7 +14,7 @@ public class SetupLocalAvatarPC : MonoBehaviour
 
     private void Start()
     {
-        view = GetComponent<PhotonView>();
+        view = GetComponentInChildren<PhotonView>();
         if (view.IsMine)
         {
             SetupLocal();
@@ -26,7 +26,9 @@ public class SetupLocalAvatarPC : MonoBehaviour
     }
 
 
-    // adjust the avatar mesh layers so local player doesn't see their body
+    /// <summary>
+    /// Adjust the avatar mesh layers so local player doesn't see their body.
+    /// </summary>
     private void SetupLocal()
     {
         foreach (Transform child in avatarObjects)
@@ -35,19 +37,24 @@ public class SetupLocalAvatarPC : MonoBehaviour
         }
     }
 
-    // turn off components on network players
+    /// <summary>
+    /// Turn off certain components for networked players.
+    /// </summary>
     private void SetupNetwork()
     {
         // character controller - disable
-        GetComponent<PCLobbyController>().enabled = false;
+        GetComponentInChildren<PCLobbyController>().enabled = false;
         // camera controller = disable
-        GetComponent<MouseCameraController>().enabled = false;
+        GetComponentInChildren<MouseCameraController>().enabled = false;
         // camera object - destroy
         Destroy(GetComponentInChildren<Camera>().gameObject);
         // canvas - destroy
         Destroy(GetComponentInChildren<Canvas>().gameObject);
     }
 
+    /// <summary>
+    /// Set the color of the player avatar based on team.
+    /// </summary>
     public void SetPlayerColors()
     {
         var _team = CustomPlayerProperties.GetTeam(view.Owner);
