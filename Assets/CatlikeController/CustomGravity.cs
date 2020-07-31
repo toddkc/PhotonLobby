@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// this was taken from the wonderful tutorial found here:
+/// https://catlikecoding.com/unity/tutorials/movement/
+/// </summary>
+
 public class CustomGravity : MonoBehaviour
 {
 	static List<GravitySource> sources = new List<GravitySource>();
