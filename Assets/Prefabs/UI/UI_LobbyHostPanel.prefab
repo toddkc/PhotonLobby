@@ -395,7 +395,7 @@ MonoBehaviour:
   loadGameButton: {fileID: 9172086134095154610, guid: ef512bf15b9309341a912d71cc31b457,
     type: 3}
   gameScenes:
-  - {fileID: 11400000, guid: b81bf891d01897140b4115198edea742, type: 2}
+  - {fileID: 11400000, guid: 38c33e4b67075fd4fa54ae149bed31c7, type: 2}
 --- !u!1 &5262104213895027695
 GameObject:
   m_ObjectHideFlags: 0

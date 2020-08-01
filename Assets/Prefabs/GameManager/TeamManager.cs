@@ -84,7 +84,6 @@ public class TeamManager : MonoBehaviour
     /// </summary>
     public void PlayerScored(Player player, int value)
     {
-        if (!PhotonNetwork.IsMasterClient) return;
         // add score to player
         CustomPlayerProperties.AddScore(player, value);
         // add score to player team

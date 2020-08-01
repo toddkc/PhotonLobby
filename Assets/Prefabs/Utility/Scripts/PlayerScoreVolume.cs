@@ -1,21 +1,18 @@
-﻿using ScriptableObjectArchitecture;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DespawnPlayer : MonoBehaviour
+public class PlayerScoreVolume : MonoBehaviour
 {
-    [SerializeField] private float respawnDelay = 5.0f;
-
     private void OnCollisionEnter(Collision collision)
     {
         var spawner = collision.gameObject.GetComponent<PlayerRespawn>();
         if (spawner == null) return;
-        spawner.TriggerRespawn(respawnDelay);
+        spawner.TriggerScore();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         var spawner = other.GetComponent<PlayerRespawn>();
         if (spawner == null) return;
-        spawner.TriggerRespawn(respawnDelay);
+        spawner.TriggerScore();
     }
 }

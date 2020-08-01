@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     /// </summary>
     public static void PlayerScored(Player player, int value)
     {
-        if (!PhotonNetwork.IsMasterClient || !instance.isGameActive) return;
+        if (!instance.isGameActive) return;
         instance.teams.PlayerScored(player, value);
         if (!IsGameActive)
         {

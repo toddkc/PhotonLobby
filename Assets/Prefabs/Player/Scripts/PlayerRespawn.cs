@@ -25,6 +25,12 @@ public class PlayerRespawn : MonoBehaviour
         StartCoroutine(RespawnTimer(timer));
     }
 
+    public void TriggerScore()
+    {
+        if (!view.IsMine || !GameManager.IsGameActive) return;
+        GameManager.PlayerScored(PhotonNetwork.LocalPlayer, 1);
+    }
+
     private IEnumerator RespawnTimer(float timer)
     {
         yield return new WaitForSeconds(timer);

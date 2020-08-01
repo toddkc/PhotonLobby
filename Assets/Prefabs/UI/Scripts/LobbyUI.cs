@@ -33,6 +33,7 @@ public class LobbyUI : MonoBehaviourPunCallbacks
 
     private void UpdateGameButtons()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         // delete all buttons
         DeleteButtons();
         int players = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -56,9 +57,10 @@ public class LobbyUI : MonoBehaviourPunCallbacks
     private void DeleteButtons()
     {
         var buttons = transform.GetComponentsInChildren<Button>().ToArray();
+        Debug.LogError("buttons: " + buttons.Length);
         for (int i = buttons.Length - 1; i >= 0; i--)
         {
-            Destroy(buttons[i]);
+            Destroy(buttons[i].gameObject);
         }
     }
 
@@ -72,7 +74,6 @@ public class LobbyUI : MonoBehaviourPunCallbacks
     }
 
     // used for ui buttons to load a game scene
-    // TODO: change this to scriptableobject global variable
     public void HostSelectGame(int index)
     {
         if (!PhotonNetwork.IsMasterClient) return;
