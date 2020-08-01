@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53a80f5063f76a148bbb657e453f3b27, type: 3}
-  m_Name: template
+  m_Name: ObstacleCourse
   m_EditorClassIdentifier: 
-  scene: game template
+  scene: Obstacle Course
   buildIndex: 2
   maxPlayers: 4
   minPlayers: 1
