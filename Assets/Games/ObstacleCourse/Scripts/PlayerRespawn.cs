@@ -3,6 +3,12 @@ using ScriptableObjectArchitecture;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Logic for handling respawning of players.
+/// Goes on the player.
+/// Can be triggered by colliding with an object with a DespawnPlayer component.
+/// </summary>
+
 public class PlayerRespawn : MonoBehaviour
 {
     [SerializeField] private GameObject avatar = default;
@@ -20,6 +26,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         //if (!view.IsMine || !GameManager.IsGameActive) return;
         if (!view.IsMine || !GameMode.instance.IsGameActive) return;
+        respawnEvent.Raise();
         view.RPC("RPCDespawn", RpcTarget.All);
         StartCoroutine(RespawnTimer(timer));
     }

@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Cause the player to despawn on collision.
+/// Use the physics matrix to determine what collides with what.
+/// </summary>
+
 public class DespawnPlayer : MonoBehaviour
 {
     [SerializeField] private float respawnDelay = 5.0f;

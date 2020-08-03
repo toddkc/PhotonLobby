@@ -1,8 +1,10 @@
 ﻿using Photon.Pun;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 public class PlayerScore : MonoBehaviour
 {
+    [SerializeField] private GameEvent playerScoredEvent = default;
     private PhotonView view;
 
     private void Awake()
@@ -14,6 +16,6 @@ public class PlayerScore : MonoBehaviour
     {
         Debug.LogError("player triggered score");
         if (!view.IsMine || !GameMode.instance.IsGameActive) return;
-        GameMode.instance.PlayerScored(PhotonNetwork.LocalPlayer, 1);
+        playerScoredEvent.Raise();
     }
 }

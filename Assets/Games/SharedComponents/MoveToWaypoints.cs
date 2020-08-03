@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Make an object move between a series of waypoints.
+/// </summary>
+
 public class MoveToWaypoints : MonoBehaviour
 {
     [Header("Settings")]

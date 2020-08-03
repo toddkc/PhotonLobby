@@ -1,6 +1,11 @@
 ﻿using Lean.Pool;
 using UnityEngine;
 
+/// <summary>
+/// Despawn an object when it collides with another object.
+/// Use the physics matrix to determine what collides with what.
+/// </summary>
+
 public class DestroyOnCollision : MonoBehaviour
 {
     private GameObject gObj;

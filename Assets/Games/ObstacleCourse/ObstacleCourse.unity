@@ -469,6 +469,9 @@ GameObject:
   - component: {fileID: 170870635}
   - component: {fileID: 170870636}
   - component: {fileID: 170870634}
+  - component: {fileID: 170870640}
+  - component: {fileID: 170870639}
+  - component: {fileID: 170870637}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -488,6 +491,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69087c8ae3b199c4a8b44f944c47209e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMessage:
+    _useConstant: 0
+    _constantValue: 
+    _variable: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad, type: 2}
 --- !u!4 &170870635
 Transform:
   m_ObjectHideFlags: 0
@@ -514,6 +521,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09acbbf369737304a95333d11a22d446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Teams:
+  - teamName: Red Team
+    teamColor: {r: 0.8301887, g: 0.14489143, b: 0.14489143, a: 0}
+    teamSpawn: {fileID: 1905516029}
+  - teamName: Blue Team
+    teamColor: {r: 0.15819688, g: 0.48128766, b: 0.745283, a: 0}
+    teamSpawn: {fileID: 317262945}
+  avatar: {fileID: 2999345153350290132, guid: d1e79ec8a4b98624caebf6f29e654749, type: 3}
+  startDelay: 5
+  lobbyDelay: 5
+  unloadGameEvent: {fileID: 11400000, guid: 4feaf7a4e65d84347b1b7a4a76d466b5, type: 2}
+--- !u!114 &170870637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170870633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 22e2b9949c5973146844bfdd09a8dc12,
+    type: 2}
+  _event: {fileID: 11400000, guid: 22e2b9949c5973146844bfdd09a8dc12, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 170870640}
+        m_MethodName: PlayerScored
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &170870639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170870633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a156f98ad10f20e4bbf698ad5b5058f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &170870640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170870633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c157dc25240b743a42e5891a184186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxScore: 0
 --- !u!1 &217308469
 GameObject:
   m_ObjectHideFlags: 0

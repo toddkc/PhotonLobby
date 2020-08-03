@@ -5,6 +5,7 @@ public static class CustomRoomProperties
     public const string teams = "teams";
     public const string scores = "scores";
     public const string game = "game";
+    public const string interest = "interest";
 
     // teams
     public static int[] GetTeams(this Room room)
@@ -51,7 +52,8 @@ public static class CustomRoomProperties
         {
             { teams, new int[teamcount] },
             { scores,  new int[teamcount] },
-            { game,  1 }
+            { game,  1 },
+            {interest, -1 }
         };
         room.SetCustomProperties(_props);
     }
@@ -61,7 +63,8 @@ public static class CustomRoomProperties
         {
             { teams, new int[0] },
             { scores,  new int[0] },
-            { game,  0 }
+            { game,  0 },
+            {interest, -1 }
         };
         room.SetCustomProperties(_props);
     }

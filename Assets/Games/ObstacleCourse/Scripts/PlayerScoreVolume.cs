@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Trigger the player scoring on collision.
+/// Use the physics matrix to determine what collides with what.
+/// </summary>
+
 public class PlayerScoreVolume : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)

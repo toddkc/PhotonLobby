@@ -2,6 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Spawn an object at a repeating interval.
+/// </summary>
+
 public class SpawnObjectRepeat : MonoBehaviour
 {
     [SerializeField] private GameObject objectToSpawn = default;

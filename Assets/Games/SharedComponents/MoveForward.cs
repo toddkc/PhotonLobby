@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Make an object move in a straight path continuously.
+/// </summary>
+
 public class MoveForward : MonoBehaviour
 {
     [SerializeField] private bool randomize = false;
