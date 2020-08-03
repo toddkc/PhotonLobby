@@ -18,6 +18,8 @@ public class InputBridgeBase : MonoBehaviour
     public bool Climb { get; protected set; }
     public float SwimAxis { get; protected set; }
     public bool Jump { get; protected set; }
+    public bool Menu { get; protected set; }
+    public bool Score { get; protected set; }
 
     private void Awake()
     {
@@ -64,5 +66,7 @@ public class InputBridgeBase : MonoBehaviour
         Interact = false;
         Jump = false;
         Climb = false;
+        Menu = false;
+        Score = false;
     }
 }
