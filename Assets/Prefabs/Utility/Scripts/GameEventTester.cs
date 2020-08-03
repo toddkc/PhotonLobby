@@ -12,7 +12,7 @@ public class GameEventTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             var player = PhotonNetwork.LocalPlayer;
-            GameManager.PlayerScored(player, 1);
+            //GameManager.PlayerScored(player, 1);
         }
 
     }

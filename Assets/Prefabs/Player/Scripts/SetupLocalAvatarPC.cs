@@ -55,7 +55,7 @@ public class SetupLocalAvatarPC : MonoBehaviour
     {
         var _team = CustomPlayerProperties.GetTeam(view.Owner);
         //var _color = GameManager.GetColor(_team);
-        var _color = GameMode.instance.teams[_team].teamColor;
+        var _color = GameMode.instance.Teams[_team].teamColor;
         foreach (Transform child in avatarObjects)
         {
             if (child.name != "Body") continue;

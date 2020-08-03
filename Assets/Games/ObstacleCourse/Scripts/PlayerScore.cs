@@ -13,7 +13,7 @@ public class PlayerScore : MonoBehaviour
     public void TriggerScore()
     {
         Debug.LogError("player triggered score");
-        if (!view.IsMine || !GameManager.IsGameActive) return;
+        if (!view.IsMine || !GameMode.instance.IsGameActive) return;
         GameMode.instance.PlayerScored(PhotonNetwork.LocalPlayer, 1);
     }
 }

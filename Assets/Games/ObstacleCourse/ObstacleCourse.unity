@@ -467,8 +467,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 170870635}
-  - component: {fileID: 170870634}
   - component: {fileID: 170870636}
+  - component: {fileID: 170870634}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -485,26 +485,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 170870633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 701b514238e88fb4288b6dd3852988f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 69087c8ae3b199c4a8b44f944c47209e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyDelay: 5
-  startDelay: 3
-  stopGameEvent: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6, type: 2}
-  startGameEvent: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2, type: 2}
-  uiMessage:
-    _useConstant: 0
-    _constantValue: 
-    _variable: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad, type: 2}
-  avatar: {fileID: 2999345153350290132, guid: d1e79ec8a4b98624caebf6f29e654749, type: 3}
-  teams:
-  - teamName: red
-    teamColor: {r: 1, g: 0, b: 0, a: 0}
-    teamSpawn: {fileID: 1905516029}
-  - teamName: blue
-    teamColor: {r: 0, g: 0.12516737, b: 1, a: 0}
-    teamSpawn: {fileID: 317262945}
-  maxScore: 3
 --- !u!4 &170870635
 Transform:
   m_ObjectHideFlags: 0
@@ -528,15 +511,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 170870633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69087c8ae3b199c4a8b44f944c47209e, type: 3}
+  m_Script: {fileID: 11500000, guid: 09acbbf369737304a95333d11a22d446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopGameEvent: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6, type: 2}
-  startGameEvent: {fileID: 11400000, guid: 32fc2f0c0c878324b951f919797f93c2, type: 2}
-  uiMessage:
-    _useConstant: 0
-    _constantValue: 
-    _variable: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad, type: 2}
 --- !u!1 &217308469
 GameObject:
   m_ObjectHideFlags: 0
