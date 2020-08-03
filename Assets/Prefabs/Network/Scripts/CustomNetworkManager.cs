@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
+using ScriptableObjectArchitecture;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,9 +14,12 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
     [SerializeField] GameObject networkEntityPrefab = default;
 
     [Header("Events")]
-    [SerializeField] ScriptableObjectArchitecture.GameEvent disconnectEvent = default;
-    [SerializeField] ScriptableObjectArchitecture.GameEvent connectEvent = default;
-    [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
+    [SerializeField] GameEvent disconnectEvent = default;
+    [SerializeField] GameEvent connectEvent = default;
+    [SerializeField] GameEvent displayMessageEvent = default;
+
+    [Header("Variables")]
+    [SerializeField] StringReference uiMessage = default;
 
     [Header("UI")]
     [SerializeField] GameObject uiPanel = default;
@@ -48,14 +52,13 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
-        PlayerPrefs.SetString("message", "connecting to PUN...");
-        displayMessageEvent.Raise();
+        uiMessage.Value = "connecting to pun...";
     }
 
     // used to update player messages on what is happening when scene changes
     private void CustomStart(Scene oldScene, Scene newScene)
     {
-        uiPanel.SetActive(newScene.buildIndex < 2);
+        if(uiPanel) uiPanel.SetActive(newScene.buildIndex < 2);
         StartCoroutine(GetStatus());
     }
 
@@ -67,19 +70,15 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.AutomaticallySyncScene = false;
             PhotonNetwork.ConnectUsingSettings();
-
-            PlayerPrefs.SetString("message", "connecting to PUN...");
-            displayMessageEvent.Raise();
+            uiMessage.Value = "connecting to pun...";
         }
-        else if (PhotonNetwork.InRoom)
+        else if (PhotonNetwork.InRoom && SceneManager.GetActiveScene().buildIndex < 2)
         {
-            PlayerPrefs.SetString("message", "joined room lobby");
-            displayMessageEvent.Raise();
+            uiMessage.Value = "joined room";
         }
         else
         {
-            PlayerPrefs.SetString("message", "loading...");
-            displayMessageEvent.Raise();
+            uiMessage.Value = "loading...";
         }
     }
     
@@ -108,16 +107,14 @@ public class CustomNetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         connectEvent.Raise();
-        PlayerPrefs.SetString("message", "connected to PUN");
-        displayMessageEvent.Raise();
+        uiMessage.Value = "connected to pun";
     }
 
     // photon disconnected callback
     public override void OnDisconnected(DisconnectCause cause)
     {
         disconnectEvent.Raise();
-        PlayerPrefs.SetString("message", "disconnect from PUN");
-        displayMessageEvent.Raise();
+        uiMessage.Value = "disconnected from pun...";
 
         // if we aren't at the main menu scene go there
         if (SceneManager.GetActiveScene().buildIndex != 0)

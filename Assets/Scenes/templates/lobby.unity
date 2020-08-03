@@ -768,18 +768,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbySetup
       objectReference: {fileID: 0}
-    - target: {fileID: 7374689875259506765, guid: 1cdceff80f1d6254e84be9439df20e71,
-        type: 3}
-      propertyPath: avatarPC
-      value: 
-      objectReference: {fileID: 2999345153350290132, guid: d1e79ec8a4b98624caebf6f29e654749,
-        type: 3}
-    - target: {fileID: 7374689875259506765, guid: 1cdceff80f1d6254e84be9439df20e71,
-        type: 3}
-      propertyPath: isVR._variable
-      value: 
-      objectReference: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4,
-        type: 2}
     - target: {fileID: 7374689875259506766, guid: 1cdceff80f1d6254e84be9439df20e71,
         type: 3}
       propertyPath: m_LocalPosition.x

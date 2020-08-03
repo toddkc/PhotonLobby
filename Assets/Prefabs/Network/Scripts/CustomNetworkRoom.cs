@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,6 +18,9 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     [SerializeField] ScriptableObjectArchitecture.GameEvent joinRoomEvent = default;
     [SerializeField] ScriptableObjectArchitecture.GameEvent leaveRoomEvent = default;
     [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
+
+    [Header("Variables")]
+    [SerializeField] private StringReference uiMessage = default;
 
     private int counter = 0;
     private bool joiningRandom = false;
@@ -76,13 +80,12 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     // photon left room callback
     public override void OnLeftRoom()
     {
-        roomName.text = "";
-        playerName.text = "";
+        //roomName.text = "";
+        //playerName.text = "";
         leaveRoomEvent.Raise();
         // reset any state from prior game
         CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
-        PlayerPrefs.SetString("message", "you left the room");
-        displayMessageEvent.Raise();
+        uiMessage.Value = "you left the room";
         // if we aren't at the main menu go there
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -93,8 +96,7 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     // photon player left callback
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        PlayerPrefs.SetString("message", otherPlayer.NickName + " has left the room");
-        displayMessageEvent.Raise();
+        uiMessage.Value = otherPlayer.NickName + " has left the room";
     }
 
     // photon create room callback
@@ -107,21 +109,19 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     // photon create room failed callback
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        PlayerPrefs.SetString("message", "create room failed: " + message);
-        displayMessageEvent.Raise();
+        uiMessage.Value = "create room failed: " + message;
     }
 
     // photon join room callback
     public override void OnJoinedRoom()
     {
         // set some debug text
-        roomName.text = PhotonNetwork.CurrentRoom.Name;
-        playerName.text = PhotonNetwork.NickName;
+        //roomName.text = PhotonNetwork.CurrentRoom.Name;
+        //playerName.text = PhotonNetwork.NickName;
         joinRoomEvent.Raise();
         // reset any state from prior game
         CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
-        PlayerPrefs.SetString("message", "you joined a room");
-        displayMessageEvent.Raise();
+        uiMessage.Value = "you joined a room";
         // spawn a network entity to setup voice
         CustomNetworkManager.SpawnNetworkEntity();
         // if master client proceed to lobby scene
@@ -134,15 +134,13 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     // photon player joined room callback
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        PlayerPrefs.SetString("message", newPlayer.NickName + " has joined the room");
-        displayMessageEvent.Raise();
+        uiMessage.Value = newPlayer.NickName + " has joined the room";
     }
 
     // photon join failed callback
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        PlayerPrefs.SetString("message", "join room failed: " + message);
-        displayMessageEvent.Raise();
+        uiMessage.Value = "join room failed: " + message;
     }
 
     // photon join random failed callback

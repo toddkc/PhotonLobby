@@ -42,13 +42,9 @@ public class SetupLocalAvatarPC : MonoBehaviour
     /// </summary>
     private void SetupNetwork()
     {
-        // character controller - disable
         GetComponentInChildren<CatlikeController>().enabled = false;
-        // camera controller = disable
         GetComponentInChildren<MouseCameraController>().enabled = false;
-        // camera object - destroy
         Destroy(GetComponentInChildren<Camera>().gameObject);
-        // canvas - destroy
         Destroy(GetComponentInChildren<Canvas>().gameObject);
     }
 
@@ -58,7 +54,8 @@ public class SetupLocalAvatarPC : MonoBehaviour
     public void SetPlayerColors()
     {
         var _team = CustomPlayerProperties.GetTeam(view.Owner);
-        var _color = GameManager.GetColor(_team);
+        //var _color = GameManager.GetColor(_team);
+        var _color = GameMode.instance.teams[_team].teamColor;
         foreach (Transform child in avatarObjects)
         {
             if (child.name != "Body") continue;

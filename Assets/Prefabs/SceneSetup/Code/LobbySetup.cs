@@ -13,23 +13,36 @@ public class LobbySetup : MonoBehaviour
     [SerializeField] private BoolReference isVR = default;
 
     [Header("Shared Prefabs")]
-    public GameObject uiPlayerDisplay;
-    public GameObject uiHostPanel;
-    public GameObject uiGuestPanel;
+    [SerializeField] private GameObject uiPlayerDisplay;
+    [SerializeField] private Vector3 playerDisplayLocation;
+    [SerializeField] private float playerDisplayRotation;
+    [SerializeField] private GameObject uiHostPanel;
+    [SerializeField] private Vector3 hostPanelLocation;
+    [SerializeField] private float hostPanelRotation;
+    [SerializeField] private GameObject uiGuestPanel;
+    [SerializeField] private Vector3 guestPanelLocation;
+    [SerializeField] private float guestPanelRotation;
 
     [Header("PC Prefabs")]
-    public GameObject uiMessagesPC;
-    public GameObject avatarPC;
+    [SerializeField] private GameObject uiMessagesPC;
+    [SerializeField] private GameObject avatarPC;
 
     [Header("VR Prefabs")]
-    public GameObject uiMessagesVR;
-    public GameObject avatarVR;
+    [SerializeField] private GameObject avatarVR;
 
     private void Start()
     {
-        Instantiate(uiPlayerDisplay);
-        Instantiate(uiHostPanel);
-        Instantiate(uiGuestPanel);
+        var pd = Instantiate(uiPlayerDisplay);
+        pd.transform.position = playerDisplayLocation;
+        pd.transform.rotation = Quaternion.Euler(0, playerDisplayRotation, 0);
+
+        var hp = Instantiate(uiHostPanel);
+        hp.transform.position = hostPanelLocation;
+        hp.transform.rotation = Quaternion.Euler(0, hostPanelRotation, 0);
+
+        var gp = Instantiate(uiGuestPanel);
+        gp.transform.position = guestPanelLocation;
+        gp.transform.rotation = Quaternion.Euler(0, guestPanelRotation, 0);
 
         SetupVR();
         SetupPC();
@@ -38,7 +51,6 @@ public class LobbySetup : MonoBehaviour
     private void SetupVR()
     {
         if (!isVR.Value) return;
-        Instantiate(uiMessagesVR);
         PhotonNetwork.Instantiate(avatarVR.name,Vector3.zero,Quaternion.identity);
     }
 

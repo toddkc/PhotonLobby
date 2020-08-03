@@ -461,18 +461,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8769458625893877566, guid: b3927bc3ae46b3f4abb995dc23a39781,
-        type: 3}
-      propertyPath: isVR._variable
-      value: 
-      objectReference: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4,
-        type: 2}
-    - target: {fileID: 8769458625893877566, guid: b3927bc3ae46b3f4abb995dc23a39781,
-        type: 3}
-      propertyPath: avatarPC
-      value: 
-      objectReference: {fileID: 2142256138159070561, guid: d4d9d9a661f88ce4b83e8e0b86c41b0d,
-        type: 3}
     - target: {fileID: 8769458625893877567, guid: b3927bc3ae46b3f4abb995dc23a39781,
         type: 3}
       propertyPath: m_Name

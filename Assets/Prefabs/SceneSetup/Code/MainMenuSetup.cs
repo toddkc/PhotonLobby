@@ -12,22 +12,21 @@ public class MainMenuSetup : MonoBehaviour
     [SerializeField] private BoolReference isVR = default;
 
     [Header("Shared Prefabs")]
-    public GameObject networkManager;
-    public GameObject voiceManager;
-    public GameObject eventTester;
-    public GameObject sceneLoader;
+    [SerializeField] private GameObject networkManager;
+    [SerializeField] private GameObject voiceManager;
+    [SerializeField] private GameObject eventTester;
+    [SerializeField] private GameObject sceneLoader;
 
     [Header("PC Prefabs")]
-    public GameObject inputBridgePC;
-    public GameObject uiMenuPC;
-    public GameObject uiMessagesPC;
-    public GameObject avatarPC;
+    [SerializeField] private GameObject inputBridgePC;
+    [SerializeField] private GameObject uiMessagesPC;
+    [SerializeField] private GameObject uiMenuPC;
+    [SerializeField] private GameObject avatarPC;
 
     [Header("VR Prefabs")]
-    public GameObject inputBridgeVR;
-    public GameObject uiMenuVR;
-    public GameObject uiMessagesVR;
-    public GameObject avatarVR;
+    [SerializeField] private GameObject inputBridgeVR;
+    [SerializeField] private GameObject uiMenuVR;
+    [SerializeField] private GameObject avatarVR;
 
     private void Start()
     {
@@ -45,7 +44,6 @@ public class MainMenuSetup : MonoBehaviour
         if (!isVR.Value) return;
         Instantiate(inputBridgeVR);
         Instantiate(uiMenuVR);
-        Instantiate(uiMessagesVR);
         Instantiate(avatarVR);
     }
 

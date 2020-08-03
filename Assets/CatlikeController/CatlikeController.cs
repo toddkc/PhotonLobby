@@ -10,13 +10,13 @@ public class CatlikeController : MonoBehaviour
 	[SerializeField]
 	Transform playerInputSpace = default;
 
-	[SerializeField, Range(0f, 100f)]
-	float maxSpeed = 10f, maxClimbSpeed = 4f, maxSwimSpeed = 5f;
+    [SerializeField, Range(0f, 100f)]
+    float maxSpeed = 10f, maxClimbSpeed = 4f, maxSwimSpeed = 5f;
 
-	[SerializeField, Range(0f, 100f)]
+    [SerializeField, Range(0f, 100f)]
 	float
 		maxAcceleration = 10f,
-		maxAirAcceleration = 1f,
+        maxAirAcceleration = 1f,
 		maxClimbAcceleration = 40f,
 		maxSwimAcceleration = 5f;
 
@@ -38,22 +38,22 @@ public class CatlikeController : MonoBehaviour
 	[SerializeField, Min(0f)]
 	float probeDistance = 1f;
 
-	[SerializeField]
-	float submergenceOffset = 0.5f;
+    [SerializeField]
+    float submergenceOffset = 0.5f;
 
-	[SerializeField, Min(0.1f)]
-	float submergenceRange = 1f;
+    [SerializeField, Min(0.1f)]
+    float submergenceRange = 1f;
 
-	[SerializeField, Min(0f)]
-	float buoyancy = 1f;
+    [SerializeField, Min(0f)]
+    float buoyancy = 1f;
 
-	[SerializeField, Range(0f, 10f)]
-	float waterDrag = 1f;
+    [SerializeField, Range(0f, 10f)]
+    float waterDrag = 1f;
 
-	[SerializeField, Range(0.01f, 1f)]
-	float swimThreshold = 0.5f;
+    [SerializeField, Range(0.01f, 1f)]
+    float swimThreshold = 0.5f;
 
-	[SerializeField]
+    [SerializeField]
 	LayerMask probeMask = -1, stairsMask = -1, climbMask = -1, waterMask = 0;
 
 	Rigidbody body, connectedBody, previousConnectedBody;

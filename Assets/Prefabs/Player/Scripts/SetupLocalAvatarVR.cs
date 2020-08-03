@@ -10,7 +10,7 @@ public class SetupLocalAvatarVR : MonoBehaviour
 
     private void Start()
     {
-        view = GetComponent<PhotonView>();
+        view = GetComponentInChildren<PhotonView>();
         if (view.IsMine)
         {
             SetupLocal();
@@ -34,9 +34,8 @@ public class SetupLocalAvatarVR : MonoBehaviour
     // turn off components on network players
     private void SetupNetwork()
     {
-        // character controller - disable
-        GetComponent<VRLobbyController>().enabled = false;
-        // camerarig object - destroy
+        GetComponentInChildren<CatlikeController>().enabled = false;
+        GetComponentInChildren<VRCameraController>().enabled = false;
         Destroy(GetComponentInChildren<OVRCameraRig>().gameObject);
     }
 

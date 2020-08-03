@@ -57,7 +57,6 @@ public class LobbyUI : MonoBehaviourPunCallbacks
     private void DeleteButtons()
     {
         var buttons = transform.GetComponentsInChildren<Button>().ToArray();
-        Debug.LogError("buttons: " + buttons.Length);
         for (int i = buttons.Length - 1; i >= 0; i--)
         {
             Destroy(buttons[i].gameObject);

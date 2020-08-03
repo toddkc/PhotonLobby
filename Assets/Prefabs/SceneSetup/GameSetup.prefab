@@ -43,12 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06731bec01d2a23458bfd83987afd56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVR: 0
-  uiPlayerDisplay: {fileID: 8664561125151160039, guid: 11014f25f8cd0ca44829026575965259,
+  isVR:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4, type: 2}
+  uiPlayerDisplay: {fileID: 710254415972576251, guid: ae40800cece47904c87989e6d9f032fc,
     type: 3}
+  playerDisplayLocation: {x: 0, y: 3, z: -10}
+  playerDisplayRotation: 180
   uiGamePanel: {fileID: 8052285106834583700, guid: c7aa408540161cc42b3172b132009f80,
     type: 3}
+  gamePanelLocation: {x: -7, y: 2, z: -10}
+  gamePanelRotation: 180
   uiMessagesPC: {fileID: 3337571351101880458, guid: 88ebd96960bfc6247bf1e3588f1abc9c,
-    type: 3}
-  uiMessagesVR: {fileID: 2525740586022889623, guid: ad5fa62e574763943be2ac130cf6167e,
     type: 3}

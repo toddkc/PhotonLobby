@@ -12,20 +12,15 @@ public class GameSetup : MonoBehaviour
     [SerializeField] private BoolReference isVR = default;
 
     [Header("Shared Prefabs")]
-    public GameObject uiPlayerDisplay;
-    public Vector3 playerDisplayLocation;
-    public float playerDisplayRotation;
-    public GameObject uiGamePanel;
-    public Vector3 gamePanelLocation;
-    public float gamePanelRotation;
+    [SerializeField] private GameObject uiPlayerDisplay;
+    [SerializeField] private Vector3 playerDisplayLocation;
+    [SerializeField] private float playerDisplayRotation;
+    [SerializeField] private GameObject uiGamePanel;
+    [SerializeField] private Vector3 gamePanelLocation;
+    [SerializeField] private float gamePanelRotation;
 
     [Header("PC Prefabs")]
-    public GameObject uiMessagesPC;
-
-    [Header("VR Prefabs")]
-    public GameObject uiMessagesVR;
-    public Vector3 messagesLocation;
-    public float messagesRotation;
+    [SerializeField] private GameObject uiMessagesPC;
 
     private void Start()
     {
@@ -37,16 +32,7 @@ public class GameSetup : MonoBehaviour
         gp.transform.position = gamePanelLocation;
         gp.transform.rotation = Quaternion.Euler(0, gamePanelRotation, 0);
 
-        SetupVR();
         SetupPC();
-    }
-
-    private void SetupVR()
-    {
-        if (!isVR.Value) return;
-        var uim = Instantiate(uiMessagesVR);
-        uim.transform.position = messagesLocation;
-        uim.transform.rotation = Quaternion.Euler(0, messagesRotation, 0);
     }
 
     private void SetupPC()

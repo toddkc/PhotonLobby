@@ -63,7 +63,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 2871
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 2148369038610813590}
   - component: {fileID: 8727304504956412332}
   - component: {fileID: 3588681194557934007}
+  - component: {fileID: 7103741826526687645}
   m_Layer: 9
   m_Name: controller
   m_TagString: Player
@@ -715,6 +716,18 @@ MonoBehaviour:
   waterMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &7103741826526687645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3588681194557934005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7751a5a044d3f44948208d2b625cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6601756153408566645
 GameObject:
   m_ObjectHideFlags: 0

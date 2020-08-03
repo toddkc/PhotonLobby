@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01c0a759f62ca14d85be61a501b880e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVR: 0
+  isVR:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4, type: 2}
   networkManager: {fileID: 8241584419255756744, guid: 3713d1f48d7b89c4c9403e51b3ece791,
     type: 3}
   voiceManager: {fileID: 4928786304761061638, guid: 0541a00c02eb2cf41a03b3986b55f6ba,
@@ -58,7 +61,7 @@ MonoBehaviour:
     type: 3}
   uiMessagesPC: {fileID: 3337571351101880458, guid: 88ebd96960bfc6247bf1e3588f1abc9c,
     type: 3}
-  avatarPC: {fileID: 3743099459969441808, guid: b0340ffe607c8a94d9f5e1fdf895544d,
+  avatarPC: {fileID: 2142256138159070561, guid: d4d9d9a661f88ce4b83e8e0b86c41b0d,
     type: 3}
   inputBridgeVR: {fileID: 7715552978698183560, guid: e50b56dce41e3c94484fa58aa9e1ea68,
     type: 3}
@@ -66,5 +69,5 @@ MonoBehaviour:
     type: 3}
   uiMessagesVR: {fileID: 2525740586022889623, guid: ad5fa62e574763943be2ac130cf6167e,
     type: 3}
-  avatarVR: {fileID: 1996400794416451264, guid: b6766d54fd7fdfd4ca3a6e77c55322d5,
+  avatarVR: {fileID: 7453893425653487157, guid: 8625485c43977cf44adee1d7fb4b88f3,
     type: 3}

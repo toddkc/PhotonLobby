@@ -45,3 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftInteractButton: 268435456
   rightInteractButton: 67108864
+  moveAxis: 1
+  strafeAxis: 1
+  jumpKey: 1
+  climbKey: 2

@@ -246,7 +246,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!1 &2903963401553383697
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 2639707772079988282}
   - component: {fileID: 7169304461422494780}
   - component: {fileID: 7044266649929122057}
+  - component: {fileID: 8333265186236561306}
   m_Layer: 0
   m_Name: UI_Messages_PC
   m_TagString: Untagged
@@ -367,12 +368,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9169ab1de8dc7184eb91e3bd2cf956b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hidePanel: 1
   messageText: {fileID: 2903963401552786876}
+  messageVariable:
+    _useConstant: 0
+    _constantValue: 
+    _variable: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad, type: 2}
   messagePanel: {fileID: 2903963400668887898}
   preDelayTime: 0.2
   postDelayTime: 3
 --- !u!114 &7044266649929122057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337571351101880458}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
+    type: 2}
+  _event: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7169304461422494780}
+        m_MethodName: DisplayMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8333265186236561306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,9 +423,9 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad,
     type: 2}
-  _event: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a, type: 2}
+  _event: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -9,7 +10,7 @@ public class SceneChecker : MonoBehaviour
 {
     private void Awake()
     {
-        if(InputBridgeBase.instance == null)
+        if(!PhotonNetwork.InRoom)
         {
             SceneManager.LoadScene(0);
         }

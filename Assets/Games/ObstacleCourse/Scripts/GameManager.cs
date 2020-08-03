@@ -1,0 +1,233 @@
+﻿using Photon.Pun;
+using Photon.Realtime;
+using ScriptableObjectArchitecture;
+using System.Collections;
+using UnityEngine;
+
+/// <summary>
+/// this handles the logic for gameplay - it's a mess at the moment while I figure stuff out...
+/// </summary>
+
+[RequireComponent(typeof(TeamManager))]
+[RequireComponent(typeof(RespawnManager))]
+public class GameManager : MonoBehaviourPunCallbacks
+{
+    #region variables
+    public static GameManager instance;
+    [Header("Avatar Prefab")]
+    [SerializeField] protected GameObject avatar = default;
+    [Header("Settings")]
+    [SerializeField] protected int maxScore = 3;
+    [SerializeField] protected float lobbyDelay = 5;
+    [SerializeField] protected float startDelay = 3;
+    [Header("Events")]
+    [SerializeField] protected GameEvent startGameEvent = default;
+    [SerializeField] protected GameEvent stopGameEvent = default;
+    [SerializeField] protected GameEvent displayMessageEvent = default;
+    [Header("Variables")]
+    [SerializeField] protected StringReference uiMessage = default;
+    
+    protected bool isGameActive = false;
+    protected PhotonView view;
+    private TeamManager teams;
+    public PlayerRespawn localPlayerSpawner { get; set; }
+
+    protected enum GameState
+    {
+        initializing = 0,
+        pregame = 1,
+        running = 2,
+        postgame = 3
+    }
+    #endregion
+
+    #region static (get color, player scored, is game active)
+
+    /// <summary>
+    /// Get the team color to use for player avatar.
+    /// </summary>
+    public static Color GetColor(int team)
+    {
+        return instance.teams.GetColor(team);
+    }
+
+    /// <summary>
+    /// Get the color to use for player avatar.
+    /// </summary>
+    public static Vector3 GetSpawn(int team)
+    {
+        return instance.teams.GetSpawn(team);
+    }
+
+    /// <summary>
+    /// Check the scores and determine if game is active or not
+    /// </summary>
+    public static bool IsGameActive
+    {
+        get
+        {
+            if (instance == null || !instance.isGameActive || CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom) != 2) return false;
+            instance.CheckScores();
+            if (instance.teams.WinningTeam != -1)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    /// <summary>
+    /// Update a players score, and their teams score.
+    /// </summary>
+    public static void PlayerScored(Player player, int value)
+    {
+        if (!instance.isGameActive) return;
+        instance.teams.PlayerScored(player, value);
+        if (!IsGameActive)
+        {
+            CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 3);
+        }
+    }
+    #endregion
+
+    #region private (reset, checkscores)
+    protected virtual void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
+        instance = this;
+        teams = GetComponent<TeamManager>();
+        view = gameObject.AddComponent<PhotonView>();
+        view.ViewID = 999;
+    }
+
+    protected virtual void Start()
+    {
+        ResetGame();
+    }
+
+    /// <summary>
+    /// Reset the player props and room props.
+    /// </summary>
+    protected virtual void ResetGame()
+    {
+        InputBridgeBase.ToggleMovement(false);
+        CustomPlayerProperties.ResetProps(PhotonNetwork.LocalPlayer);
+        teams.WinningTeam = -1;
+        isGameActive = false;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            CustomRoomProperties.InitializeRoom(PhotonNetwork.CurrentRoom, PhotonNetwork.CurrentRoom.PlayerCount);
+        }
+    }
+
+    /// <summary>
+    /// Check scores and assign a winning team if applicable.
+    /// </summary>
+    protected virtual void CheckScores()
+    {
+        if (teams.WinningTeam != -1) return;
+        int[] scores = PhotonNetwork.CurrentRoom.GetScores();
+        for (int i = 0; i < scores.Length; i++)
+        {
+            if (scores[i] >= maxScore)
+            {
+                teams.WinningTeam = i;
+                break;
+            }
+        }
+    }
+    #endregion
+
+    #region callbacks (player props, room props)
+    /// <summary>
+    /// Callback used to monitor changes in the game state.
+    /// </summary>
+    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey(CustomRoomProperties.game))
+        {
+            int newstate = (int)propertiesThatChanged[CustomRoomProperties.game];
+            if (newstate == 1)
+            {
+                teams.SetupTeams();
+                StartCoroutine(StartGameCountdown());
+            }
+            else if (newstate == 2)
+            {
+                startGameEvent.Raise();
+                InputBridgeBase.ToggleMovement(true);
+                uiMessage.Value = "Start!";
+                isGameActive = true;
+            }
+            else if (newstate == 3)
+            {
+                // TODO: this needs to be on room props
+                // all players don't get this
+                if(teams.WinningTeam != -1)
+                {
+                    var index = teams.WinningTeam;
+                    uiMessage.Value = $"{teams.Teams[index].teamName} Team Won!";
+                    displayMessageEvent.Raise();
+                }
+                isGameActive = false;
+                InputBridgeBase.ToggleMovement(false);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    StartCoroutine(ReturnToLobby());
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Callback used to monitor changes to the player.
+    /// </summary>
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        if (changedProps.ContainsKey(CustomPlayerProperties.score) && (int)changedProps["score"] > 0)
+        {
+            var team = CustomPlayerProperties.GetTeam(targetPlayer);
+            string teamName = teams.Teams[team].teamName;
+            uiMessage.Value = $"{targetPlayer.NickName} ({teamName} Team) scored!";
+        }
+    }
+    #endregion
+
+    #region ienumerators (return to lobby, start game)
+    /// <summary>
+    /// Return to lobby after game ends, after a short delay
+    /// </summary>
+    protected virtual IEnumerator ReturnToLobby()
+    {
+        yield return new WaitForSeconds(lobbyDelay);
+        stopGameEvent.Raise();
+    }
+
+    /// <summary>
+    /// Host will start game after a delay
+    /// </summary>
+    private IEnumerator StartGameCountdown()
+    {
+        yield return new WaitForSeconds(startDelay);
+        CustomRoomProperties.SetGameState(PhotonNetwork.CurrentRoom, 2);
+    }
+    #endregion
+
+    #region rpcs (spawn avatar)
+    /// <summary>
+    /// Spawn a player avatar on the network.
+    /// </summary>
+    [PunRPC]
+    protected virtual void SpawnAvatar(int teamIndex)
+    {
+        Vector3 _randomSpawn = teams.GetSpawn(teamIndex);
+        Transform _startPos = teams.Teams[teamIndex].teamSpawn;
+        var localAvatar = PhotonNetwork.Instantiate(avatar.name, _randomSpawn, _startPos.rotation);
+        localPlayerSpawner = localAvatar.GetComponent<PlayerRespawn>();
+    }
+    #endregion
+
+}

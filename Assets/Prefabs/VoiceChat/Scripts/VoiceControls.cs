@@ -1,4 +1,5 @@
 ﻿using Photon.Voice.Unity;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 /// <summary>
@@ -11,6 +12,7 @@ public class VoiceControls : MonoBehaviour
     [SerializeField] OVRInput.RawButton toggleButtonOculus = default;
     [SerializeField] KeyCode toggleKey = default;
     [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
+    [SerializeField] private StringReference uiMessage = default;
 
     public static VoiceControls instance;
 
@@ -35,8 +37,7 @@ public class VoiceControls : MonoBehaviour
         if (Input.GetKeyDown(toggleKey) || OVRInput.GetDown(toggleButtonOculus))
         {
             recorder.DebugEchoMode = !recorder.DebugEchoMode;
-            PlayerPrefs.SetString("message", "mic echo on: " + recorder.DebugEchoMode);
-            displayMessageEvent.Raise();
+            uiMessage.Value = "mic echo on: " + recorder.DebugEchoMode;
         }
     }
 }

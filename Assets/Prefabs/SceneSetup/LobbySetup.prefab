@@ -43,17 +43,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52071d77a9c10764bbda2a7821f8a2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isVR: 0
+  isVR:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4, type: 2}
   uiPlayerDisplay: {fileID: 8664561125151160039, guid: 11014f25f8cd0ca44829026575965259,
     type: 3}
+  playerDisplayLocation: {x: 0, y: 3, z: 10}
+  playerDisplayRotation: 0
   uiHostPanel: {fileID: 4285881026346689587, guid: e5f06dbef98b33d45a3167d70437f87c,
     type: 3}
+  hostPanelLocation: {x: 7, y: 2, z: 10}
+  hostPanelRotation: 0
   uiGuestPanel: {fileID: 1777179089159493109, guid: 4b371f1b792272643a944fd06a28e71d,
     type: 3}
+  guestPanelLocation: {x: -7, y: 2, z: 10}
+  guestPanelRotation: 0
   uiMessagesPC: {fileID: 3337571351101880458, guid: 88ebd96960bfc6247bf1e3588f1abc9c,
     type: 3}
-  avatarPC: {fileID: 2829003816306713541, guid: 9e12fb12a0d04e8409ecb4db7f8c0640,
+  avatarPC: {fileID: 2999345153350290132, guid: d1e79ec8a4b98624caebf6f29e654749,
     type: 3}
-  uiMessagesVR: {fileID: 2525740586022889623, guid: ad5fa62e574763943be2ac130cf6167e,
+  avatarVR: {fileID: 8817732635592439885, guid: c49ad9f36df54f54da58e15069973f41,
     type: 3}
-  avatarVR: {fileID: 121930385796678115, guid: 16f7121f144101b4590873841b4b3df0, type: 3}

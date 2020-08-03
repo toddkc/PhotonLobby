@@ -737,6 +737,10 @@ MonoBehaviour:
   stopGameEvent: {fileID: 11400000, guid: 382ae6a664527314ea32fed415a5b2f6, type: 2}
   displayMessageEvent: {fileID: 11400000, guid: 5b36d0269cc34be43aecd4065b0d0f2a,
     type: 2}
+  uiMessage:
+    _useConstant: 0
+    _constantValue: 
+    _variable: {fileID: 0}
 --- !u!4 &1659804635
 Transform:
   m_ObjectHideFlags: 0
@@ -996,18 +1000,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4309383433356881294, guid: 90a4ae781966cb34385d0233ea2c6412,
-        type: 3}
-      propertyPath: uiPlayerDisplay
-      value: 
-      objectReference: {fileID: 710254415972576251, guid: ae40800cece47904c87989e6d9f032fc,
-        type: 3}
-    - target: {fileID: 4309383433356881294, guid: 90a4ae781966cb34385d0233ea2c6412,
-        type: 3}
-      propertyPath: isVR._variable
-      value: 
-      objectReference: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4,
-        type: 2}
     - target: {fileID: 4309383433356881295, guid: 90a4ae781966cb34385d0233ea2c6412,
         type: 3}
       propertyPath: m_Name

@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/templates/lobby.unity
     guid: e4192d6404416bb43b90abd9d1a69472
+  - enabled: 0
+    path: Assets/Scenes/templates/game.unity
+    guid: b1c7000bcf8b64848a9882b4b6055ac0
   - enabled: 1
-    path: Assets/Scenes/Games/ObstacleCourse.unity
+    path: Assets/Games/ObstacleCourse/ObstacleCourse.unity
     guid: 05c345a648b447442beebb216a36ae4b
   m_configObjects: {}
