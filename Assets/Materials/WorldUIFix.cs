@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// I want certain UI to show in front of any level geometry
+/// </summary>
+
 public class WorldUIFix : MonoBehaviour
 {
     private void Start()
