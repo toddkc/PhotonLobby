@@ -25,7 +25,7 @@ public class MouseCameraController : MonoBehaviour
     private Transform camTransform;
     private float xAngle;
     private float yAngle;
-    private bool canLook = true;
+    public bool canLook = true;
     private PhotonView view;
 
     private void Awake()
@@ -48,8 +48,21 @@ public class MouseCameraController : MonoBehaviour
     private void Update()
     {
         if (!canLook) return;
-        Pitch();
-        Yaw();
+        float _inputHorizontal = InputBridgeBase.instance.YawAxis;
+        float _inputVertical = invert ? InputBridgeBase.instance.PitchAxis : -InputBridgeBase.instance.PitchAxis;
+
+        RotateCamera(_inputHorizontal, _inputVertical);
+        //Pitch();
+        //Yaw();
+    }
+
+    private void RotateCamera(float _newHorizontalInput, float _newVerticalInput)
+    {
+        yAngle += _newHorizontalInput;
+        xAngle += _newVerticalInput;
+        xAngle = Mathf.Clamp(xAngle, -upperLimit, lowerLimit);
+        thisTransform.localRotation = Quaternion.Euler(new Vector3(0, yAngle, 0));
+        thisTransform.localRotation = Quaternion.Euler(new Vector3(xAngle, yAngle, 0));
     }
 
     // move cam up/down
@@ -66,17 +79,23 @@ public class MouseCameraController : MonoBehaviour
     {
         float input = InputBridgeBase.instance.YawAxis;
         yAngle += input * yawSpeed;
-        thisTransform.localRotation = Quaternion.Euler(new Vector3(0,yAngle,0));
+        //thisTransform.localRotation = Quaternion.Euler(new Vector3(0,yAngle,0));
+        var _currentAngles = thisTransform.localRotation.eulerAngles;
+        _currentAngles.y = yAngle;
+        thisTransform.localRotation = Quaternion.Euler(_currentAngles);
+    }
+
+    public void Disable()
+    {
+        canLook = false;
     }
 
     public void ResetView()
     {
-        if (!view.IsMine) return;
         canLook = false;
-        thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
-        camTransform.localRotation = Quaternion.Euler(Vector3.zero);
         xAngle = 0;
         yAngle = 0;
-        canLook = true;
+        camTransform.localRotation = Quaternion.Euler(Vector3.zero);
+        //canLook = true;
     }
 }

@@ -7,6 +7,7 @@
 
 public class GravitySource : MonoBehaviour
 {
+	[SerializeField] private bool registerOnEnable = false;
 	public virtual Vector3 GetGravity(Vector3 position)
 	{
 		return Physics.gravity;
@@ -14,7 +15,8 @@ public class GravitySource : MonoBehaviour
 
 	void OnEnable()
 	{
-		CustomGravity.Register(this);
+		if(registerOnEnable)
+			CustomGravity.Register(this);
 	}
 
 	void OnDisable()

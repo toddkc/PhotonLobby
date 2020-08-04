@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 425744738396986883}
   - component: {fileID: 2783799789546960109}
   - component: {fileID: 6368155677358376756}
-  - component: {fileID: 3023472666657719587}
   - component: {fileID: 425744738396986882}
+  - component: {fileID: 7359960581609606771}
   m_Layer: 9
   m_Name: controller
   m_TagString: Player
@@ -66,23 +66,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &3023472666657719587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425744738396986880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2841dd03c9b9243449208b471f1e2911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invert: 0
-  upperLimit: 60
-  lowerLimit: 60
-  yawSpeed: 10
-  pitchSpeed: 2
 --- !u!114 &425744738396986882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed755f38e91915f449eac4449a6f7136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInputSpace: {fileID: 425744738396986883}
+  playerInputSpace: {fileID: 2680407240306642824}
   maxSpeed: 5
   maxClimbSpeed: 3
   maxSwimSpeed: 4
@@ -127,6 +110,18 @@ MonoBehaviour:
   waterMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &7359960581609606771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425744738396986880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd4b95e8b59de04c944618d23386e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1840495257763234889
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2680407240306642824}
+  - component: {fileID: 4227750008933738048}
   m_Layer: 9
   m_Name: CameraRoot
   m_TagString: Untagged
@@ -293,6 +289,24 @@ Transform:
   m_Father: {fileID: 425744738396986883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4227750008933738048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2902944995242939126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2841dd03c9b9243449208b471f1e2911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invert: 0
+  upperLimit: 60
+  lowerLimit: 60
+  yawSpeed: 10
+  pitchSpeed: 2
+  canLook: 1
 --- !u!1 &3004502930096452757
 GameObject:
   m_ObjectHideFlags: 0

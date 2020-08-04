@@ -12,25 +12,28 @@ public class CustomGravity : MonoBehaviour
 
 	public static void Register(GravitySource source)
 	{
-		Debug.Assert(
-			!sources.Contains(source),
-			"Duplicate registration of gravity source!", source
-		);
+		if (sources.Contains(source)) return;
 		sources.Add(source);
 	}
 
 	public static void Unregister(GravitySource source)
 	{
-		Debug.Assert(
-			sources.Contains(source),
-			"Unregistration of unknown gravity source!", source
-		);
+		if (!sources.Contains(source)) return;
 		sources.Remove(source);
+	}
+
+	public static void UnregisterAll()
+	{
+		sources.Clear();
 	}
 
 	public static Vector3 GetGravity(Vector3 position)
 	{
 		Vector3 g = Vector3.zero;
+		if (sources.Count == 0)
+		{
+			g += Physics.gravity;
+		}
 		for (int i = 0; i < sources.Count; i++)
 		{
 			g += sources[i].GetGravity(position);
@@ -41,6 +44,10 @@ public class CustomGravity : MonoBehaviour
 	public static Vector3 GetGravity(Vector3 position, out Vector3 upAxis)
 	{
 		Vector3 g = Vector3.zero;
+		if(sources.Count == 0)
+		{
+			g += Physics.gravity;
+		}
 		for (int i = 0; i < sources.Count; i++)
 		{
 			g += sources[i].GetGravity(position);
@@ -52,6 +59,10 @@ public class CustomGravity : MonoBehaviour
 	public static Vector3 GetUpAxis(Vector3 position)
 	{
 		Vector3 g = Vector3.zero;
+		if (sources.Count == 0)
+		{
+			g += Physics.gravity;
+		}
 		for (int i = 0; i < sources.Count; i++)
 		{
 			g += sources[i].GetGravity(position);
