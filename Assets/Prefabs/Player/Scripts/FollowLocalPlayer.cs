@@ -22,11 +22,8 @@ public class FollowLocalPlayer : MonoBehaviourPun
 
     private void FollowPlayer()
     {
-        // get location of player
         var target = objectToFollow.position;
-        // get location of movement
         var movement = Vector3.Lerp(followingObject.position, target, lerpSpeed * Time.deltaTime);
-        // move to that location
         followingObject.position = movement;
     }
 
