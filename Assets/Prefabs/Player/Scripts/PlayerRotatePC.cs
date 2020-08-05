@@ -20,21 +20,15 @@ public class PlayerRotatePC : PlayerRotateBase
     {
         if (view != null && !view.IsMine) return;
         characterController.enabled = false;
-        //cameraController.enabled = false;
-        cameraController.Disable();
+        cameraController.enabled = false;
         thisTransform.rotation = rotation * thisTransform.rotation;
         StartCoroutine(ReenablePlayer());
     }
 
     private IEnumerator ReenablePlayer()
     {
-        yield return new WaitForSeconds(0.4f);
-        cameraController.ResetView();
-        yield return null;
-        //cameraController.enabled = true;
-        yield return null;
-        cameraController.ResetView();
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
+        cameraController.enabled = true;
         characterController.enabled = true;
     }
 }

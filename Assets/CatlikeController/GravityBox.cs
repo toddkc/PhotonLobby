@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class GravityBox : GravitySource
 {
@@ -18,6 +19,8 @@ public class GravityBox : GravitySource
 
 	protected virtual void OnTriggerEnter(Collider col)
 	{
+		var view = col.GetComponent<PhotonView>();
+		if (view == null || !view.IsMine) return;
 		var rotator = col.GetComponent<PlayerRotateBase>();
 		if (rotator == null) return;
 		SwitchDirection(thisTransform.forward, rotator);

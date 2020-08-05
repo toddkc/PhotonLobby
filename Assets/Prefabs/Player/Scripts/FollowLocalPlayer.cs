@@ -9,8 +9,9 @@ using UnityEngine;
 public class FollowLocalPlayer : MonoBehaviourPun
 {
     [SerializeField] private float lerpSpeed = 10f;
-    [SerializeField] Transform followingObject;
-    [SerializeField] Transform objectToFollow;
+    [SerializeField] Transform followingObject = default;
+    [SerializeField] Transform objectToFollow = default;
+    [SerializeField] Transform objectToRotateWith = default;
 
     private void LateUpdate()
     {
@@ -31,6 +32,6 @@ public class FollowLocalPlayer : MonoBehaviourPun
 
     private void Rotate()
     {
-        followingObject.localRotation = objectToFollow.localRotation;
+        followingObject.rotation = objectToRotateWith.rotation;
     }
 }

@@ -32,7 +32,7 @@ public class MouseCameraController : MonoBehaviour
     {
         thisTransform = transform;
         camTransform = GetComponentInChildren<Camera>().transform;
-        view = GetComponent<PhotonView>();
+        view = GetComponentInParent<PhotonView>();
     }
 
     private void Start()
@@ -50,10 +50,7 @@ public class MouseCameraController : MonoBehaviour
         if (!canLook) return;
         float _inputHorizontal = InputBridgeBase.instance.YawAxis;
         float _inputVertical = invert ? InputBridgeBase.instance.PitchAxis : -InputBridgeBase.instance.PitchAxis;
-
         RotateCamera(_inputHorizontal, _inputVertical);
-        //Pitch();
-        //Yaw();
     }
 
     private void RotateCamera(float _newHorizontalInput, float _newVerticalInput)
@@ -62,40 +59,16 @@ public class MouseCameraController : MonoBehaviour
         xAngle += _newVerticalInput;
         xAngle = Mathf.Clamp(xAngle, -upperLimit, lowerLimit);
         thisTransform.localRotation = Quaternion.Euler(new Vector3(0, yAngle, 0));
-        thisTransform.localRotation = Quaternion.Euler(new Vector3(xAngle, yAngle, 0));
-    }
-
-    // move cam up/down
-    private void Pitch()
-    {
-        float input = invert ? InputBridgeBase.instance.PitchAxis : -InputBridgeBase.instance.PitchAxis;
-        xAngle += input * pitchSpeed;
-        xAngle = Mathf.Clamp(xAngle, -upperLimit, lowerLimit);
         camTransform.localRotation = Quaternion.Euler(new Vector3(xAngle, 0, 0));
-    }
-
-    // rotate gameobject
-    private void Yaw()
-    {
-        float input = InputBridgeBase.instance.YawAxis;
-        yAngle += input * yawSpeed;
-        //thisTransform.localRotation = Quaternion.Euler(new Vector3(0,yAngle,0));
-        var _currentAngles = thisTransform.localRotation.eulerAngles;
-        _currentAngles.y = yAngle;
-        thisTransform.localRotation = Quaternion.Euler(_currentAngles);
-    }
-
-    public void Disable()
-    {
-        canLook = false;
     }
 
     public void ResetView()
     {
+        if (!view.IsMine) return;
         canLook = false;
         xAngle = 0;
         yAngle = 0;
-        camTransform.localRotation = Quaternion.Euler(Vector3.zero);
-        //canLook = true;
+        thisTransform.localRotation = Quaternion.Euler(Vector3.zero);
+        canLook = true;
     }
 }
