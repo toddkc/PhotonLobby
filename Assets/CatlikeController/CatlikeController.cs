@@ -425,7 +425,11 @@ public class CatlikeController : MonoBehaviour
 			jumpSpeed = Mathf.Max(jumpSpeed - alignedSpeed, 0f);
 		}
 		velocity += jumpDirection * jumpSpeed;
+		OnJump?.Invoke();
 	}
+
+	public delegate void JumpEvent();
+	public JumpEvent OnJump;
 
 	void OnCollisionEnter(Collision collision)
 	{
