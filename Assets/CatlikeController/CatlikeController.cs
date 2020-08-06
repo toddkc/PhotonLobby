@@ -7,6 +7,12 @@
 
 public class CatlikeController : MonoBehaviour
 {
+	// added by me:
+	public delegate void JumpEvent();
+	public JumpEvent OnJump;
+	public delegate void LandEvent();
+	public JumpEvent OnLand;
+
 	[SerializeField]
 	Transform playerInputSpace = default;
 
@@ -200,6 +206,10 @@ public class CatlikeController : MonoBehaviour
 
 	void UpdateState()
 	{
+		if(jumpPhase >= 1 && stepsSinceLastJump > 1 && OnGround)
+		{
+			OnLand?.Invoke();
+		}
 		stepsSinceLastGrounded += 1;
 		stepsSinceLastJump += 1;
 		velocity = body.velocity;
@@ -427,9 +437,6 @@ public class CatlikeController : MonoBehaviour
 		velocity += jumpDirection * jumpSpeed;
 		OnJump?.Invoke();
 	}
-
-	public delegate void JumpEvent();
-	public JumpEvent OnJump;
 
 	void OnCollisionEnter(Collision collision)
 	{

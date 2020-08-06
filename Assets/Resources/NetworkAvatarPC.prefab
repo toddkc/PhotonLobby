@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2132062007068662631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649087170883979633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 8063313269387286819}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8063313269387286819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649087170883979633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: Jump
+  - Type: 9
+    SynchronizeType: 1
+    Name: Land
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsMoving
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &6152172496439359229
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +538,7 @@ GameObject:
   - component: {fileID: 2316697795829606158}
   - component: {fileID: 8322248982590889179}
   - component: {fileID: 93741007742564660}
+  - component: {fileID: 2923887902204230895}
   m_Layer: 9
   m_Name: controller
   m_TagString: Player
@@ -676,6 +726,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToTrack: {fileID: 6027124588076830382}
+--- !u!114 &2923887902204230895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8322248982590889766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75b5249abd7c8c4da32a12e67e49ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5339381301640865379}
+  networkMovementRange: 0.1
 --- !u!1001 &2287617161061903158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -745,15 +809,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07ee689c9153a641996b06d6adb02f6, type: 3}
---- !u!4 &164898136773219275 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2159170680712820989, guid: c07ee689c9153a641996b06d6adb02f6,
+--- !u!1 &649087170883979633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1638530606531027527, guid: c07ee689c9153a641996b06d6adb02f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2287617161061903158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5339381301640865379 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6171748643578842453, guid: c07ee689c9153a641996b06d6adb02f6,
     type: 3}
   m_PrefabInstance: {fileID: 2287617161061903158}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6755758374775913548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4791400931185776506, guid: c07ee689c9153a641996b06d6adb02f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2287617161061903158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &164898136773219275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2159170680712820989, guid: c07ee689c9153a641996b06d6adb02f6,
     type: 3}
   m_PrefabInstance: {fileID: 2287617161061903158}
   m_PrefabAsset: {fileID: 0}
