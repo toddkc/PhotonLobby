@@ -220,7 +220,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54220
+  m_Name: pb_Mesh31868
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -521,6 +521,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09acbbf369737304a95333d11a22d446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isVrBuild:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: 74946178bb1b66b40b210227af8e9bd4, type: 2}
   Teams:
   - teamName: Red Team
     teamColor: {r: 0.8301887, g: 0.14489143, b: 0.14489143, a: 0}
@@ -528,7 +532,10 @@ MonoBehaviour:
   - teamName: Blue Team
     teamColor: {r: 0.15819688, g: 0.48128766, b: 0.745283, a: 0}
     teamSpawn: {fileID: 317262945}
-  avatar: {fileID: 2999345153350290132, guid: d1e79ec8a4b98624caebf6f29e654749, type: 3}
+  avatarPC: {fileID: 7722775428205927495, guid: 945d6311d0a9e8e4e9b713154dc9038c,
+    type: 3}
+  avatarVR: {fileID: 8817732635592439885, guid: c49ad9f36df54f54da58e15069973f41,
+    type: 3}
   startDelay: 5
   lobbyDelay: 5
   unloadGameEvent: {fileID: 11400000, guid: 4feaf7a4e65d84347b1b7a4a76d466b5, type: 2}
@@ -588,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c157dc25240b743a42e5891a184186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 0
+  maxScore: 2
 --- !u!1 &217308469
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4310bb4e0376064dbd7b3ce0b644395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  registerOnEnable: 0
 --- !u!4 &237797998
 Transform:
   m_ObjectHideFlags: 0
@@ -1888,7 +1896,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f06fb8bf8f9cd6438cee4212a5cc50e, type: 2}
+  - {fileID: 2100000, guid: 75c4fe5e7a1f0e742a3c92882a007feb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
