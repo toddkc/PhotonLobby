@@ -16,24 +16,13 @@ public class MoveToPlayerOnEnable : MonoBehaviour
             toggleObject.SetActive(false);
             return;
         }
-
-        Debug.LogError("test middle");
         if (playerCamera == null) return;
-
-        // move menu to camera
         var _worldpos = playerCamera.position;
         thisTransform.position = _worldpos;
-
-        // move forward by offset
         var _direction = Vector3.ProjectOnPlane(playerCamera.forward, thisTransform.up).normalized * offset;
         thisTransform.position += _direction;
-
-        // look at player
         thisTransform.LookAt(playerCamera);
-
         toggleObject.SetActive(true);
-
-        Debug.LogError("test last");
     }
 
     private void Awake()

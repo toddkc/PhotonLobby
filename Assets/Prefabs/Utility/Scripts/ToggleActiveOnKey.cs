@@ -37,7 +37,6 @@ public class ToggleActiveOnKey : MonoBehaviour
 
     private IEnumerator ResetClick()
     {
-        Debug.LogError("test first");
         canClick = false;
         yield return delay;
         canClick = true;

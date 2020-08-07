@@ -1,9 +1,10 @@
-﻿using Photon.Realtime;
+﻿using ScriptableObjectArchitecture;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class GameMode : MonoBehaviour
 {
+    public BoolReference isVrBuild = default;
     public static GameMode instance;
     public abstract bool IsGameActive { get; }
     public List<Team> Teams;

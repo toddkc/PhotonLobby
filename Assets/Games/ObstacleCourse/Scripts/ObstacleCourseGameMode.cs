@@ -13,7 +13,8 @@ public class ObstacleCourseGameMode : GameMode
         postgame = 2
     }
 
-    [SerializeField] private GameObject avatar = default;
+    [SerializeField] private GameObject avatarPC = default;
+    [SerializeField] private GameObject avatarVR = default;
     [SerializeField] private float startDelay = default;
     [SerializeField] private float lobbyDelay = default;
     [SerializeField] private GameEvent unloadGameEvent = default;
@@ -117,7 +118,15 @@ public class ObstacleCourseGameMode : GameMode
     {
         Vector3 _randomSpawn = Teams[teamIndex].GetSpawn();
         Transform _startPos = Teams[teamIndex].teamSpawn;
-        var localAvatar = PhotonNetwork.Instantiate(avatar.name, _randomSpawn, _startPos.rotation);
-        localPlayerAvatarView = localAvatar.GetComponentInChildren<PhotonView>();
+        GameObject _localavatar;
+        if (isVrBuild.Value)
+        {
+            _localavatar = PhotonNetwork.Instantiate(avatarVR.name, _randomSpawn, _startPos.rotation);
+        }
+        else
+        {
+            _localavatar = PhotonNetwork.Instantiate(avatarPC.name, _randomSpawn, _startPos.rotation);
+        }
+        localPlayerAvatarView = _localavatar.GetComponentInChildren<PhotonView>();
     }
 }

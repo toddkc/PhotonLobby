@@ -43,7 +43,6 @@ public class TrackNetworkRotation : MonoBehaviour, IPunObservable
 
     private void OnRotation()
     {
-        Debug.LogError("on rotation", this);
         objectToTrack.rotation = rotation;
     }
 }
