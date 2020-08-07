@@ -15,9 +15,9 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     [SerializeField] Text playerName = default;
 
     [Header("Events")]
-    [SerializeField] ScriptableObjectArchitecture.GameEvent joinRoomEvent = default;
-    [SerializeField] ScriptableObjectArchitecture.GameEvent leaveRoomEvent = default;
-    [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
+    [SerializeField] GameEvent joinRoomEvent = default;
+    [SerializeField] GameEvent leaveRoomEvent = default;
+    [SerializeField] GameEvent displayMessageEvent = default;
 
     [Header("Variables")]
     [SerializeField] private StringReference uiMessage = default;
@@ -44,21 +44,27 @@ public class CustomNetworkRoom : MonoBehaviourPunCallbacks
     // create a new room with a specific name
     public void CreateRoom()
     {
+        Debug.LogError("creating room");
         joiningRandom = false;
         if (!PhotonNetwork.IsConnectedAndReady || PhotonNetwork.InRoom) return;
-        string roomname = PlayerPrefs.GetString("hostroom");
+        string roomname = PlayerPrefs.GetString("RoomName");
+        string password = PlayerPrefs.GetString("RoomPassword");
         if (string.IsNullOrEmpty(roomname)) return;
-        PhotonNetwork.CreateRoom(roomname);
+        var options = new RoomOptions();
+        options.IsVisible = false;
+        PhotonNetwork.CreateRoom(roomname + password, options);
     }
 
     // join a room with a specific name
     public void JoinRoom()
     {
+        Debug.LogError("joining room");
         joiningRandom = false;
         if (!PhotonNetwork.IsConnectedAndReady || PhotonNetwork.InRoom) return;
-        string roomname = PlayerPrefs.GetString("joinroom");
+        string roomname = PlayerPrefs.GetString("RoomName");
+        string password = PlayerPrefs.GetString("RoomPassword");
         if (string.IsNullOrEmpty(roomname)) return;
-        PhotonNetwork.JoinRoom(roomname);
+        PhotonNetwork.JoinRoom(roomname + password);
     }
 
     // attempt to join any room or else create one

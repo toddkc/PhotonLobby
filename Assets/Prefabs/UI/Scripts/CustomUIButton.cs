@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class CustomUIButton : MonoBehaviour, ICustomUIElement
 {
+    [SerializeField] private AudioClip clickAudio = default;
     private Button button;
 
     private void Awake()
@@ -29,6 +30,7 @@ public class CustomUIButton : MonoBehaviour, ICustomUIElement
     // when object is clicked
     public void OnClick()
     {
+        if (clickAudio) AudioManager.instance.PlayClip(clickAudio);
         button.image.color = button.colors.normalColor;
         button.onClick.Invoke();
     }

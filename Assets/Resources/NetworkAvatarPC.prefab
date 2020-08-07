@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed755f38e91915f449eac4449a6f7136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpAudio: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   playerInputSpace: {fileID: 6027124588076830382}
   maxSpeed: 5
   maxClimbSpeed: 3
@@ -713,6 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd4b95e8b59de04c944618d23386e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayTime: 0.2
 --- !u!114 &93741007742564660
 MonoBehaviour:
   m_ObjectHideFlags: 0

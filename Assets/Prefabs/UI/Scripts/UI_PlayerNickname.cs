@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// logic for hooking up ui to playerprefs for player name
 /// </summary>
 
-public class UI_PlayerNickname : MonoBehaviourPun
+public class UI_PlayerNickname : MonoBehaviour
 {
     [SerializeField] InputField nicknameInput = default;
     private const string playerPrefsKey = "nickname";

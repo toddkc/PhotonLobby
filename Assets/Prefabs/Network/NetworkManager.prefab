@@ -240,7 +240,7 @@ MonoBehaviour:
   uiMessage:
     _useConstant: 0
     _constantValue: 
-    _variable: {fileID: 0}
+    _variable: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad, type: 2}
 --- !u!114 &2134167287
 MonoBehaviour:
   m_ObjectHideFlags: 0

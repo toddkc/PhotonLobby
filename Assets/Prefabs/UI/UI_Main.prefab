@@ -981,7 +981,7 @@ GameObject:
   - component: {fileID: 2141053449635640110}
   - component: {fileID: 2141053449635640145}
   - component: {fileID: 146195859}
-  - component: {fileID: 146195858}
+  - component: {fileID: 5270536356879160597}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1113,7 +1113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 190, y: 60, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &146195858
+--- !u!114 &5270536356879160597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1125,6 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b216913bf32b43b0e82556ebf5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!1 &2141053449737532161
 GameObject:
   m_ObjectHideFlags: 0

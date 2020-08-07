@@ -132,17 +132,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7753594070434812584}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8299728867034883726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b216913bf32b43b0e82556ebf5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!65 &5103086860947456127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -477,6 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b216913bf32b43b0e82556ebf5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!65 &6271404338016992242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -948,6 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b216913bf32b43b0e82556ebf5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!65 &4116607768679313130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1246,17 +1238,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 5857436878732057187}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6843745900135606723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,6 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b216913bf32b43b0e82556ebf5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!65 &4116607768679313132
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1515,6 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b216913bf32b43b0e82556ebf5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!65 &4116607768679313131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1931,6 +1914,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5857436878407488416}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6059390102751221600}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7640389050176615906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2256,6 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318b216913bf32b43b0e82556ebf5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickAudio: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!65 &8090494229348195218
 BoxCollider:
   m_ObjectHideFlags: 0

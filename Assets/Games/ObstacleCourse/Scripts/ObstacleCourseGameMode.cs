@@ -81,7 +81,7 @@ public class ObstacleCourseGameMode : GameMode
         {
             if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(CustomRoomProperties.game, out object _state))
             {
-                Debug.LogError("game state: " + CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom));
+                //Debug.LogError("game state: " + CustomRoomProperties.GetGameState(PhotonNetwork.CurrentRoom));
                 return (int)_state == 2;
             }
             return false;
@@ -109,7 +109,7 @@ public class ObstacleCourseGameMode : GameMode
             PhotonNetwork.CurrentRoom.AddToTeam(_teamIndex, 1);
             player.Value.SetTeam(_teamIndex);
             view.RPC("RPCGameModeSpawnAvatar", player.Value, _teamIndex);
-            Debug.LogError("player added to team: " + _teamIndex);
+            //Debug.LogError("player added to team: " + _teamIndex);
         }
     }
 

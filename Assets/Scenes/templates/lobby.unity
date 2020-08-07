@@ -964,6 +964,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.375
       objectReference: {fileID: 0}
+    - target: {fileID: 4105194244449891911, guid: 7b7a5f59ac8f6684b96411649b209e50,
+        type: 3}
+      propertyPath: audioclip
+      value: 
+      objectReference: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
     - target: {fileID: 4105194245121936328, guid: 7b7a5f59ac8f6684b96411649b209e50,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -974,6 +979,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 75c4fe5e7a1f0e742a3c92882a007feb, type: 2}
+    - target: {fileID: 4105194245121936332, guid: 7b7a5f59ac8f6684b96411649b209e50,
+        type: 3}
+      propertyPath: audioclip
+      value: 
+      objectReference: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
     - target: {fileID: 4105194245132505249, guid: 7b7a5f59ac8f6684b96411649b209e50,
         type: 3}
       propertyPath: m_Name
@@ -1302,3 +1312,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cdceff80f1d6254e84be9439df20e71, type: 3}
+--- !u!1 &1819157991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819157993}
+  - component: {fileID: 1819157992}
+  m_Layer: 0
+  m_Name: pools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1819157992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819157991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea08375da243a441b88d1e6b0713006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5850505800470603443, guid: ff9622f8adb98704fa0ecbb9affcd983, type: 3}
+  Notification: 0
+  Preload: 10
+  Capacity: 0
+  Recycle: 0
+  Persist: 0
+  Stamp: 0
+  Warnings: 1
+  spawnedClonesList: []
+  despawnedClones: []
+  delays: []
+--- !u!4 &1819157993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819157991}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

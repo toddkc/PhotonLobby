@@ -43,7 +43,7 @@ public class MainMenuSetup : MonoBehaviour
     {
         if (!isVR.Value) return;
         Instantiate(inputBridgeVR);
-        Instantiate(uiMenuVR);
+        if (uiMenuVR) Instantiate(uiMenuVR);
         Instantiate(avatarVR);
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GravityBox : GravitySource
 {
 	[SerializeField] private float gravity = 9.81f;
+	[SerializeField] private AudioClip audioclip = default;
 	protected Transform thisTransform;
 
 	private void Awake()
@@ -38,5 +39,6 @@ public class GravityBox : GravitySource
 		rotator.Rotate(_rotationDifference);
 		CustomGravity.UnregisterAll();
 		CustomGravity.Register(this);
+		if (audioclip) AudioManager.instance.PlayClipAtSource(audioclip, thisTransform.position);
 	}
 }

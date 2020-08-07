@@ -8,6 +8,7 @@
 public class CatlikeController : MonoBehaviour
 {
 	// added by me:
+	[SerializeField] private AudioClip jumpAudio = default;
 	public delegate void JumpEvent();
 	public JumpEvent OnJump;
 	public delegate void LandEvent();
@@ -436,6 +437,7 @@ public class CatlikeController : MonoBehaviour
 		}
 		velocity += jumpDirection * jumpSpeed;
 		OnJump?.Invoke();
+		if (jumpAudio) AudioManager.instance.PlayClip(jumpAudio);
 	}
 
 	void OnCollisionEnter(Collision collision)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RaycastUIVR : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class RaycastUIVR : MonoBehaviour
     private WaitForSeconds clickDelay;
     private bool canClick = true;
     private LineRenderer rend;
+    private bool isGameScene;
+    private bool isMenuOpen;
 
     private void Awake()
     {
@@ -26,15 +29,30 @@ public class RaycastUIVR : MonoBehaviour
     private void Start()
     {
         clickDelay = new WaitForSeconds(0.2f);
+        isGameScene = SceneManager.GetActiveScene().buildIndex > 1;
+        isMenuOpen = false;
     }
 
     private void OnEnable()
     {
         currentSelected = null;
+        SceneManager.activeSceneChanged += ResetMenuState;
     }
     private void OnDisable()
     {
         currentSelected = null;
+        SceneManager.activeSceneChanged -= ResetMenuState;
+    }
+
+    private void ResetMenuState(Scene oldscene, Scene newscene)
+    {
+        isMenuOpen = false;
+        isGameScene = newscene.buildIndex > 1;
+    }
+
+    public void ToggleMenuOpen()
+    {
+        isMenuOpen = !isMenuOpen;
     }
 
     // check if ui interaction is happening
@@ -69,9 +87,12 @@ public class RaycastUIVR : MonoBehaviour
             // if touch show ray
             if (OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, controller))
             {
-                rend.enabled = true;
-                rend.SetPosition(0, thisTransform.position);
-                rend.SetPosition(1, _target);
+                if(!isGameScene || isMenuOpen)
+                {
+                    rend.enabled = true;
+                    rend.SetPosition(0, thisTransform.position);
+                    rend.SetPosition(1, _target);
+                }
             }
             else
             {

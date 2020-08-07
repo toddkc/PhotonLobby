@@ -14,7 +14,7 @@ public class PlayerScore : MonoBehaviour
 
     public void TriggerScore()
     {
-        Debug.LogError("player triggered score");
+        //Debug.LogError("player triggered score");
         if (!view.IsMine || !GameMode.instance.IsGameActive) return;
         playerScoredEvent.Raise();
     }

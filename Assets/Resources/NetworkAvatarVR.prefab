@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 1535129867322449796}
   - component: {fileID: 5604284654044530799}
   - component: {fileID: 4813003449751894529}
+  - component: {fileID: 6604518677004427375}
   m_Layer: 0
   m_Name: RightControllerAnchor
   m_TagString: Untagged
@@ -486,6 +487,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pulseTime: 0.2
+--- !u!114 &6604518677004427375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5249497505013769793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5604284654044530799}
+        m_MethodName: ToggleMenuOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5249588164560171529
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1018,7 @@ GameObject:
   - component: {fileID: 216237891105480791}
   - component: {fileID: 4009912328173266018}
   - component: {fileID: 6908932434012468738}
+  - component: {fileID: 1534471670687099043}
   m_Layer: 0
   m_Name: LeftControllerAnchor
   m_TagString: Untagged
@@ -1145,6 +1178,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pulseTime: 0.2
+--- !u!114 &1534471670687099043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250426740053926551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4009912328173266018}
+        m_MethodName: ToggleMenuOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5644717847906200235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed755f38e91915f449eac4449a6f7136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpAudio: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   playerInputSpace: {fileID: 5249588164559914861}
   maxSpeed: 5
   maxClimbSpeed: 3
