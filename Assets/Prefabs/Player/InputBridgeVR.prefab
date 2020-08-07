@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3482bf2e8149841b7b9288b44d3f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftInteractButton: 268435456
-  rightInteractButton: 67108864
   moveAxis: 1
   strafeAxis: 1
-  jumpKey: 1
-  climbKey: 2
+  jumpButton: 1
+  voiceToggle: 8
+  menuButton: 256
+  scoreButton: 256
+  interactButton: 0
 --- !u!114 &7143113653827596713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,4 +65,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayTime: 0.2
   toggleMenu: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606, type: 2}
-  toggleScore: {fileID: 11400000, guid: ecc4825a804a593488d222582c48f1c6, type: 2}
+  toggleScore: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606, type: 2}

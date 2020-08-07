@@ -532,7 +532,7 @@ MonoBehaviour:
   - teamName: Blue Team
     teamColor: {r: 0.15819688, g: 0.48128766, b: 0.745283, a: 0}
     teamSpawn: {fileID: 317262945}
-  avatarPC: {fileID: 7722775428205927495, guid: 945d6311d0a9e8e4e9b713154dc9038c,
+  avatarPC: {fileID: 7722775428205927495, guid: d1e79ec8a4b98624caebf6f29e654749,
     type: 3}
   avatarVR: {fileID: 8817732635592439885, guid: c49ad9f36df54f54da58e15069973f41,
     type: 3}

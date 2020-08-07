@@ -2,19 +2,19 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerRotatePC : PlayerRotateBase
+public class PlayerRotateVR : PlayerRotateBase
 {
     [SerializeField] private float delayTime = 0.2f;
     private WaitForSeconds delay;
     private CatlikeController characterController;
-    private MouseCameraController cameraController;
+    private VRCameraController cameraController;
     private PhotonView view;
 
     protected override void Awake()
     {
         thisTransform = transform;
         characterController = GetComponent<CatlikeController>();
-        cameraController = GetComponentInChildren<MouseCameraController>();
+        cameraController = GetComponentInChildren<VRCameraController>();
         view = GetComponent<PhotonView>();
         delay = new WaitForSeconds(delayTime);
     }
@@ -33,5 +33,6 @@ public class PlayerRotatePC : PlayerRotateBase
         yield return delay;
         cameraController.enabled = true;
         characterController.enabled = true;
+        cameraController.SoftResetView();
     }
 }

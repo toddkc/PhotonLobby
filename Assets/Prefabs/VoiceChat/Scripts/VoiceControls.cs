@@ -9,9 +9,6 @@ using UnityEngine;
 public class VoiceControls : MonoBehaviour
 {
     Recorder recorder;
-    [SerializeField] OVRInput.RawButton toggleButtonOculus = default;
-    [SerializeField] KeyCode toggleKey = default;
-    [SerializeField] ScriptableObjectArchitecture.GameEvent displayMessageEvent = default;
     [SerializeField] private StringReference uiMessage = default;
 
     public static VoiceControls instance;
@@ -34,7 +31,7 @@ public class VoiceControls : MonoBehaviour
     // toggle mic echo
     private void Update()
     {
-        if (Input.GetKeyDown(toggleKey) || OVRInput.GetDown(toggleButtonOculus))
+        if (InputBridgeBase.instance.ToggleVoice)
         {
             recorder.DebugEchoMode = !recorder.DebugEchoMode;
             uiMessage.Value = "mic echo on: " + recorder.DebugEchoMode;

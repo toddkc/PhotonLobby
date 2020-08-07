@@ -32,7 +32,7 @@ public class MainMenuSetup : MonoBehaviour
     {
         Instantiate(networkManager);
         Instantiate(voiceManager);
-        Instantiate(eventTester);
+        if (eventTester != null) Instantiate(eventTester);
         Instantiate(sceneLoader);
 
         SetupVR();

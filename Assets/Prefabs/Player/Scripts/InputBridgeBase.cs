@@ -20,8 +20,9 @@ public class InputBridgeBase : MonoBehaviour
     public bool Jump { get; protected set; }
     public bool Menu { get; protected set; }
     public bool Score { get; protected set; }
+    public bool ToggleVoice { get; set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (instance == null)
         {
@@ -68,5 +69,6 @@ public class InputBridgeBase : MonoBehaviour
         Climb = false;
         Menu = false;
         Score = false;
+        ToggleVoice = false;
     }
 }
