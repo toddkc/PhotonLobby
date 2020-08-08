@@ -502,7 +502,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606,
+    type: 2}
   _event: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606, type: 2}
   _response:
     m_PersistentCalls:
@@ -1193,7 +1194,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606,
+    type: 2}
   _event: {fileID: 11400000, guid: f4861b71d0d3e204e907ee65e6e1e606, type: 2}
   _response:
     m_PersistentCalls:
@@ -1371,7 +1373,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: d9f8d2a7be45f4c498983d4a98b63582, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -2078,7 +2080,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817732635592439885}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
   m_Name: 
@@ -2166,6 +2168,8 @@ MonoBehaviour:
   localAvatarLayer: 10
   avatarObjects:
   - {fileID: 5021947361201358449}
+  listeners:
+  - {fileID: 6838199670507301168}
 --- !u!1001 &562935961740366091
 PrefabInstance:
   m_ObjectHideFlags: 0
