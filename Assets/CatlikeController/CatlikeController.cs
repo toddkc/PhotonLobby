@@ -14,8 +14,7 @@ public class CatlikeController : MonoBehaviour
 	public delegate void LandEvent();
 	public JumpEvent OnLand;
 
-	[SerializeField]
-	Transform playerInputSpace = default;
+	public Transform playerInputSpace;
 
     [SerializeField, Range(0f, 100f)]
     float maxSpeed = 10f, maxClimbSpeed = 4f, maxSwimSpeed = 5f;

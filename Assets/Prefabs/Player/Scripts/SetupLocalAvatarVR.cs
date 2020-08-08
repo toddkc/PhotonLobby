@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SetupLocalAvatarVR : MonoBehaviour
 {
+    [SerializeField] private GameObject cameraRigPrefab = default;
+    [SerializeField] private Transform cameraRigParent = default;
     [SerializeField] private int localAvatarLayer = default;
     [SerializeField] private List<Transform> avatarObjects = new List<Transform>();
     [SerializeField] private List<GameEventListener> listeners = new List<GameEventListener>();
@@ -25,8 +27,12 @@ public class SetupLocalAvatarVR : MonoBehaviour
 
 
     // adjust the avatar mesh layers so local player doesn't see their body
+    // create camerarig for local player only
     private void SetupLocal()
     {
+        Instantiate(cameraRigPrefab, cameraRigParent);
+        var _centereye = Camera.main.transform;
+        GetComponentInChildren<CatlikeController>().playerInputSpace = _centereye;
         foreach (Transform child in avatarObjects)
         {
             child.gameObject.layer = localAvatarLayer;
@@ -38,20 +44,14 @@ public class SetupLocalAvatarVR : MonoBehaviour
     {
         var _catcontroller = GetComponentInChildren<CatlikeController>();
         var _camcontroller = GetComponentInChildren<VRCameraController>();
-        var _camrig = GetComponentInChildren<OVRCameraRig>().gameObject;
         
         Destroy(_catcontroller);
         Destroy(_camcontroller);
-        Destroy(_camrig);
 
         foreach(var listener in listeners)
         {
             listener.enabled = false;
         }
-
-        //GetComponentInChildren<CatlikeController>().enabled = false;
-        //GetComponentInChildren<VRCameraController>().enabled = false;
-        //Destroy(GetComponentInChildren<OVRCameraRig>().gameObject);
     }
 
     public void SetPlayerColors()
