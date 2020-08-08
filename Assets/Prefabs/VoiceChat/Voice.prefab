@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4928786304761061640}
   - component: {fileID: 4928786304761061641}
   - component: {fileID: 4928786304761061642}
+  - component: {fileID: 660902795952639073}
   m_Layer: 0
   m_Name: Voice
   m_TagString: Untagged
@@ -131,3 +132,34 @@ MonoBehaviour:
     _useConstant: 0
     _constantValue: 
     _variable: {fileID: 11400000, guid: 7a8949419212a9340a138fbab932d2ad, type: 2}
+--- !u!114 &660902795952639073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928786304761061638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5758ca93461aeeb4589456a052b07d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDebugFields: 0
+  _enableGizmoDebugging: 1
+  _debugColor: {r: 0, g: 1, b: 1, a: 1}
+  _previouslyRegisteredEvent: {fileID: 0}
+  _event: {fileID: 11400000, guid: 5895ee21f62008a43952b19de038734a, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4928786304761061642}
+        m_MethodName: UpdateSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

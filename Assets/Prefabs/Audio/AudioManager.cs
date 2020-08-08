@@ -24,10 +24,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (defaultMusic)
-        {
-            PlayMusic(defaultMusic);
-        }
+        UpdateSettings();
     }
 
     public void PlayMusic(AudioClip clip)
@@ -51,5 +48,15 @@ public class AudioManager : MonoBehaviour
         var _sourcecomp = _poolsource.GetComponent<AudioSource>();
         _sourcecomp.PlayOneShot(clip);
         LeanPool.Despawn(_poolsource, clip.length);
+    }
+
+    public void UpdateSettings()
+    {
+        var _volume = PlayerPrefsManager.MusicVolume;
+        musicSource.volume = _volume;
+
+        var _playmusic = PlayerPrefsManager.PlayMusic;
+        if (!_playmusic && musicSource.isPlaying) musicSource.Stop();
+        if (_playmusic && !musicSource.isPlaying && defaultMusic) PlayMusic(defaultMusic);
     }
 }

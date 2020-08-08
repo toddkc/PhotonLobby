@@ -16,22 +16,13 @@ public class GameSetup : MonoBehaviour
     [SerializeField] private Vector3 playerDisplayLocation;
     [SerializeField] private float playerDisplayRotation;
     [SerializeField] private GameObject uiGamePanel;
-    [SerializeField] private Vector3 gamePanelLocation;
-    [SerializeField] private float gamePanelRotation;
 
     [Header("PC Prefabs")]
     [SerializeField] private GameObject uiMessagesPC;
 
     private void Start()
     {
-        var pd = Instantiate(uiPlayerDisplay);
-        pd.transform.position = playerDisplayLocation;
-        pd.transform.rotation = Quaternion.Euler(0, playerDisplayRotation, 0);
-
-        var gp = Instantiate(uiGamePanel);
-        gp.transform.position = gamePanelLocation;
-        gp.transform.rotation = Quaternion.Euler(0, gamePanelRotation, 0);
-
+        Instantiate(uiGamePanel);
         SetupPC();
     }
 
@@ -39,5 +30,9 @@ public class GameSetup : MonoBehaviour
     {
         if (isVR.Value) return;
         Instantiate(uiMessagesPC);
+
+        var pd = Instantiate(uiPlayerDisplay);
+        pd.transform.position = playerDisplayLocation;
+        pd.transform.rotation = Quaternion.Euler(0, playerDisplayRotation, 0);
     }
 }

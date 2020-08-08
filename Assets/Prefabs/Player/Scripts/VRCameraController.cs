@@ -5,13 +5,18 @@ using UnityEngine.SceneManagement;
 public class VRCameraController : MonoBehaviour
 {
     [SerializeField] private Transform transformToRotate = default;
-    [SerializeField] private float step = 45;
+    private float step = 45;
     private PhotonView view;
     public bool canLook = true;
 
     private void Awake()
     {
         view = GetComponentInParent<PhotonView>();
+    }
+
+    private void Start()
+    {
+        UpdateSettings();
     }
 
     private void OnEnable()
@@ -65,5 +70,10 @@ public class VRCameraController : MonoBehaviour
         canLook = false;
         OVRManager.display.RecenterPose();
         canLook = true;
+    }
+
+    public void UpdateSettings()
+    {
+        step = PlayerPrefsManager.SnapAmount;
     }
 }

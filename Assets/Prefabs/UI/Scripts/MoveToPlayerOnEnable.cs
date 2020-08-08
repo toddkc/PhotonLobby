@@ -32,6 +32,11 @@ public class MoveToPlayerOnEnable : MonoBehaviour
         StartCoroutine(FindCamera());
     }
 
+    private void Start()
+    {
+        toggleObject.SetActive(false);
+    }
+
     private IEnumerator FindCamera()
     {
         int counter = 0;

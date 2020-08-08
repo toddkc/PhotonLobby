@@ -28,13 +28,26 @@ public class VoiceControls : MonoBehaviour
         }
     }
 
-    // toggle mic echo
-    private void Update()
+    private void Start()
     {
-        if (InputBridgeBase.instance.ToggleVoice)
-        {
-            recorder.DebugEchoMode = !recorder.DebugEchoMode;
-            uiMessage.Value = "mic echo on: " + recorder.DebugEchoMode;
-        }
+        UpdateSettings();
+    }
+
+    // toggle mic echo
+    //private void Update()
+    //{
+    //    if (InputBridgeBase.instance.ToggleVoice)
+    //    {
+    //        recorder.DebugEchoMode = !recorder.DebugEchoMode;
+    //        uiMessage.Value = "mic echo on: " + recorder.DebugEchoMode;
+    //    }
+    //}
+
+    public void UpdateSettings()
+    {
+        var _mute = PlayerPrefsManager.MuteMic;
+        var _echo = PlayerPrefsManager.EchoMic;
+        recorder.DebugEchoMode = _echo;
+        recorder.TransmitEnabled = !_mute;
     }
 }
