@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.LogError(collision.gameObject.name);
+        // TODO: bullets still hit firing player sometimes, need to add that collider to an ignore list
         LeanPool.Despawn(thisObj);
     }
 }

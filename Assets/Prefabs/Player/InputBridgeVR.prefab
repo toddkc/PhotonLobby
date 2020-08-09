@@ -51,6 +51,7 @@ MonoBehaviour:
   menuButton: 256
   scoreButton: 256
   interactButton: 2105344
+  recenterButton: 8
 --- !u!114 &7143113653827596713
 MonoBehaviour:
   m_ObjectHideFlags: 0

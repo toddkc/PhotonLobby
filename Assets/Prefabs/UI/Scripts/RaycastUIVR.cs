@@ -17,6 +17,7 @@ public class RaycastUIVR : MonoBehaviour
     private LineRenderer rend;
     private bool isGameScene;
     private bool isMenuOpen;
+    private EquipItemHand handItem;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class RaycastUIVR : MonoBehaviour
         thisTransform = transform;
         rend = GetComponent<LineRenderer>();
         haptic = GetComponent<ControllerHaptic>();
+        handItem = GetComponentInChildren<EquipItemHand>();
     }
 
     private void Start()
@@ -61,7 +63,7 @@ public class RaycastUIVR : MonoBehaviour
         CheckForUI();
 
         // click ui if possible
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller) && canClick && currentSelected != null)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller) && canClick && currentSelected != null && !handItem.IsEquipped)
         {
             canClick = false;
             currentSelected.OnClick();
@@ -87,7 +89,7 @@ public class RaycastUIVR : MonoBehaviour
             // if touch show ray
             if (OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, controller))
             {
-                if(!isGameScene || isMenuOpen)
+                if((!isGameScene || isMenuOpen) && !handItem.IsEquipped)
                 {
                     rend.enabled = true;
                     rend.SetPosition(0, thisTransform.position);

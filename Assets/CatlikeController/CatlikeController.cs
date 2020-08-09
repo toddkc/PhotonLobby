@@ -96,6 +96,9 @@ public class CatlikeController : MonoBehaviour
 
 	int stepsSinceLastGrounded, stepsSinceLastJump;
 
+	public Vector3 PreviousVelocity { get; private set; }
+	public Vector3 CurrentVelocity { get; private set; }
+
 	public void PreventSnapToGround()
 	{
 		stepsSinceLastJump = -1;
@@ -113,6 +116,7 @@ public class CatlikeController : MonoBehaviour
 		body = GetComponent<Rigidbody>();
 		body.useGravity = false;
 		OnValidate();
+		PreviousVelocity = CurrentVelocity = Vector3.zero;
 	}
 
 	void Update()
@@ -191,6 +195,8 @@ public class CatlikeController : MonoBehaviour
 			velocity += gravity * Time.deltaTime;
 		}
 		body.velocity = velocity;
+		PreviousVelocity = CurrentVelocity;
+		CurrentVelocity = velocity;
 		ClearState();
 	}
 

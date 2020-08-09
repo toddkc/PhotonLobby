@@ -1,5 +1,4 @@
-﻿using Lean.Pool;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 public class Pistol : MonoBehaviour, IGrabbable
@@ -10,6 +9,7 @@ public class Pistol : MonoBehaviour, IGrabbable
     [SerializeField] private GameObject bulletPrefab = default;
     [SerializeField] private AudioClip shootClip = default;
     [SerializeField] private OVRInput.Controller holdingController = default;
+    [SerializeField] private string linkedShootName = default;
     private PhotonView view;
     private bool isHeld = false;
     private float fireDelay;
@@ -18,7 +18,8 @@ public class Pistol : MonoBehaviour, IGrabbable
     private void Awake()
     {
         view = GetComponentInParent<PhotonView>();
-        playerShoot = GetComponentInParent<PlayerShoot>();
+        // TODO: this is not ideal
+        playerShoot = transform.root.Find(linkedShootName).GetComponent<PlayerShoot>();
     }
 
     private void Update()

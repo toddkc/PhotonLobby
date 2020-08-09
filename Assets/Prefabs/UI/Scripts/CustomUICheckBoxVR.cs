@@ -20,14 +20,12 @@ public class CustomUICheckBoxVR : MonoBehaviour, ICustomUIElement
     // simulate mouse entering hover
     public void OnHover()
     {
-        Debug.LogError("hover");
         toggle.image.color = toggle.colors.highlightedColor;
     }
 
     // when object is clicked
     public void OnClick()
     {
-        Debug.LogError("click");
         if (clickAudio) AudioManager.instance.PlayClip(clickAudio);
         toggle.image.color = toggle.colors.normalColor;
         toggle.isOn = !toggle.isOn;

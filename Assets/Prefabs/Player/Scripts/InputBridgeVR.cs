@@ -13,6 +13,7 @@ public class InputBridgeVR : InputBridgeBase
     [SerializeField] private OVRInput.Button menuButton = default;
     [SerializeField] private OVRInput.Button scoreButton = default;
     [SerializeField] private OVRInput.Button interactButton = default;
+    [SerializeField] private OVRInput.Button recenterButton = default;
 
     private void Update()
     {
@@ -24,9 +25,8 @@ public class InputBridgeVR : InputBridgeBase
         Menu = OVRInput.Get(menuButton);
         Score = OVRInput.Get(scoreButton);
 
-        if (OVRInput.Get(OVRInput.Button.Four))
+        if (OVRInput.Get(recenterButton))
         {
-            Debug.LogError("recenter");
             OVRManager.display.RecenterPose();
         }
     }

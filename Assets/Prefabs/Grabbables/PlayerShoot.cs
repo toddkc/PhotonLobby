@@ -7,17 +7,37 @@ public class PlayerShoot : MonoBehaviour
     private PhotonView view;
     private GameObject currentBullet;
     private AudioClip currentAudio;
+    private CatlikeController controller;
 
     private void Awake()
     {
         view = GetComponent<PhotonView>();
+        controller = transform.root.GetComponentInChildren<CatlikeController>();
     }
 
     public void Shoot(Vector3 position, Quaternion rotation, GameObject shootobject, AudioClip shootaudio)
     {
         currentBullet = shootobject;
         currentAudio = shootaudio;
-        view.RPC("CmdShoot", RpcTarget.AllViaServer, position, rotation);
+
+        // TODO: this is a work in progress
+        // add current velocity to shoot 
+        //var _momentum = controller.CurrentVelocity;
+        //var _posupdate = position + _momentum;
+
+        if (view.IsMine)
+        {
+            if (currentBullet)
+            {
+                var _bullet = LeanPool.Spawn(currentBullet, position, rotation);
+                _bullet.GetComponent<Bullet>().Shoot();
+            }
+            if (currentAudio) AudioManager.instance.PlayClipAtSource(currentAudio, position);
+        }
+        else
+        {
+            view.RPC("CmdShoot", RpcTarget.Others, position, rotation);
+        }
     }
 
     [PunRPC]
@@ -29,7 +49,5 @@ public class PlayerShoot : MonoBehaviour
             _bullet.GetComponent<Bullet>().Shoot();
         }
         if (currentAudio) AudioManager.instance.PlayClipAtSource(currentAudio, position);
-        currentBullet = null;
-        currentAudio = null;
     }
 }
