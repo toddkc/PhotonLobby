@@ -27,7 +27,6 @@ public class UI_MenuSettings : MonoBehaviour
 
     public void ToggleMute()
     {
-        Debug.LogError("toggle mute");
         PlayerPrefsManager.MuteMic = mute.isOn;
         settingsChanged.Raise();
     }

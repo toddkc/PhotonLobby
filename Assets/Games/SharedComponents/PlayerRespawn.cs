@@ -69,6 +69,13 @@ public class PlayerRespawn : MonoBehaviour
         }
         else
         {
+            // TODO:
+            // reset gravity when respawning, this doesn't work
+            var _team = PhotonNetwork.LocalPlayer.GetTeam();
+            var _spawn = GameMode.instance.Teams[_team].teamSpawn;
+            thisTransform.rotation = _spawn.rotation;
+            CustomGravity.UnregisterAll();
+
             InputBridgeBase.ToggleMovement(false);
             thisTransform.localPosition = Vector3.zero;
             respawnEvent.Raise();

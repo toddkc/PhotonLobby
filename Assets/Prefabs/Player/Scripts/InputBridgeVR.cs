@@ -23,5 +23,11 @@ public class InputBridgeVR : InputBridgeBase
         Interact = OVRInput.Get(interactButton);
         Menu = OVRInput.Get(menuButton);
         Score = OVRInput.Get(scoreButton);
+
+        if (OVRInput.Get(OVRInput.Button.Four))
+        {
+            Debug.LogError("recenter");
+            OVRManager.display.RecenterPose();
+        }
     }
 }

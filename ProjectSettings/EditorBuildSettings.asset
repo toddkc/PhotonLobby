@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Games/ObstacleCourse/ObstacleCourse.unity
     guid: 05c345a648b447442beebb216a36ae4b
+  - enabled: 1
+    path: Assets/Games/CapFlag/CapFlag.unity
+    guid: 6b18d8dfd171e65438bd557e4a414e84
   m_configObjects: {}

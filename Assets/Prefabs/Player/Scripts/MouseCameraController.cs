@@ -22,7 +22,7 @@ public class MouseCameraController : MonoBehaviour
     float pitchSpeed = 2f;
 
     private Transform thisTransform;
-    private Transform camTransform;
+    public Transform camTransform;
     private float xAngle;
     private float yAngle;
     public bool canLook = true;
@@ -31,18 +31,30 @@ public class MouseCameraController : MonoBehaviour
     private void Awake()
     {
         thisTransform = transform;
-        camTransform = GetComponentInChildren<Camera>().transform;
         view = GetComponentInParent<PhotonView>();
+        //camTransform = GetComponentInChildren<Camera>().transform;
     }
 
     private void Start()
     {
-        if(InputBridgeBase.instance == null)
+        if (InputBridgeBase.instance == null)
         {
             Debug.LogError("Mouse Cam Controller cannot find input bridge!", this);
         }
-        xAngle = camTransform.localRotation.eulerAngles.x;
-        yAngle = thisTransform.localRotation.eulerAngles.y;
+        StartCoroutine(Setup());
+    }
+
+    private IEnumerator Setup()
+    {
+        yield return null;
+        while (camTransform == null)
+        {
+            yield return null;
+            camTransform = GetComponentInChildren<Camera>().transform;
+            xAngle = camTransform.localRotation.eulerAngles.x;
+            yAngle = thisTransform.localRotation.eulerAngles.y;
+        }
+        yield return null;
     }
 
     private void Update()

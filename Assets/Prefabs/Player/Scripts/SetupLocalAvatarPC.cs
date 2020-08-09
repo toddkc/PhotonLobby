@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using ScriptableObjectArchitecture;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,11 @@ using UnityEngine;
 
 public class SetupLocalAvatarPC : MonoBehaviour
 {
+    [SerializeField] private GameObject cameraRigPrefab = default;
+    [SerializeField] private Transform cameraRigParent = default;
     [SerializeField] private int localAvatarLayer = default;
     [SerializeField] private List<Transform> avatarObjects = new List<Transform>();
+    [SerializeField] private List<GameEventListener> listeners = new List<GameEventListener>();
     private PhotonView view;
 
     private void Start()
@@ -26,44 +30,29 @@ public class SetupLocalAvatarPC : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Adjust the avatar mesh layers so local player doesn't see their body.
-    /// </summary>
+    // adjust the avatar mesh layers so local player doesn't see their body
+    // create camerarig for local player only
     private void SetupLocal()
     {
+        Instantiate(cameraRigPrefab, cameraRigParent);
         foreach (Transform child in avatarObjects)
         {
-            child.gameObject.layer = localAvatarLayer;
+            Destroy(child.gameObject);
         }
     }
 
-    /// <summary>
-    /// Turn off certain components for networked players.
-    /// </summary>
+    // turn off components on network players
     private void SetupNetwork()
     {
-        GetComponentInChildren<CatlikeController>().enabled = false;
-        GetComponentInChildren<MouseCameraController>().enabled = false;
-        Destroy(GetComponentInChildren<Camera>().gameObject);
-        Destroy(GetComponentInChildren<Canvas>().gameObject);
-    }
+        var _catcontroller = GetComponentInChildren<CatlikeController>();
+        var _camcontroller = GetComponentInChildren<MouseCameraController>();
 
-    /// <summary>
-    /// Set the color of the player avatar based on team.
-    /// </summary>
-    public void SetPlayerColors()
-    {
-        var _team = CustomPlayerProperties.GetTeam(view.Owner);
-        var _color = GameMode.instance.Teams[_team].teamColor;
-        foreach (Transform child in avatarObjects)
+        Destroy(_catcontroller);
+        Destroy(_camcontroller);
+
+        foreach (var listener in listeners)
         {
-            if (child.name != "Team") continue;
-            child.gameObject.SetActive(true);
-            var _renderer = child.GetComponent<Renderer>();
-            var _block = new MaterialPropertyBlock();
-            _renderer.GetPropertyBlock(_block);
-            _block.SetColor("_Color", _color);
-            _renderer.SetPropertyBlock(_block);
+            listener.enabled = false;
         }
     }
 }

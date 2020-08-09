@@ -35,7 +35,19 @@ public class SetupLocalAvatarVR : MonoBehaviour
         GetComponentInChildren<CatlikeController>().playerInputSpace = _centereye;
         foreach (Transform child in avatarObjects)
         {
+            //child.gameObject.layer = localAvatarLayer;
+            //Destroy(child.gameObject);
+            SetChildrenLayers(child);
+        }
+    }
+
+    private void SetChildrenLayers(Transform parent)
+    {
+        parent.gameObject.layer = localAvatarLayer;
+        foreach(Transform child in parent)
+        {
             child.gameObject.layer = localAvatarLayer;
+            SetChildrenLayers(child);
         }
     }
 
