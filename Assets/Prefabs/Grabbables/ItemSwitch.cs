@@ -7,47 +7,16 @@ public class ItemSwitch : MonoBehaviour
     private PhotonView view;
 
     [SerializeField]
-    private List<Transform> left = new List<Transform>();
+    private List<GameObject> left = new List<GameObject>();
     [SerializeField]
-    private List<Transform> right = new List<Transform>();
+    private List<GameObject> right = new List<GameObject>();
 
-    public List<IGrabbable> leftHandPlayerItems = new List<IGrabbable>();
-    public List<IGrabbable> rightHandPlayerItems = new List<IGrabbable>();
-    private List<IGrabbable> leftHandAvatarItems = new List<IGrabbable>();
-    private List<IGrabbable> rightHandAvatarItems = new List<IGrabbable>();
-
-    // local player will switch hand model
-    // send rpc to everyone else
-    // rpc tells them to switch avatar model
+    public List<GameObject> leftHandPlayerItems = new List<GameObject>();
+    public List<GameObject> rightHandPlayerItems = new List<GameObject>();
 
     private void Awake()
     {
         view = GetComponent<PhotonView>();
-    }
-
-    private void Start()
-    {
-        foreach (Transform trans in left)
-        {
-            leftHandAvatarItems.Add(trans.GetComponent<IGrabbable>());
-        }
-        foreach (Transform trans in right)
-        {
-            rightHandAvatarItems.Add(trans.GetComponent<IGrabbable>());
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SwitchItem(0, 0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SwitchItem(1, 0);
-        }
     }
 
     public void SwitchItem(int hand, int model)
@@ -57,17 +26,27 @@ public class ItemSwitch : MonoBehaviour
         {
             foreach (var item in leftHandPlayerItems)
             {
-                item.OnDrop();
+                item.SetActive(false);
             }
-            if (model >= 0) leftHandPlayerItems[model].OnGrab();
+            foreach (var item in left)
+            {
+                item.SetActive(false);
+            }
+            if (model >= 0) leftHandPlayerItems[model].SetActive(true);
+            if (model >= 0) left[model].SetActive(true);
         }
         else
         {
             foreach (var item in rightHandPlayerItems)
             {
-                item.OnDrop();
+                item.SetActive(false);
             }
-            if (model >= 0) rightHandPlayerItems[model].OnGrab();
+            foreach (var item in right)
+            {
+                item.SetActive(false);
+            }
+            if (model >= 0) rightHandPlayerItems[model].SetActive(true);
+            if (model >= 0) right[model].SetActive(true);
         }
 
         view.RPC("RPCItemSwitch", RpcTarget.Others, hand, model);
@@ -78,19 +57,19 @@ public class ItemSwitch : MonoBehaviour
         if (view.IsMine) return;
         if (hand == 0)
         {
-            foreach (var item in leftHandAvatarItems)
+            foreach (var item in left)
             {
-                item.OnDrop();
+                item.SetActive(false);
             }
-            if (model >= 0) leftHandAvatarItems[model].OnGrab();
+            if (model >= 0) left[model].SetActive(true);
         }
         else
         {
-            foreach (var item in rightHandAvatarItems)
+            foreach (var item in right)
             {
-                item.OnDrop();
+                item.SetActive(false);
             }
-            if (model >= 0) rightHandAvatarItems[model].OnGrab();
+            if (model >= 0) right[model].SetActive(true);
         }
     }
 

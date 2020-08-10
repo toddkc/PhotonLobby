@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class EquipItemHand : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EquipItemHand : MonoBehaviour
     public bool IsEquipped { get; set; }
 
     private ControllerHaptic haptic;
+    [SerializeField] private List<GameObject> itemModels;
 
     public int Hand { get { return handIndex; } }
     [SerializeField] private int handIndex;

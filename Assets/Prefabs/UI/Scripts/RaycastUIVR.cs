@@ -60,10 +60,15 @@ public class RaycastUIVR : MonoBehaviour
     // check if ui interaction is happening
     private void Update()
     {
+        if (handItem.IsEquipped)
+        {
+            rend.enabled = false;
+            return;
+        }
         CheckForUI();
 
         // click ui if possible
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller) && canClick && currentSelected != null && !handItem.IsEquipped)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller) && canClick && currentSelected != null)
         {
             canClick = false;
             currentSelected.OnClick();
@@ -89,7 +94,7 @@ public class RaycastUIVR : MonoBehaviour
             // if touch show ray
             if (OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, controller))
             {
-                if((!isGameScene || isMenuOpen) && !handItem.IsEquipped)
+                if((!isGameScene || isMenuOpen))
                 {
                     rend.enabled = true;
                     rend.SetPosition(0, thisTransform.position);

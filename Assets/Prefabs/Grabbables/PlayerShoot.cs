@@ -6,6 +6,7 @@ public class PlayerShoot : MonoBehaviour
 {
     private PhotonView view;
     private GameObject currentBullet;
+    private GameObject currentEffect;
     private AudioClip currentAudio;
     private CatlikeController controller;
 
@@ -15,10 +16,11 @@ public class PlayerShoot : MonoBehaviour
         controller = transform.root.GetComponentInChildren<CatlikeController>();
     }
 
-    public void Shoot(Vector3 position, Quaternion rotation, GameObject shootobject, AudioClip shootaudio)
+    public void Shoot(Transform shootpoint, GameObject shootobject, AudioClip shootaudio, GameObject shooteffect)
     {
         currentBullet = shootobject;
         currentAudio = shootaudio;
+        currentEffect = shooteffect;
 
         // TODO: this is a work in progress
         // add current velocity to shoot 
@@ -27,16 +29,15 @@ public class PlayerShoot : MonoBehaviour
 
         if (view.IsMine)
         {
-            if (currentBullet)
-            {
-                var _bullet = LeanPool.Spawn(currentBullet, position, rotation);
-                _bullet.GetComponent<Bullet>().Shoot();
-            }
-            if (currentAudio) AudioManager.instance.PlayClipAtSource(currentAudio, position);
+            var _bullet = LeanPool.Spawn(currentBullet, shootpoint.position, shootpoint.rotation);
+            _bullet.GetComponent<Bullet>().Shoot();
+            var _effect = LeanPool.Spawn(shooteffect, shootpoint);
+            _effect.GetComponent<DespawnEffect>().EnableEffect();
+            AudioManager.instance.PlayClipAtSource(currentAudio, shootpoint.position);
         }
         else
         {
-            view.RPC("CmdShoot", RpcTarget.Others, position, rotation);
+            view.RPC("CmdShoot", RpcTarget.Others, shootpoint.position, shootpoint.rotation);
         }
     }
 
@@ -49,5 +50,6 @@ public class PlayerShoot : MonoBehaviour
             _bullet.GetComponent<Bullet>().Shoot();
         }
         if (currentAudio) AudioManager.instance.PlayClipAtSource(currentAudio, position);
+        if (currentEffect) LeanPool.Spawn(currentEffect, position, rotation);
     }
 }

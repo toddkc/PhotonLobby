@@ -4,20 +4,20 @@ using UnityEngine;
 public class CameraRigItemSetup : MonoBehaviour
 {
     [SerializeField]
-    private List<Transform> left = new List<Transform>();
+    private List<GameObject> left = new List<GameObject>();
     [SerializeField]
-    private List<Transform> right = new List<Transform>();
+    private List<GameObject> right = new List<GameObject>();
 
     private void Start()
     {
         var _switcher = GetComponentInParent<ItemSwitch>();
-        foreach (Transform trans in left)
+        foreach (GameObject obj in left)
         {
-            _switcher.leftHandPlayerItems.Add(trans.GetComponent<IGrabbable>());
+            _switcher.leftHandPlayerItems.Add(obj);
         }
-        foreach (Transform trans in right)
+        foreach (GameObject obj in right)
         {
-            _switcher.rightHandPlayerItems.Add(trans.GetComponent<IGrabbable>());
+            _switcher.rightHandPlayerItems.Add(obj);
         }
     }
 }
